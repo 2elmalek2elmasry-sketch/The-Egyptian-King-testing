@@ -72,6 +72,7 @@ function toggleMenu() {
         <a href="#themes" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Themes</a>
         <a href="#social" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Social</a>
         <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Contact</a>
+        <span id="cart-count">0</span>
       </nav>
 
       <!-- Sign In / Up Button (Top Right) -->
@@ -228,6 +229,7 @@ document.write(`
 <button class="buy-button premium-button" data-product-name=QUEEN HATSHEPSOUT HOODIE data-product-price=EGP 850 data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
 ADD TO CART <i class="fas fa-shopping-cart ml-1"></i>
 </button>
+
 <button class="buy-button premium-button" data-product-name=QUEEN HATSHEPSOUT HOODIE data-product-price=EGP 850 data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
@@ -587,7 +589,6 @@ let selectedRate = 1;
   function updateCartCount() {
   document.getElementById('cart-count').innerText = cart.length;
 }
-<span id="cart-count">0</span>
   
 // update after adding
 updateCartCount();
@@ -738,7 +739,7 @@ function nextStep(step) { showStep(step); }
   let cart = [];
 
 // ADD TO CART
-document.querySelectorAll('.buy-button').forEach(btn => {
+.forEach(btn => {
   btn.addEventListener('click', function() {
 
     const product = {
@@ -766,12 +767,52 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Add event listeners to all Quick Buy buttons
+let cart = [];
+
+// Load cart
+window.addEventListener('DOMContentLoaded', () => {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) cart = JSON.parse(savedCart);
+  updateCartCount();
+});
+
+// ONE system for BOTH buttons
 document.querySelectorAll('.buy-button').forEach(btn => {
-btn.addEventListener('click', function() {
-openModal(this.dataset.productName, this.dataset.productPrice, this.dataset.productImage);
+  btn.addEventListener('click', function() {
+
+    const name = this.dataset.productName;
+    const price = this.dataset.productPrice;
+    const image = this.dataset.productImage;
+
+    const text = this.innerText.toLowerCase();
+
+    // 🛒 ADD TO CART
+    if (text.includes("add to cart")) {
+
+      const product = { name, price, image };
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      updateCartCount();
+      alert(name + " added to cart 🛒");
+
+    }
+
+    // ⚡ QUICK BUY
+    else if (text.includes("quick buy")) {
+
+      openModal(name, price, image);
+
+    }
+
+  });
 });
-});
+
+// Update cart number
+function updateCartCount() {
+  const el = document.getElementById('cart-count');
+  if (el) el.innerText = cart.length;
+}
 
 // Redirect to PayPal
 function redirectPayPal() {
