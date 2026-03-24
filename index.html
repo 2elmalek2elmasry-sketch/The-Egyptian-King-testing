@@ -675,6 +675,24 @@ applyCurrencyBtn.addEventListener("click", () => {
   currencyModal.style.display = "none";
 });
 </script>
+  
+  <!-- Add to Cart Popup -->
+<div id="cart-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+  <div class="bg-gray-900 rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl">
+    <h3 id="popup-product-name" class="text-xl font-bold text-yellow-400 mb-4"></h3>
+    <div class="flex justify-center items-center gap-4 mb-4">
+      <button id="decrease-qty" class="bg-gray-700 text-white rounded-full w-10 h-10 text-2xl">-</button>
+      <span id="quantity" class="text-xl font-bold text-yellow-300">1</span>
+      <button id="increase-qty" class="bg-gray-700 text-white rounded-full w-10 h-10 text-2xl">+</button>
+    </div>
+    <p class="text-yellow-300 mb-4">Total: <span id="total-price"></span></p>
+    <div class="flex justify-center gap-4">
+      <button id="confirm-add" class="premium-button px-6 py-2 rounded-xl">Add to Cart</button>
+      <button id="cancel-add" class="premium-button px-6 py-2 rounded-xl bg-gray-700 hover:bg-gray-600">Cancel</button>
+    </div>
+  </div>
+</div>
+  
 <!-- Checkout Modal -->
 <div id="checkout-modal" class="modal-overlay">
 <div class="modal-content rounded-2xl p-6 md:p-10 relative">
@@ -1165,6 +1183,96 @@ document.addEventListener("DOMContentLoaded", () => {
 function closeRamadanPopup() {
   document.getElementById("ramadan-popup").style.display = "none";
 }
+</script>
+<script>
+  // ====== CART SYSTEM ======
+
+// Mock user session (replace with your login system)
+let currentUser = localStorage.getItem('currentUser'); // store logged-in user email
+let currentProduct = null;
+let currentQuantity = 1;
+
+// Helper: Get user's cart from localStorage
+function getCart() {
+  if (!currentUser) return null;
+  let cart = JSON.parse(localStorage.getItem(`cart_${currentUser}`));
+  return cart || [];
+}
+
+// Helper: Save cart
+function saveCart(cart) {
+  if (!currentUser) return;
+  localStorage.setItem(`cart_${currentUser}`, JSON.stringify(cart));
+}
+
+// Add to Cart Button Click
+document.querySelectorAll('.product-card button.buy-button').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    if (!currentUser) {
+      alert("Please Sign In first");
+      return;
+    }
+    // Get product info
+    const productCard = e.target.closest('.product-card');
+    currentProduct = {
+      name: btn.dataset.productName,
+      price: parseInt(btn.dataset.productPrice.replace(/\D/g,'')),
+      image: btn.dataset.productImage
+    };
+    currentQuantity = 1;
+    // Update popup
+    document.getElementById('popup-product-name').innerText = currentProduct.name;
+    document.getElementById('quantity').innerText = currentQuantity;
+    document.getElementById('total-price').innerText = `EGP ${currentProduct.price}`;
+    document.getElementById('cart-popup').classList.remove('hidden');
+  });
+});
+
+// Quantity Controls
+document.getElementById('increase-qty').addEventListener('click', () => {
+  currentQuantity++;
+  document.getElementById('quantity').innerText = currentQuantity;
+  document.getElementById('total-price').innerText = `EGP ${currentProduct.price * currentQuantity}`;
+});
+
+document.getElementById('decrease-qty').addEventListener('click', () => {
+  if (currentQuantity > 1) currentQuantity--;
+  document.getElementById('quantity').innerText = currentQuantity;
+  document.getElementById('total-price').innerText = `EGP ${currentProduct.price * currentQuantity}`;
+});
+
+// Cancel
+document.getElementById('cancel-add').addEventListener('click', () => {
+  document.getElementById('cart-popup').classList.add('hidden');
+});
+
+// Confirm Add
+document.getElementById('confirm-add').addEventListener('click', () => {
+  let cart = getCart();
+  // Check if item exists, then update quantity
+  let existing = cart.find(item => item.name === currentProduct.name);
+  if (existing) {
+    existing.quantity += currentQuantity;
+    existing.totalPrice = existing.quantity * existing.price;
+  } else {
+    cart.push({
+      ...currentProduct,
+      quantity: currentQuantity,
+      totalPrice: currentProduct.price * currentQuantity
+    });
+  }
+  saveCart(cart);
+  document.getElementById('cart-popup').classList.add('hidden');
+  alert("Added to Cart Successfully!");
+});
+
+// ===== Side Menu Cart Button =====
+const sideMenu = document.getElementById('sideMenu');
+const cartButton = document.createElement('a');
+cartButton.href = 'cart.html';
+cartButton.innerHTML = `<i class="fas fa-shopping-cart mr-2"></i> Cart`;
+cartButton.style.cssText = "padding:15px 20px; display:block; color:#d1d5db; text-decoration:none;";
+sideMenu.appendChild(cartButton);
 </script>
 </body>
 </html>
