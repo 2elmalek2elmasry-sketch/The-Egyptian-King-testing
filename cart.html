@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Cart</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+<h1 class="text-4xl font-bold text-yellow-400 text-center mt-8 mb-8">Your Cart</h1>
+<div class="container mx-auto px-4" id="cart-items"></div>
+
+<script>
+// ===== Cart Page Logic =====
+let currentUser = localStorage.getItem('currentUser');
+if (!currentUser) {
+  document.getElementById('cart-items').innerHTML = "<p class='text-center text-red-500'>Please sign in to view your cart.</p>";
+} else {
+  let cart = JSON.parse(localStorage.getItem(`cart_${currentUser}`)) || [];
+  const container = document.getElementById('cart-items');
+  if (cart.length === 0) {
+    container.innerHTML = "<p class='text-center text-yellow-300'>Your cart is empty!</p>";
+  } else {
+    cart.forEach(item => {
+      const div = document.createElement('div');
+      div.className = "flex items-center justify-between bg-gray-800 p-4 rounded-xl mb-4 shadow-lg";
+      div.innerHTML = `
+        <div class="flex items-center gap-4">
+          <img src="${item.image}" class="w-24 h-24 object-cover rounded-lg border-2 border-yellow-800">
+          <div>
+            <h3 class="font-bold text-yellow-400">${item.name}</h3>
+            <p>EGP ${item.price} x ${item.quantity} = <span class="font-bold text-yellow-300">EGP ${item.totalPrice}</span></p>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+}
+</script>
+
+</body>
+</html>
