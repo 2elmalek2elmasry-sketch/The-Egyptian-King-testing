@@ -811,7 +811,7 @@ function openSignIn() {
 
 function openSignUp() {
   document.getElementById('sign-choice-modal').style.display = 'none';
- *6 document.getElementById('signup-modal').style.display = 'flex';
+
 }
 </script>
 
@@ -871,7 +871,7 @@ function logoutUser() {
 </script>
 <script>
 function isValidEmail(email) {
-  return @.test(email);
+  return /\S+@\S+\.\S+/. test(email);
 }
 </script>
 
