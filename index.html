@@ -225,17 +225,6 @@ document.write(`
 <h3 class="text-xl font-bold text-yellow-400">QUEEN HATSHEPSOUT HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 850</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<div class="product-card bg-gray-800 p-4 rounded-xl shadow-lg text-center">
-  <img src="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" alt="QUEEN HATSHEPSOUT HOODIE" class="w-48 mx-auto mb-2 rounded-lg">
-  <h3 class="text-yellow-400 font-bold mb-1">Cool T-Shirt</h3>
-  <p class="text-gray-300 mb-2">EGP 850</p>
-  <button class="buy-button bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-bold"
-          data-product-name="QUEEN HATSHEPSHOUT HOODIE"
-          data-product-price="850"
-          data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
-    Add to Cart <i class="fas fa-shopping-cart ml-1"></i>
-  </button>
-</div>
 <button class="buy-button premium-button" data-product-name=QUEEN HATSHEPSOUT HOODIE data-product-price=EGP 850 data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
@@ -253,8 +242,12 @@ document.write(`
 <img src="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" alt="KHABY LAME HOODIE" data-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">KHABY LAME HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="" data-product-name= data-product-price= data-product-image="">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="" data-product-name= data-product-price= data-product-image="">
+Add to Cart <i class="fas fa-shopping-cart ml-1"></i>
+<button class="buy-button premium-button" 
+        data-product-name="KHABY LAME HOODIE" 
+        data-product-price="800" 
+        data-product-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg">
 Add to Cart <i class="fas fa-shopping-cart ml-1"></i>
 </button>
 <button class="buy-button premium-button" data-product-name=KHABY LAME HOODIEdata-product-price=EGP 800 data-product-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg">
@@ -1220,6 +1213,17 @@ document.querySelectorAll('.product-card button.buy-button').forEach(btn => {
       alert("Please Sign In first");
       return;
     }
+    const cartButtons = document.querySelectorAll('.buy-button');
+cartButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.dataset.productName;
+    const price = btn.dataset.productPrice;
+    const image = btn.dataset.productImage;
+
+    // Your add to cart function
+    addToCart(name, price, image);
+  });
+});
     // Get product info
     const productCard = e.target.closest('.product-card');
     currentProduct = {
