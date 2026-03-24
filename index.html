@@ -584,6 +584,22 @@ const applyCurrencyBtn = document.getElementById("apply-currency");
 let selectedCurrency = "EGP"; 
 let selectedRate = 1;
 
+  function updateCartCount() {
+  document.getElementById('cart-count').innerText = cart.length;
+}
+<span id="cart-count">0</span>
+  
+// update after adding
+updateCartCount();
+
+// also after loading
+window.addEventListener('DOMContentLoaded', () => {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    updateCartCount();
+  }
+});
 // Store original EGP prices
 const productPrices = document.querySelectorAll(".product-card p.text-gray-400");
 productPrices.forEach(p => {
@@ -719,6 +735,36 @@ document.getElementById('step-3-confirmation').style.display = step === 3 ? 'blo
 }
 
 function nextStep(step) { showStep(step); }
+  let cart = [];
+
+// ADD TO CART
+document.querySelectorAll('.buy-button').forEach(btn => {
+  btn.addEventListener('click', function() {
+
+    const product = {
+      name: this.dataset.productName,
+      price: this.dataset.productPrice,
+      image: this.dataset.productImage
+    };
+
+    cart.push(product);
+
+    // Save in browser
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(product.name + " added to cart 🛒");
+
+    console.log(cart); // debug
+  });
+});
+
+// LOAD CART WHEN PAGE LOADS
+window.addEventListener('DOMContentLoaded', () => {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+  }
+});
 
 // Add event listeners to all Quick Buy buttons
 document.querySelectorAll('.buy-button').forEach(btn => {
