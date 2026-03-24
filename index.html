@@ -242,8 +242,7 @@ document.write(`
 <img src="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" alt="KHABY LAME HOODIE" data-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">KHABY LAME HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="" data-product-name= data-product-price= data-product-image="">
-Add to Cart <i class="fas fa-shopping-cart ml-1"></i>
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
 <button class="buy-button premium-button" 
         data-product-name="KHABY LAME HOODIE" 
         data-product-price="800" 
@@ -764,475 +763,42 @@ applyCurrencyBtn.addEventListener("click", () => {
 </div>
 
 <script>
-let currentProduct = {};
-let currentStep = 1;
+// ====== CART SYSTEM (FIXED & CLEAN) ======
 
-function openModal(productName, productPrice, productImage) {
-currentProduct = { name: productName, price: productPrice, image: productImage };
-document.getElementById('modal-product-name').innerText = productName;
-document.getElementById('modal-product-price').innerText = productPrice;
-document.getElementById('modal-product-image').src = productImage || '';
-document.getElementById('checkout-modal').style.display = 'flex';
-showStep(1);
-}
+// Mock user session (keep yours if using Firebase)
+let currentUser = localStorage.getItem('currentUser') || "guest@test.com";
 
-function closeModal() {
-document.getElementById('checkout-modal').style.display = 'none';
-document.getElementById('checkout-form').reset();
-currentStep = 1;
-}
-
-function showStep(step) {
-currentStep = step;
-document.getElementById('step-1-summary').style.display = step === 1 ? 'block' : 'none';
-document.getElementById('step-2-shipping').style.display = step === 2 ? 'block' : 'none';
-document.getElementById('step-3-confirmation').style.display = step === 3 ? 'block' : 'none';
-}
-
-function nextStep(step) { showStep(step); }
-
-// Add event listeners to all Quick Buy buttons
-document.querySelectorAll('.buy-button').forEach(btn => {
-btn.addEventListener('click', function() {
-openModal(this.dataset.productName, this.dataset.productPrice, this.dataset.productImage);
-});
-});
-
-// Redirect to PayPal
-function redirectPayPal() {
-const paypalLink = 'https://www.paypal.me/OmarGlelah1';
-window.open(paypalLink, '_blank');
-showStep(3);
-}
-
-// Mobile menu toggle
-document.getElementById('menu-button').addEventListener('click', () => {
-document.getElementById('mobile-menu').classList.toggle('hidden');
-});
-let exchangeRate = 1;
-let currentCurrency = "EGP";
-
-document.getElementById('currency-btn').onclick = () => {
-  document.getElementById('currency-modal').style.display = 'flex';
-};
-
-document.getElementById('apply-currency').onclick = async () => {
-  const currency = document.getElementById('currency-select').value;
-
-  const res = await fetch(`https://api.exchangerate.host/latest?base=EGP&symbols=${currency}`);
-  const data = await res.json();
-  exchangeRate = data.rates[currency];
-  currentCurrency = currency;
-
-  document.querySelectorAll('.price-text').forEach(priceEl => {
-    const base = Number(priceEl.dataset.basePrice);
-    const converted = (base * exchangeRate).toFixed(2);
-    priceEl.innerText = `${currency} ${converted}`;
-  });
-
-  document.querySelectorAll('.buy-button').forEach(btn => {
-    const base = Number(btn.dataset.basePrice);
-    const converted = (base * exchangeRate).toFixed(2);
-    btn.dataset.productPrice = `${currency} ${converted}`;
-  });
-
-  document.getElementById('currency-modal').style.display = 'none';
-};
-
-// close modal on background click
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.onclick = e => { if (e.target === m) m.style.display = 'none'; };
-});
-// Theme toggle
-const themeBtn = document.getElementById('theme-toggle-btn');
-themeBtn.onclick = () => {
-  const body = document.body;
-  if(body.classList.contains('light-mode')){
-    body.classList.remove('light-mode');
-    body.style.backgroundColor = 'var(--background-dark)';
-    body.style.color = 'var(--text-light)';
-    themeBtn.innerText = '🌞 / 🌙';
-  } else {
-    body.classList.add('light-mode');
-    body.style.backgroundColor = '#f9fafb';
-    body.style.color = '#111827';
-    themeBtn.innerText = '🌞 / 🌙';
-  }
-};
-
-</script>
-<script>
-/*
-GLOBAL DROP SYSTEM
-Phase 1: 1 day
-Phase 2: Until next Friday 11:00 AM
-Repeats forever
-Same on all devices
-*/
-
-// 🔒 GLOBAL START (SET THIS ONCE)
-// Example: Jan 1, 2026 @ 11:00 AM UTC
-const GLOBAL_START = Date.UTC(2026, 0, 1, 11, 0, 0);
-
-const ONE_DAY = 24 * 60 * 60 * 1000;
-
-function getNextFriday11UTC(fromTime) {
-  const date = new Date(fromTime);
-  const day = date.getUTCDay(); // 0 = Sun, 5 = Fri
-  let daysUntilFriday = (5 - day + 7) % 7;
-  if (daysUntilFriday === 0 && date.getUTCHours() >= 11) {
-    daysUntilFriday = 7;
-  }
-  date.setUTCDate(date.getUTCDate() + daysUntilFriday);
-  date.setUTCHours(11, 0, 0, 0);
-  return date.getTime();
-}
-
-function getCurrentPhase() {
-  let t = GLOBAL_START;
-  let phase = "day";
-
-  while (true) {
-    if (phase === "day") {
-      if (Date.now() < t + ONE_DAY) {
-        return { phase: "day", target: t + ONE_DAY };
-      }
-      t += ONE_DAY;
-      phase = "friday";
-    } else {
-      const friday = getNextFriday11UTC(t);
-      if (Date.now() < friday) {
-        return { phase: "friday", target: friday };
-      }
-      t = friday;
-      phase = "day";
-    }
-  }
-}
-
-function updateCountdown() {
-  const { target } = getCurrentPhase();
-  let diff = target - Date.now();
-  if (diff < 0) diff = 0;
-
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((diff / (1000 * 60)) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-
-  document.getElementById("countdown-timer").textContent =
-    `${String(d).padStart(2,"0")}d ` +
-    `${String(h).padStart(2,"0")}h ` +
-    `${String(m).padStart(2,"0")}m ` +
-    `${String(s).padStart(2,"0")}s`;
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-</script>
-<script>
-function openSignChoice() {
-  document.getElementById('sign-choice-modal').style.display = 'flex';
-}
-
-function openSignIn() {
-  document.getElementById('sign-choice-modal').style.display = 'none';
-  document.getElementById('signin-modal').style.display = 'flex';
-}
-
-function openSignUp() {
-  document.getElementById('sign-choice-modal').style.display = 'none';
-  document.getElementById('signup-modal').style.display = 'flex';
-}
-</script>
-
-<script>
-// ===== USER AUTH UI =====
-
-// Generate color from email (same email = same color)
-function getColorFromEmail(email) {
-  let hash = 0;
-  for (let i = 0; i < email.length; i++) {
-    hash = email.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return `hsl(${hash % 360}, 70%, 55%)`;
-}
-
-function showUserAvatar(email) {
-  const avatar = document.getElementById('user-avatar');
-  const signBtnHeader = document.getElementById('sign-btn-header');
-  const signBtnMobile = document.getElementById('sign-btn-mobile');
-
-  const firstLetter = email.charAt(0).toUpperCase();
-  const color = getColorFromEmail(email);
-
-  avatar.textContent = firstLetter;
-  avatar.style.backgroundColor = color;
-  avatar.style.color = '#111';
-
-  avatar.classList.remove('hidden');
-  signBtnHeader.style.display = 'none';
-  signBtnMobile.style.display = 'none';
-}
-</script>
-
-<script>
-// Open Sign Out modal when avatar is clicked
-const avatar = document.getElementById('user-avatar');
-avatar.addEventListener('click', () => {
-  // Only open if avatar is visible
-  if (!avatar.classList.contains('hidden')) {
-    document.getElementById('signout-modal').style.display = 'flex';
-  }
-});
-// Logout function
-function logoutUser() {
-  localStorage.removeItem('loggedInUser');
-
-  const signBtnHeader = document.getElementById('sign-btn-header');
-  const signBtnMobile = document.getElementById('sign-btn-mobile');
-
-  avatar.classList.add('hidden');
-  avatar.textContent = '';
-  signBtnHeader.style.display = 'inline-block';
-  signBtnMobile.style.display = 'block';
-
-  closeSignModal('signout-modal');
-}
-</script>
-<script>
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPassword(password) {
-  return /^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(password);
-}
-
-</script>
-
-<footer class="bg-gray-900 py-10 mt-12 border-t border-gray-700" id="contact">
-<div class="container mx-auto px-4 text-center text-gray-400">
-<p class="mb-5 text-gray-200 text-xl font-medium"><i class="fas fa-headset mr-2 text-yellow-400"></i> Contact & Support</p>
-<p class="mb-4 text-lg"><i class="fab fa-whatsapp mr-2 text-green-500"></i> WhatsApp: <a href="https://wa.me/201025002299" target="_blank" class="text-yellow-400 hover:text-yellow-300 hover:underline transition duration-300">01025002299</a></p>
-<div class="h-px bg-gray-700 w-1/4 mx-auto my-6"></div>
-<p>© <span id="currentMonth"></span> 2026 The Egyptian King Production. All Rights Reserved.</p>
-<p class="text-xs mt-1 text-gray-500">Crafted by The Egyptian King's production team.</p>
- <script>
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const now = new Date();
-    document.getElementById("currentMonth").textContent = months[now.getMonth()];
-  </script>
-</div> 
-</footer>
-<script src="//code.tidio.co/6wkx0rcfbhp7xbkqael99zbbqiulfejy.js" async></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-<script>
-// 1. Initialize Firebase ONCE
-const firebaseConfig = {
-  apiKey: "AIzaSyCysMVjzRSEaudRwhHRd2YE2MmBqA5brYw",
-  authDomain: "elmalkkeke.firebaseapp.com",
-  projectId: "elmalkkeke",
-  storageBucket: "elmalkkeke.firebasestorage.app",
-  messagingSenderId: "1098086705134",
-  appId: "1:1098086705134:web:ff6c24cc33e407facd90ff",
-  measurementId: "G-0XWQX5YKBM"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// 2. Global variables for pagination
-let lastVisible = null;
-const reviewsPerPage = 5;
-
-// 3. Review Submission Logic (Updated for stability)
-window.submitRoyalReview = async function() {
-  const name = document.getElementById('side-rev-name').value;
-  const rating = document.getElementById('side-rev-rating').value;
-  const text = document.getElementById('side-rev-text').value;
-
-  if(!name || !text) {
-    alert("The King requests your name and message! 👑");
-    return;
-  }
-
-  try {
-    await db.collection("reviews").add({
-      name: name,
-      rating: parseInt(rating),
-      text: text,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    
-    alert("The King has received your feedback! 👑");
-    
-    // Clear the form
-    document.getElementById('side-rev-name').value = "";
-    document.getElementById('side-rev-text').value = "";
-    
-    // Refresh the list
-    loadReviews(true); 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Database Error: Make sure your Firestore rules allow 'write'.");
-  }
-};
-
-
-// 4. Load Reviews Logic
-async function loadReviews(isInitial = true) {
-  const list = document.getElementById('side-reviews-list');
-  const seeMoreBtn = document.getElementById('see-more-reviews');
-  
-  if (isInitial) {
-    list.innerHTML = "";
-    lastVisible = null;
-  }
-
-  let query = db.collection("reviews").orderBy("timestamp", "desc").limit(reviewsPerPage);
-  
-  if (!isInitial && lastVisible) {
-    query = query.startAfter(lastVisible);
-  }
-
-  try {
-    const querySnapshot = await query.get();
-    
-    if (querySnapshot.empty && isInitial) {
-      list.innerHTML = "<p class='text-[10px] text-gray-500 text-center'>No reviews yet. Be the first!</p>";
-      return;
-    }
-
-    lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const stars = "⭐".repeat(data.rating || 5);
-      const reviewHTML = `
-        <div class="border-b border-gray-800 pb-3 mb-2 animate-fade-in">
-          <div class="flex justify-between text-[10px] text-yellow-500 font-bold mb-1">
-            <span>${(data.name || "Anonymous").toUpperCase()}</span>
-            <span>${stars}</span>
-          </div>
-          <p class="text-[11px] text-gray-400 italic leading-tight">"${data.text || ""}"</p>
-        </div>
-      `;
-      list.insertAdjacentHTML('beforeend', reviewHTML);
-    });
-
-    if (querySnapshot.docs.length === reviewsPerPage) {
-      seeMoreBtn.classList.remove('hidden');
-    } else {
-      seeMoreBtn.classList.add('hidden');
-    }
-  } catch (err) {
-    console.error("Load error:", err);
-  }
-}
-
-// 5. Auth State Logic
-auth.onAuthStateChanged((user) => {
-  const avatar = document.getElementById("user-avatar");
-  const signBtnHeader = document.getElementById("sign-btn-header");
-  const signBtnMobile = document.getElementById("sign-btn-mobile");
-
-  if (user) {
-    if (signBtnHeader) signBtnHeader.style.display = "none";
-    if (signBtnMobile) signBtnMobile.style.display = "none";
-    if (avatar) {
-      avatar.classList.remove("hidden");
-      avatar.innerHTML = `<img src="${user.photoURL || ''}" class="w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-yellow-500">`;
-    }
-  } else {
-    if (signBtnHeader) signBtnHeader.style.display = "inline-block";
-    if (signBtnMobile) signBtnMobile.style.display = "block";
-    if (avatar) {
-      avatar.classList.add("hidden");
-      avatar.innerHTML = "";
-    }
-  }
-});
-
-// 6. Google Login
-window.handleGoogleLogin = function() {
-  auth.signInWithPopup(provider).catch(err => alert(err.message));
-};
-
-// 7. Logout
-window.logoutUser = function() {
-  auth.signOut().then(() => location.reload());
-};
-
-// Start Up
-document.addEventListener("DOMContentLoaded", () => {
-  loadReviews(true);
-  
-  const googleBtn = document.getElementById("google-signin-btn");
-  if(googleBtn) googleBtn.onclick = handleGoogleLogin;
-  
-  document.getElementById('see-more-reviews').onclick = () => loadReviews(false);
-});
-</script>
-
-<script>
-function closeRamadanPopup() {
-  document.getElementById("ramadan-popup").style.display = "none";
-}
-</script>
-<script>
-  // ====== CART SYSTEM ======
-
-// Mock user session (replace with your login system)
-let currentUser = localStorage.getItem('currentUser'); // store logged-in user email
 let currentProduct = null;
 let currentQuantity = 1;
 
-// Helper: Get user's cart from localStorage
+// ===== Helpers =====
 function getCart() {
-  if (!currentUser) return null;
   let cart = JSON.parse(localStorage.getItem(`cart_${currentUser}`));
   return cart || [];
 }
 
-// Helper: Save cart
 function saveCart(cart) {
-  if (!currentUser) return;
   localStorage.setItem(`cart_${currentUser}`, JSON.stringify(cart));
 }
 
-// Add to Cart Button Click
-document.querySelectorAll('.product-card button.buy-button').forEach(btn => {
-  btn.addEventListener('click', (e) => {
+// ===== Add to Cart Click =====
+document.querySelectorAll('.product-card .buy-button').forEach(btn => {
+  btn.addEventListener('click', () => {
+
     if (!currentUser) {
       alert("Please Sign In first");
       return;
     }
-    const cartButtons = document.querySelectorAll('.buy-button');
-cartButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const name = btn.dataset.productName;
-    const price = btn.dataset.productPrice;
-    const image = btn.dataset.productImage;
 
-    // Your add to cart function
-    addToCart(name, price, image);
-  });
-});
-    // Get product info
-    const productCard = e.target.closest('.product-card');
     currentProduct = {
       name: btn.dataset.productName,
-      price: parseInt(btn.dataset.productPrice.replace(/\D/g,'')),
+      price: parseInt(btn.dataset.productPrice.replace(/\D/g,'')) || 0,
       image: btn.dataset.productImage
     };
+
     currentQuantity = 1;
-    // Update popup
+
+    // Show popup
     document.getElementById('popup-product-name').innerText = currentProduct.name;
     document.getElementById('quantity').innerText = currentQuantity;
     document.getElementById('total-price').innerText = `EGP ${currentProduct.price}`;
@@ -1240,29 +806,32 @@ cartButtons.forEach(btn => {
   });
 });
 
-// Quantity Controls
-document.getElementById('increase-qty').addEventListener('click', () => {
+// ===== Quantity Controls =====
+document.getElementById('increase-qty').onclick = () => {
   currentQuantity++;
   document.getElementById('quantity').innerText = currentQuantity;
-  document.getElementById('total-price').innerText = `EGP ${currentProduct.price * currentQuantity}`;
-});
+  document.getElementById('total-price').innerText =
+    `EGP ${currentProduct.price * currentQuantity}`;
+};
 
-document.getElementById('decrease-qty').addEventListener('click', () => {
+document.getElementById('decrease-qty').onclick = () => {
   if (currentQuantity > 1) currentQuantity--;
   document.getElementById('quantity').innerText = currentQuantity;
-  document.getElementById('total-price').innerText = `EGP ${currentProduct.price * currentQuantity}`;
-});
+  document.getElementById('total-price').innerText =
+    `EGP ${currentProduct.price * currentQuantity}`;
+};
 
-// Cancel
-document.getElementById('cancel-add').addEventListener('click', () => {
+// ===== Cancel =====
+document.getElementById('cancel-add').onclick = () => {
   document.getElementById('cart-popup').classList.add('hidden');
-});
+};
 
-// Confirm Add
-document.getElementById('confirm-add').addEventListener('click', () => {
+// ===== Confirm Add =====
+document.getElementById('confirm-add').onclick = () => {
   let cart = getCart();
-  // Check if item exists, then update quantity
+
   let existing = cart.find(item => item.name === currentProduct.name);
+
   if (existing) {
     existing.quantity += currentQuantity;
     existing.totalPrice = existing.quantity * existing.price;
@@ -1273,18 +842,21 @@ document.getElementById('confirm-add').addEventListener('click', () => {
       totalPrice: currentProduct.price * currentQuantity
     });
   }
+
   saveCart(cart);
+
   document.getElementById('cart-popup').classList.add('hidden');
   alert("Added to Cart Successfully!");
-});
+};
 
-// ===== Side Menu Cart Button =====
+// ===== Add Cart Button to Side Menu =====
 const sideMenu = document.getElementById('sideMenu');
 const cartButton = document.createElement('a');
 cartButton.href = 'cart.html';
 cartButton.innerHTML = `<i class="fas fa-shopping-cart mr-2"></i> Cart`;
 cartButton.style.cssText = "padding:15px 20px; display:block; color:#d1d5db; text-decoration:none;";
 sideMenu.appendChild(cartButton);
+
 </script>
 </body>
 </html>
