@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,6 +74,10 @@ function toggleMenu() {
         <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Contact</a>
       </nav>
 
+      <div class="relative">
+  <i class="fas fa-shoping-cart text 2x1 text-yellow-400"></i>
+  <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+      </div>
       <!-- Sign In / Up Button (Top Right) -->
      <div id="user-avatar" class="hidden w-10 h-10 rounded-full flex items-center justify-center font-black text-lg cursor-pointer"></div>
 
@@ -220,18 +223,17 @@ function closeSignModal(modalId) {
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" alt="QUEEN HATSHEPSOUT HOODIE" data-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">QUEEN HATSHEPSOUT HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 850</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('QUEEN HATSHEPSOUT HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=QUEEN HATSHEPSOUT HOODIE data-product-price=EGP 850 data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
+<button class="buy-button premium-button" data-product-name="QUEEN HATSHEPSOUT HOODIE" data-product-price="EGP 850" data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 
@@ -239,277 +241,253 @@ Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" alt="KHABY LAME HOODIE" data-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">KHABY LAME HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('KHABY LAME HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name=KHABY LAME HOODIEdata-product-price=EGP 800 data-product-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg" alt="LBRON JAMES HOODIE" data-image="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">LBRON JAMES HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('LBRON JAMES HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=LBRON JAMES HOODIE data-product-price=EGP800 data-product-image="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name="LBRON JAMES HOODIE" data-product-price=EGP800 data-product-image="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg" alt="DWANE JHONSON HOODIE" data-image="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">DWANE JHONSON HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('DWANE JHONSON HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=DWANE JHONSON HOODIE data-product-price=EGP800 data-product-image="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name="DWANE JHONSON HOODIE" data-product-price=EGP800 data-product-image="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg" alt="JUDE BELLINGHAM HOODIE" data-image="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">JUDE BELLINGHAM HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('JUDE BELLINGHAM HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=JUDE BELLINGHAM HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name=JUDE BELLINGHAM HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg" alt="SOCIAL MEDIA HOODIE" data-image="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">SOCIAL MEDIA HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('SOCIAL MEDIA HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=SOCIAL MEDIA HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name=SOCIAL MEDIA HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg" alt="EGYPTIAN RULERS HOODIE" data-image="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">EGYPTIAN RULERS HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('EGYPTIAN RULERS HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=EGYPTIAN RULERS HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name=EGYPTIAN RULERS HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg" alt="KING TUTANKAMUN HOODIE" data-image"https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">KING TUTANKAMUN HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('KING TUTANKAMUN HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=KING TUTANKAMUN HOODIE. data-product-price= EGP800 data-product-image="https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name=KING TUTANKAMUN HOODIE. data-product-price= EGP800 data-product-image="https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg" alt="EGYPTIAN CULTURE HOODIE" data-image"https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">EGYPTIAN CULTURE HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('EGYPTIAN CULTURE HOODIE', 25)">Add to Cart</button>
-<button class="buy-button premium-button" data-product-name=EGYPTIAN CULTURE HOODIE. data-product-price=EGP 800 data-product-image="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg">
+<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name=EGYPTIAN CULTURE HOODIE. data-product-price=EGP 800 data-product-image="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate product card -->
 <script>
 for (let i = 1; i <=1 ; i++) {
-document.write(
+document.write(`
 <div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/qRHPBMmP/unnamed.png"alt="FIFA WORLD CUP HOODIE" data-image="https://i.postimg.cc/qRHPBMmP/unnamed.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">FIFA WORLD CUP HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('FIFA WORLD CUP HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name=FIFA WORLD CUP HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/qRHPBMmP/unnamed.png">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate product card -->
 <script>
 for (let i = 1; i <=1 ; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
 <img src="https://i.postimg.cc/W3s0LzFr/IMG-5148.png"alt="" data-image="https://i.postimg.cc/W3s0LzFr/IMG-5148.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">FLAG TRIO HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('FLAG TRIO HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name=FLAG TRIO HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/W3s0LzFr/IMG-5148.png">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate product card -->
 <script>
 for (let i = 1; i <=1 ; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
 <img src="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png"alt="CROWNED SKULL HOODIE" data-image="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">CROWNED SKULL HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('CROWNED SKULL HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name=CROWNED SKULL HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate product card -->
 <script>
 for (let i = 1; i <=1 ; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
 <img src="https://i.postimg.cc/3rZnLTjD/IMG-5187.png"alt="ALGERIAN CULTURE HOODIE" data-image="https://i.postimg.cc/3rZnLTjD/IMG-5187.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">ALGERIAN CULTURE HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('ALGERIAN CULTURE HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name=ALGERIAN CULTURE HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/3rZnLTjD/IMG-5187.png">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 <!-- Generate product card -->
 <script>
 for (let i = 1; i <=1 ; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
 <img src="https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png"alt="GOLDEN PHAROH FADE HOODIE" data-image="https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">GOLDEN PHAROH FADE HOODIE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('GOLDEN PHAROH FADE HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name=GOLDEN PHAROH FADE HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 
 <!-- Generate product card -->
 <script>
 for (let i = 1; i <=1 ; i++) {
-document.write(
+document.write(`
 <div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
 <img src="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg"alt="TUNISIA CULTURE HOODIE " data-image="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400"> TUNISIA CULTURE HOODIE </h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button onclick="openModal('TUNISIA CULTURE HOODIE', 25)">Add to Cart</button>
 <button class="buy-button premium-button" data-product-name= TUNISIA CULTURE HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 </button>
 </div>
-);
+`);
 }
 </script>
 <!-- Generate 1 product cards -->
 <script>
 for (let i = 1; i <= 1; i++) {
-document.write(
+document.write(`
 <div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
 <img src="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg" alt="TRAVIS SCOTT TEE" data-image="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
 <h3 class="text-xl font-bold text-yellow-400">TRAVIS SCOTT TEE</h3>
 <p class="text-sm text-gray-400 mt-1 mb-3">EGP 700</p>
-<button class="" data-product-name= data-product-price= data-product-image="">
-Add to Cart <i class="fas fa-shopping-cart ml-1"></i>
-</button>
 <p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p><button class="buy-button premium-button" data-product-name=TRAVIS SCOTT TEE. data-product-price=EGP 700 data-product-image="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg">
 Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 
 </button>
 </div>
-);
+`);
 }
 </script>
 
@@ -570,32 +548,13 @@ style="position: fixed; bottom: 80px; right: 24px; z-index: 999;">
   🌞 / 🌙
 </button>
 
+
+
 <!-- Currency Floating Button -->
 <button id="currency-btn" class="premium-button px-6 py-3 rounded-full">
   💱 Currency
 </button>
 
-<!-- Cart HTML  -->
-  <div id="cartModal" class="modal hidden">
-  <div class="modal-content">
-    <h3 id="productName"></h3>
-    <p>Price: $<span id="unitPrice"></span></p>
-
-    <div class="quantity-control">
-      <button onclick="changeQty(-1)">-</button>
-      <span id="quantity">1</span>
-      <button onclick="changeQty(1)">+</button>
-    </div>
-
-    <p>Total: $<span id="totalPrice"></span></p>
-
-    <div class="modal-buttons">
-      <button onclick="confirmAddToCart()">Add to Cart</button>
-      <button onclick="closeModal()">Cancel</button>
-    </div>
-  </div>
-</div>
-  
 <!-- Currency Modal -->
 <div id="currency-modal" class="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
   <div class="modal-content max-w-md rounded-2xl p-6 bg-white">
@@ -657,7 +616,7 @@ applyCurrencyBtn.addEventListener("click", () => {
   productPrices.forEach(p => {
     let egp = parseFloat(p.dataset.egp);
     let converted = (egp * selectedRate).toFixed(2);
-    p.textContent = ${selectedCurrency} ${converted};
+    p.textContent = `${selectedCurrency} ${converted}`;
   });
 
   // Update button text
@@ -790,7 +749,7 @@ document.getElementById('currency-btn').onclick = () => {
 document.getElementById('apply-currency').onclick = async () => {
   const currency = document.getElementById('currency-select').value;
 
-  const res = await fetch(https://api.exchangerate.host/latest?base=EGP&symbols=${currency});
+  const res = await fetch(`https://api.exchangerate.host/latest?base=EGP&symbols=${currency}`);
   const data = await res.json();
   exchangeRate = data.rates[currency];
   currentCurrency = currency;
@@ -798,13 +757,13 @@ document.getElementById('apply-currency').onclick = async () => {
   document.querySelectorAll('.price-text').forEach(priceEl => {
     const base = Number(priceEl.dataset.basePrice);
     const converted = (base * exchangeRate).toFixed(2);
-    priceEl.innerText = ${currency} ${converted};
+    priceEl.innerText = `${currency} ${converted}`;
   });
 
   document.querySelectorAll('.buy-button').forEach(btn => {
     const base = Number(btn.dataset.basePrice);
     const converted = (base * exchangeRate).toFixed(2);
-    btn.dataset.productPrice = ${currency} ${converted};
+    btn.dataset.productPrice = `${currency} ${converted}`;
   });
 
   document.getElementById('currency-modal').style.display = 'none';
@@ -892,10 +851,10 @@ function updateCountdown() {
   const s = Math.floor((diff / 1000) % 60);
 
   document.getElementById("countdown-timer").textContent =
-    ${String(d).padStart(2,"0")}d  +
-    ${String(h).padStart(2,"0")}h  +
-    ${String(m).padStart(2,"0")}m  +
-    ${String(s).padStart(2,"0")}s;
+    `${String(d).padStart(2,"0")}d ` +
+    `${String(h).padStart(2,"0")}h ` +
+    `${String(m).padStart(2,"0")}m ` +
+    `${String(s).padStart(2,"0")}s`;
 }
 
 setInterval(updateCountdown, 1000);
@@ -926,7 +885,7 @@ function getColorFromEmail(email) {
   for (let i = 0; i < email.length; i++) {
     hash = email.charCodeAt(i) + ((hash << 5) - hash);
   }
-  return hsl(${hash % 360}, 70%, 55%);
+  return `hsl(${hash % 360}, 70%, 55%)`;
 }
 
 function showUserAvatar(email) {
@@ -1085,7 +1044,7 @@ async function loadReviews(isInitial = true) {
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       const stars = "⭐".repeat(data.rating || 5);
-      const reviewHTML = 
+      const reviewHTML = `
         <div class="border-b border-gray-800 pb-3 mb-2 animate-fade-in">
           <div class="flex justify-between text-[10px] text-yellow-500 font-bold mb-1">
             <span>${(data.name || "Anonymous").toUpperCase()}</span>
@@ -1093,7 +1052,7 @@ async function loadReviews(isInitial = true) {
           </div>
           <p class="text-[11px] text-gray-400 italic leading-tight">"${data.text || ""}"</p>
         </div>
-      ;
+      `;
       list.insertAdjacentHTML('beforeend', reviewHTML);
     });
 
@@ -1118,7 +1077,7 @@ auth.onAuthStateChanged((user) => {
     if (signBtnMobile) signBtnMobile.style.display = "none";
     if (avatar) {
       avatar.classList.remove("hidden");
-      avatar.innerHTML = <img src="${user.photoURL || ''}" class="w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-yellow-500">;
+      avatar.innerHTML = `<img src="${user.photoURL || ''}" class="w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-yellow-500">`;
     }
   } else {
     if (signBtnHeader) signBtnHeader.style.display = "inline-block";
@@ -1150,56 +1109,37 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('see-more-reviews').onclick = () => loadReviews(false);
 });
 </script>
-<script>
-  let currentProduct = {};
-let qty = 1;
-
-function openModal(name, price) {
-  currentProduct = { name, price };
-  qty = 1;
-
-  document.getElementById("productName").innerText = name;
-  document.getElementById("unitPrice").innerText = price;
-  document.getElementById("quantity").innerText = qty;
-  document.getElementById("totalPrice").innerText = price;
-
-  document.getElementById("cartModal").classList.remove("hidden");
-}
-
-function closeModal() {
-  document.getElementById("cartModal").classList.add("hidden");
-}
-
-function changeQty(change) {
-  qty += change;
-  if (qty < 1) qty = 1;
-
-  document.getElementById("quantity").innerText = qty;
-  document.getElementById("totalPrice").innerText = qty * currentProduct.price;
-}
-
-function confirmAddToCart() {
-  const user = localStorage.getItem("user");
-
-  if (!user) {
-    alert("PLEASE SIGN IN FIRST");
-    return;
-  }
-
-  let cart = JSON.parse(localStorage.getItem("cart_" + user)) || [];
-
-  cart.push({
-    name: currentProduct.name,
-    price: currentProduct.price,
-    quantity: qty,
-    total: qty * currentProduct.price
-  });
-
-  localStorage.setItem("cart_" + user, JSON.stringify(cart));
-
-  alert("ADDED TO CART SUCCESSFULLY");
-  closeModal();
+  <script>
+function closeRamadanPopup() {
+  document.getElementById("ramadan-popup").style.display = "none";
 }
 </script>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Update cart count UI
+function updateCartCount() {
+  document.getElementById("cart-count").innerText = cart.length;
+}
+
+// Add to cart buttons
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+  btn.addEventListener("click", function() {
+    const product = {
+      name: this.dataset.productName,
+      price: this.dataset.productPrice,
+      image: this.dataset.productImage
+    };
+
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+  });
+});
+
+// Run on load
+updateCartCount();
+</script>
 </body>
-</html> 
+</html>
