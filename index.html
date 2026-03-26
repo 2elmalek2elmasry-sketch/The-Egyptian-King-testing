@@ -595,6 +595,16 @@ Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
 }
 </script>
 
+  <!-- Mini Cart Popup -->
+<div id="mini-cart" class="fixed bottom-6 right-6 bg-gray-800/90 text-white p-5 rounded-2xl shadow-lg hidden z-50 w-64">
+  <div class="flex justify-between items-center mb-2">
+    <button id="cart-decrease" class="w-8 h-8 rounded-full bg-red-500 text-white font-bold">-</button>
+    <span id="cart-quantity" class="font-bold text-xl">1</span>
+    <button id="cart-increase" class="w-8 h-8 rounded-full bg-green-500 text-white font-bold">+</button>
+  </div>
+  <p class="text-center mt-2">Total: <span id="cart-total">EGP 0</span></p>
+</div>
+
 </div>
 </div>
 </section>
@@ -1246,6 +1256,65 @@ document.addEventListener("click", function(e) {
 
 // Run on page load
 updateCartCount();
+</script>
+
+<script>
+  let cart = []; // Array to store cart items
+
+// Add to cart buttons
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+  btn.addEventListener("click", e => {
+    const name = btn.dataset.productName;
+    const price = parseInt(btn.dataset.productPrice.replace("EGP", "").trim());
+    const image = btn.dataset.productImage;
+
+    // Check if product exists in cart
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({name, price, image, quantity: 1});
+    }
+
+    updateMiniCart(name);
+    document.getElementById("mini-cart").style.display = "block";
+    updateCartCount();
+  });
+});
+
+function updateMiniCart(name) {
+  const item = cart.find(i => i.name === name);
+  document.getElementById("cart-quantity").textContent = item.quantity;
+  document.getElementById("cart-total").textContent = `EGP ${item.price * item.quantity}`;
+}
+
+// Quantity buttons
+document.getElementById("cart-decrease").addEventListener("click", () => {
+  const name = cart[cart.length-1].name; // last added product
+  let item = cart.find(i => i.name === name);
+  if (item.quantity > 1) item.quantity--;
+  updateMiniCart(name);
+  updateCartCount();
+});
+
+document.getElementById("cart-increase").addEventListener("click", () => {
+  const name = cart[cart.length-1].name; // last added product
+  let item = cart.find(i => i.name === name);
+  item.quantity++;
+  updateMiniCart(name);
+  updateCartCount();
+});
+
+// Cart icon
+function updateCartCount() {
+  let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById("cart-count").textContent = totalItems;
+}
+
+document.querySelector(".fa-shoping-cart").addEventListener("click", () => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.location.href = "cart.html";
+});
 </script>
 </body>
 </html>
