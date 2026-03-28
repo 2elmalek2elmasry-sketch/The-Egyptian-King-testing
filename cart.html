@@ -85,13 +85,19 @@
 
           <!-- Quick Buy -->
           <button onclick="quickBuy(${index})"
-            class="premium-button mt-3 w-full">
+            class="buy-button premium-button mt-3 w-full">
             Quick Buy
           </button>
         `;
 
         container.appendChild(card);
       });
+    }
+
+    // QUICK BUY
+    function quickBuy(index) {
+      cart.splice(index, 1);
+      save();
     }
 
     // REMOVE ITEM
@@ -102,6 +108,7 @@
       }
     }
 
+    
     // SAVE CART
     function save() {
       localStorage.setItem("cart", JSON.stringify(cart));
