@@ -1265,6 +1265,9 @@ function saveCart() {
 function updateCartCount() {
   let total = cart.reduce((sum, item) => sum + item.quantity, 0);
   document.getElementById("cart-count").textContent = total;
+<button id="confirm-add" class="premium-button w-full py-2 mt-4">
+  ✅ Confirm
+</button>
 }
 
 // ADD TO CART
@@ -1322,6 +1325,61 @@ document.querySelector(".fa-shopping-cart").addEventListener("click", () => {
 // LOAD
 updateCartCount();
 
+});
+</script>
+<script>
+  // 🚫 Block adding instantly
+let pendingItem = null;
+
+// Intercept Add to Cart BEFORE it adds
+document.addEventListener("click", function(e) {
+  const btn = e.target.closest(".add-to-cart");
+  if (!btn) return;
+
+  e.stopImmediatePropagation(); // 🔥 stops your old add-to-cart from running
+
+  // Store item TEMPORARILY
+  pendingItem = {
+    name: btn.dataset.productName,
+    price: parseInt(btn.dataset.productPrice.replace(/[^0-9]/g, "")),
+    image: btn.dataset.productImage
+  };
+
+  // Reset quantity UI to 1
+  document.getElementById("cart-quantity").textContent = 1;
+
+  // Open mini cart
+  document.getElementById("mini-cart-overlay").classList.remove("hidden");
+});
+</script>
+<script>
+  document.getElementById("confirm-add").addEventListener("click", () => {
+  if (!pendingItem) return;
+
+  let existing = cart.find(item => item.name === pendingItem.name);
+
+  if (existing) {
+    // ✅ ALWAYS add ONLY +1 (no matter quantity selected)
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      name: pendingItem.name,
+      price: pendingItem.price,
+      image: pendingItem.image,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Update count
+  let total = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById("cart-count").textContent = total;
+
+  // Close popup
+  document.getElementById("mini-cart-overlay").classList.add("hidden");
+
+  pendingItem = null;
 });
 </script>
 </body>
