@@ -1,1364 +1,1518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Egyptian King Apparel - Premium Streetwear</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DARE TO WEAR DIFFERENT-THE EGYPTIAN KING</title>
+
+  <link rel="icon" type="image/png" href="https://i.ibb.co/SXsVgNJr/pls-help.png">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/SXsVgNJr/pls-help.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
 </head>
 <body>
-<div class="menu-trigger" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+  <div class="bg-gradients"></div>
 
-<div id="sideMenu" class="side-menu">
-  <a href="index.html" style="padding:15px 20px; display:block; color:#d1d5db; text-decoration:none;">
-     <i class="fas fa-home mr-2"></i> Home
-  </a>
-
-  <a href="mailto:2el.malek.2el.masry@gmail.com" style="padding:15px 20px; display:block; color:#d1d5db; text-decoration:none;">
-    <i class="fas fa-envelope mr-2"></i> Contact
-  </a>
- 
-  <a href="discount.html" style="padding:15px 20px; display:block; color:#d1d5db; text-decoration:none;">
-    <i class="fas fa-tag mr-2"></i> Discount Store
-  </a>
-
-  <a href="themes.html" style="padding:15px 20px; display:block; color:#d1d5db; text-decoration:none;">
-    <i class="fas fa-palette mr-2"></i> Themes
-  </a>
-
-</div>
-
-<div id="overlay" class="overlay" onclick="toggleMenu()"></div>
-
-<script>
-function toggleMenu() {
-  document.getElementById("sideMenu").classList.toggle("active");
-  document.getElementById("overlay").classList.toggle("active");
-}
-</script>
-
-<!-- Sign Choice Modal -->
-<div id="sign-choice-modal" class="modal-overlay">
-  <div class="modal-content max-w-md rounded-2xl p-6 relative text-center">
-    <button onclick="closeSignModal('sign-choice-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-3xl transition-colors">
-      <i class="fas fa-times"></i>
-    </button>
-    <h2 class="text-3xl font-extrabold gold-gradient-text mb-6">Welcome 👑</h2>
-    <p class="text-gray-300 mb-6">Do you want to Sign In or Sign Up?</p>
-    <div class="flex justify-center gap-6">
-      <button onclick="openSignIn()" class="premium-button py-3 px-6 rounded-xl">Sign In</button>
-      <button onclick="openSignUp()" class="premium-button py-3 px-6 rounded-xl">Sign Up</button>
-    </div>
+  <div id="splash" aria-hidden="false">
+    <img src="https://i.ibb.co/CKFtGb47/logo-removebg-preview.png" alt="THE EGYPTIAN KING logo">
+    <h1>Welcome</h1>
+    <p>Loading THE EGYPTIAN KING <span class="loading-dots"><span>•</span><span>•</span><span>•</span></span></p>
   </div>
-</div>
 
-<header class="bg-gray-900 shadow-2xl sticky top-0 z-50 border-b border-yellow-800">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+  <header class="top-header" id="mainHeader">
+    <div class="left-head">
+      <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+        <img src="https://i.ibb.co/CKFtGb47/logo-removebg-preview.png" alt="THE EGYPTIAN KING Logo">
+      </a>
 
-    <!-- Logo -->
-    <a href="#" class="text-3xl font-extrabold gold-gradient-text">The Egyptian King</a>
-
-    <!-- Navigation Links + Sign In on Desktop -->
-    <div class="flex items-center space-x-8">
-      <nav class="hidden md:flex space-x-6 text-lg">
-        <a href="#collection" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Collection</a>
-        <a href="#themes" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Themes</a>
-        <a href="#social" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Social</a>
-        <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition duration-300 hover:scale-105">Contact</a>
-      </nav>
-
-      <div class="relative">
-  <i class="fas fa-shopping-cart text-2xl text-yellow-400"></i>
-  <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+      <div class="country-indicator" title="Detected country">
+        <i class="fas fa-globe"></i>
+        <span id="countryFlag">🌍</span>
+        <span id="countryCode">--</span>
+        <span class="name" id="countryName">Loading...</span>
       </div>
-      <!-- Sign In / Up Button (Top Right) -->
-     <div id="user-avatar" class="hidden w-10 h-10 rounded-full flex items-center justify-center font-black text-lg cursor-pointer"></div>
-
-<button id="sign-btn-header" class="premium-button px-4 py-2 rounded-full text-sm whitespace-nowrap">
-  🔑 Sign In / Up
-</button>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden text-yellow-400 text-2xl" id="menu-button">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#" onclick="openCurrencyModal();toggleMobileMenu(true);return false;">Currency</a>
+      <a href="#" onclick="openMarketplaceModal();toggleMobileMenu(true);return false;">Marketplace</a>
+      <a href="#" onclick="openExploreModal();toggleMobileMenu(true);return false;">Explore</a>
+      <a href="#" onclick="openAboutModal();toggleMobileMenu(true);return false;">About</a>
+    </nav>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-    <a href="#collection" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 transition duration-200">Collection</a>
-    <a href="#themes" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 transition duration-200">Themes</a>
-    <a href="#social" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 transition duration-200">Social</a>
-    <a href="#contact" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 transition duration-200">Contact</a>
-    <a href="#" id="sign-btn-mobile" class="block px-4 py-3 text-gray-300 hover:bg-gray-700 transition duration-200">Sign In / Up</a>
-  </div>
-</header>
-
-<!-- Hero Section -->
-<section class="hero-section text-center flex items-center justify-center p-8">
-<div class="bg-black bg-opacity-70 backdrop-blur-sm p-8 md:p-16 rounded-2xl shadow-2xl max-w-3xl border-4 border-yellow-400/50">
-<h1 class="text-6xl md:text-8xl font-black mb-4 uppercase tracking-tighter gold-gradient-text">
-THE EGYPTIAN KING
-</h1>
-<p class="text-xl md:text-3xl font-light text-yellow-100 italic mb-10">
-Dare to Wear Different. Rule Your Style.
-</p>
-<a href="#collection" class="inline-block premium-button py-3 px-10 rounded-full text-xl shadow-lg transform">
-Shop The Royal Collection <i class="fas fa-arrow-right ml-3"></i>
-</a>
-</div>
-</section>
-
-<!-- Themes, Social, Footer, Currency Modal, Checkout Modal -->
-<!-- Keep all of your previous code for themes, social, checkout, currency, etc. unchanged -->
-
-<!-- Sign In Modal -->
-<div id="signin-modal" class="modal-overlay">
-  <div class="modal-content max-w-md rounded-2xl p-6 relative">
-    <button onclick="closeSignModal('signin-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-3xl transition-colors"><i class="fas fa-times"></i></button>
-    <h2 class="text-3xl font-extrabold gold-gradient-text mb-6">Sign In</h2>
-    
-    <!-- FIXED: Added type="button" and correct ID -->
-    <button id="google-signin-btn" type="button" class="w-full bg-white text-black font-bold py-3 rounded-xl mb-4 flex items-center justify-center gap-2 hover:bg-gray-200 transition">
-      <i class="fab fa-google"></i> Continue with Google
-    </button>
-    
-    <div class="text-center text-gray-500 mb-4">— OR —</div>
-
-    <form onsubmit="return false;" class="space-y-4">
-      <input type="email" placeholder="Email" class="checkout-input w-full" required>
-      <input type="password" placeholder="Password" class="checkout-input w-full" required>
-      <button type="button" onclick="handleSignIn()" class="premium-button w-full py-3 rounded-xl">
-        Sign In with Email
+    <div class="header-actions">
+      <button class="btn-icon btn-secondary" onclick="toggleTheme()" title="Switch Theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
       </button>
-    </form>
-  </div>
-</div>
 
-<!-- Sign Up Modal -->
-<div id="signup-modal" class="modal-overlay">
-  <div class="modal-content max-w-md rounded-2xl p-6 relative">
-    <button onclick="closeSignModal('signup-modal')" 
-      class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-3xl">
-      <i class="fas fa-times"></i>
-    </button>
-
-    <h2 class="text-3xl font-extrabold gold-gradient-text mb-6">Sign Up</h2>
-
-    <form onsubmit="return false;" class="space-y-4">
-      <input type="text" placeholder="Full Name" class="checkout-input w-full" required>
-      <input type="email" placeholder="Email" class="checkout-input w-full" required>
-      <input type="password" placeholder="Password" class="checkout-input w-full" required>
-
-      <button type="button"
-              onclick="handleSignUp()"
-              class="premium-button w-full py-3 rounded-xl">
-        Sign Up
+      <button class="btn" onclick="toggleAuthModal()" title="Sign In / Account" id="headerSigninBtn" style="padding:12px 18px;">
+        <i class="fas fa-user"></i> Sign In
       </button>
-    </form>
-  </div>
-</div>
 
-<!-- Sign Out Modal -->
-<div id="signout-modal" class="modal-overlay">
-  <div class="modal-content max-w-sm rounded-2xl p-6 relative text-center">
-    <button onclick="closeSignModal('signout-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl">&times;</button>
-    <h2 class="text-2xl font-bold text-yellow-400 mb-4">Do you want to sign out?</h2>
-    <div class="flex justify-center gap-6">
-      <button onclick="logoutUser()" class="premium-button py-2 px-6 rounded-xl">Yes</button>
-      <button onclick="closeSignModal('signout-modal')" class="premium-button py-2 px-6 rounded-xl">No</button>
+      <div class="cart-icon-wrapper btn-icon btn-secondary" onclick="toggleCart()" title="Cart" style="display:flex;">
+        <i class="fas fa-shopping-bag"></i>
+        <div class="cart-badge" id="cartCount">0</div>
+      </div>
+
+      <button class="btn-icon btn-secondary mobile-menu-btn" onclick="toggleMobileMenu()" title="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
-  </div>
-</div>
+  </header>
 
+  <section class="hero reveal">
+    <h1 class="title">Forge Digital <br><span class="gradient-text">Excellence.</span></h1>
+    <p class="slogan">Premium templates, infographics, documents, coupons, and digital assets made for students, creators, freelancers, and businesses.</p>
 
-<script>
+    <div class="search-wrapper">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search PowerPoint, Word, infographic, intro, gift cards..." oninput="handleSearch()" onkeypress="if(event.key==='Enter'){runSearchAction()}">
+        <button class="btn" onclick="runSearchAction()">Search</button>
+      </div>
+    </div>
+  </section>
 
-// ===== Existing Scripts =====
-
-// Mobile menu toggle
-document.getElementById('menu-button').addEventListener('click', () => {
-  document.getElementById('mobile-menu').classList.toggle('hidden');
-});
-
-// Sign In / Up buttons functionality
-document.getElementById('sign-btn-header').addEventListener('click', () => {
-  document.getElementById('sign-choice-modal').style.display = 'flex';
-});
-document.getElementById('sign-btn-mobile').addEventListener('click', () => {
-  document.getElementById('sign-choice-modal').style.display = 'flex';
-});
-
-// Functions to open/close Sign modals
-
-function closeSignModal(modalId) {
-  document.getElementById(modalId).style.display = 'none';
-}
-
-// Close modal on background click
-</script>
-
-<section id="collection" class="py-20 md:py-28 px-4">
-<div class="container mx-auto">
-<div class="text-center mb-16">
-  <h2 class="text-4xl md:text-5xl font-extrabold gold-gradient-text mb-4">
-    Next Drop In
-  </h2>
-  <p id="countdown-timer" class="text-3xl md:text-4xl font-black text-yellow-400 tracking-wider">
-    01d 00h 00m 00s
-  </p>
-</div>
-
-<h2 class="text-4xl md:text-6xl font-extrabold text-center mb-16 gold-gradient-text">Featured Pharaoh Gear</h2>
-<div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" alt="QUEEN HATSHEPSOUT HOODIE" data-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">QUEEN HATSHEPSOUT HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 850</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="QUEEN HATSHEPSOUT HOODIE"
-  data-product-price="EGP 850"
-  data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name="QUEEN HATSHEPSOUT HOODIE" data-product-price="EGP 850" data-product-image="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-  
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" alt="KHABY LAME HOODIE" data-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">KHABY LAME HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="KHABY LAME HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=KHABY LAME HOODIEdata-product-price=EGP 800 data-product-image="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg" alt="LBRON JAMES HOODIE" data-image="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">LBRON JAMES HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="LBRON JAMES HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name="LBRON JAMES HOODIE" data-product-price=EGP800 data-product-image="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg" alt="DWANE JHONSON HOODIE" data-image="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">DWANE JHONSON HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="DWANE JHONSON HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name="DWANE JHONSON HOODIE" data-product-price=EGP800 data-product-image="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg" alt="JUDE BELLINGHAM HOODIE" data-image="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">JUDE BELLINGHAM HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="JUDE BELLINGHAM HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=JUDE BELLINGHAM HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg" alt="SOCIAL MEDIA HOODIE" data-image="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">SOCIAL MEDIA HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="SOCIAL MEDIA HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=SOCIAL MEDIA HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg" alt="EGYPTIAN RULERS HOODIE" data-image="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">EGYPTIAN RULERS HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="EGYPTIAN RULERS HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=EGYPTIAN RULERS HOODIE. data-product-price=EGP800 data-product-image="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg" alt="KING TUTANKAMUN HOODIE" data-image"https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">KING TUTANKAMUN HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="KING TUTANKAMUN HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=KING TUTANKAMUN HOODIE. data-product-price= EGP800 data-product-image="https://i.postimg.cc/YqgPcF95/472989124-17843821437411646-5990367707247327182-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg" alt="EGYPTIAN CULTURE HOODIE" data-image"https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">EGYPTIAN CULTURE HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="EGYPTIAN CULTURE HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=EGYPTIAN CULTURE HOODIE. data-product-price=EGP 800 data-product-image="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate product card -->
-<script>
-for (let i = 1; i <=1 ; i++) {
-document.write(`
-<div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/qRHPBMmP/unnamed.png"alt="FIFA WORLD CUP HOODIE" data-image="https://i.postimg.cc/qRHPBMmP/unnamed.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">FIFA WORLD CUP HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="FIFA WORLD CUP HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/qRHPBMmP/unnamed.png">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=FIFA WORLD CUP HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/qRHPBMmP/unnamed.png">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate product card -->
-<script>
-for (let i = 1; i <=1 ; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
-<img src="https://i.postimg.cc/W3s0LzFr/IMG-5148.png"alt="" data-image="https://i.postimg.cc/W3s0LzFr/IMG-5148.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">FLAG TRIO HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="FLAG TRIO HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="="https://i.postimg.cc/W3s0LzFr/IMG-5148.png">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=FLAG TRIO HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/W3s0LzFr/IMG-5148.png">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate product card -->
-<script>
-for (let i = 1; i <=1 ; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
-<img src="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png"alt="CROWNED SKULL HOODIE" data-image="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">CROWNED SKULL HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="CROWNED SKULL HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=CROWNED SKULL HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/fb9PwtrW/Chat-GPT-Image-Feb-13-2026-11-48-51-AM.png">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate product card -->
-<script>
-for (let i = 1; i <=1 ; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
-<img src="https://i.postimg.cc/3rZnLTjD/IMG-5187.png"alt="ALGERIAN CULTURE HOODIE" data-image="https://i.postimg.cc/3rZnLTjD/IMG-5187.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">ALGERIAN CULTURE HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="ALGERIAN CULTURE HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/3rZnLTjD/IMG-5187.png">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=ALGERIAN CULTURE HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/3rZnLTjD/IMG-5187.png">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-<!-- Generate product card -->
-<script>
-for (let i = 1; i <=1 ; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
-<img src="https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png"alt="GOLDEN PHAROH FADE HOODIE" data-image="https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">GOLDEN PHAROH FADE HOODIE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="GOLDEN PHAROH FADE HOODIE"
-  data-product-price="EGP 800"
-  data-product-image=""https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=GOLDEN PHAROH FADE HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/fyF7D8px/7737277e-2dcb-4dcb-8d0c-cc5297dda1b4.png">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-
-<!-- Generate product card -->
-<script>
-for (let i = 1; i <=1 ; i++) {
-document.write(`
-<div class="product-card bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5"> 
-<img src="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg"alt="TUNISIA CULTURE HOODIE " data-image="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400"> TUNISIA CULTURE HOODIE </h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 800</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="TUNISIA CULTURE HOODIE"
-  data-product-price="EGP 800"
-  data-product-image="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name= TUNISIA CULTURE HOODIE data-product-price=EGP 800 data-product-image="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-</button>
-</div>
-`);
-}
-</script>
-<!-- Generate 1 product cards -->
-<script>
-for (let i = 1; i <= 1; i++) {
-document.write(`
-<div class="product-card ramadan deal bg-gray-800/70 rounded-xl overflow-hidden shadow-2xl p-5">
-<img src="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg" alt="TRAVIS SCOTT TEE" data-image="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4 border-2 border-yellow-800">
-<h3 class="text-xl font-bold text-yellow-400">TRAVIS SCOTT TEE</h3>
-<p class="text-sm text-gray-400 mt-1 mb-3">EGP 700</p>
-<p class="text-3xl font-extrabold text-yellow-500 mb-4">&nbsp;</p>
-<button class="add-to-cart premium-button mb-2"
-  data-product-name="TRAVIS SCOTT TEE"
-  data-product-price="EGP 700"
-  data-product-image="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg">
-  Add to Cart <i class="fas fa-cart-plus ml-1"></i>
-</button>
-<button class="buy-button premium-button" data-product-name=TRAVIS SCOTT TEE. data-product-price=EGP 700 data-product-image="https://i.postimg.cc/fLfbgyd3/491433724-17856683178411646-4354845891759366564-n.jpg">
-Quick Buy <i class="fas fa-shopping-bag ml-1"></i>
-
-</button>
-</div>
-`);
-}
-</script>
-
-  <div id="mini-cart-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center">
-  
-  <div class="bg-gray-900 text-white p-6 rounded-2xl w-80 relative text-center">
-
-    <!-- CLOSE BUTTON -->
-    <button onclick="closeMiniCart()" class="absolute top-2 right-3 text-2xl text-red-400">✕</button>
-
-    <h2 class="text-xl font-bold text-yellow-400 mb-4">Cart</h2>
-
-    <div class="flex justify-center items-center gap-6 mb-4">
-      <button id="cart-decrease" class="w-10 h-10 rounded-full bg-red-500 text-white text-xl">-</button>
-      <span id="cart-quantity" class="text-2xl font-bold">1</span>
-      <button id="cart-increase" class="w-10 h-10 rounded-full bg-green-500 text-white text-xl">+</button>
+  <section class="section">
+    <div class="section-heading reveal">
+      <h2>Why Choose THE EGYPTIAN KING?</h2>
+      <p>We provide high-quality, modern templates designed to save your time and make your work look more professional.</p>
     </div>
 
-    <p class="text-lg">Total:</p>
-    <p id="cart-total" class="text-2xl text-yellow-400 font-bold">EGP 0</p>
-
-  </div>
-</div>
-
-<section id="themes" class="py-20 px-4 bg-gray-900/900 border-t border-b border-yellow-800">
-  <div class="container mx-auto text-center">
-    <div class="flex flex-col md:flex-row justify-center items-center gap-10 text-gray-300 text-lg font-semibold">
-      <span>🔥 LIMITED DROP</
-        >
-      <span>📦 Fast Shipping</span>
-      <span>🚫 No Restocks</span>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Fast & Easy</h3>
+        <p>Download and use templates instantly without wasting a second of your workflow time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-gem"></i></div>
+        <h3>Professional Design</h3>
+        <p>Templates made to look modern, clean, premium, and high quality.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-clock"></i></div>
+        <h3>Save Time</h3>
+        <p>Focus on your content while THE EGYPTIAN KING helps with the design structure.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <h3>For Everyone</h3>
+        <p>Built for students, creators, freelancers, and growing businesses.</p>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-<div class="container mx-auto">
-  <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-yellow-400">Explore Our Kingdoms</h2>
-<div class="grid md:grid-cols-3 gap-10 text-center">
-<div class="p-8 bg-gray-800 rounded-2xl shadow-2xl border-t-8 border-yellow-500 transition duration-300 hover:bg-gray-700/80">
-<i class="fas fa-dumbbell text-6xl text-yellow-400 mb-4 transform hover:scale-110 transition duration-300"></i>
-<h3 class="text-2xl font-bold mb-3 text-yellow-100">Sports Legends</h3>
-<p class="text-gray-400">Hoodies and tees dedicated to the kings of the court and pitch.</p>
-</div>
-<div class="p-8 bg-gray-800 rounded-2xl shadow-2xl border-t-8 border-yellow-500 transition duration-300 hover:bg-gray-700/80">
-<i class="fas fa-mask text-6xl text-yellow-400 mb-4 transform hover:scale-110 transition duration-300"></i>
-<h3 class="text-2xl font-bold mb-3 text-yellow-100">Action & Icons</h3>
-<p class="text-gray-400">Cinematic icons and strong personalities in every design.</p>
-</div>
-<div class="p-8 bg-gray-800 rounded-2xl shadow-2xl border-t-8 border-yellow-500 transition duration-300 hover:bg-gray-700/80">
-<i class="fas fa-crown text-6xl text-yellow-400 mb-4 transform hover:scale-110 transition duration-300"></i>
-<h3 class="text-2xl font-bold mb-3 text-yellow-100">The Heritage Line</h3>
-<p class="text-gray-400">A tribute to Egypt’s majestic history and timeless graphics.</p>
-</div>
-</div>
-</div>
-</section>
+  </section>
 
-<section id="social" class="py-20 px-4">
-<div class="container mx-auto text-center">
-<h2 class="text-4xl md:text-5xl font-bold mb-10 text-yellow-400">Connect with the King</h2>
-<p class="text-xl text-gray-300 mb-12">Follow us for new drops and exclusive content!</p>
-<div class="flex justify-center space-x-10 text-6xl">
-<a href="https://www.tiktok.com/@TheEgyptianKing" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300 transform hover:scale-125 hover:drop-shadow-lg"><i class="fab fa-tiktok"></i></a>
-<a href="https://www.instagram.com/the_egyptian_king10" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300 transform hover:scale-125 hover:drop-shadow-lg"><i class="fab fa-instagram"></i></a>
-<a href="https://www.snapchat.com/add/tek" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300 transform hover:scale-125 hover:drop-shadow-lg"><i class="fab fa-snapchat-ghost"></i></a>
-<a href="#" class="text-gray-300 hover:text-yellow-400 transition duration-300 transform hover:scale-125 hover:drop-shadow-lg"><i class="fab fa-youtube"></i></a>
-<a href="https://www.facebook.com/the_egyptian_king10" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300 transform hover:scale-125 hover:drop-shadow-lg"><i class="fab fa-facebook"></i></a>
-</div>
-</div>
-</section>
-
-><!-- Floating Day/Night Toggle Button -->
-<button id="theme-toggle-btn" class="premium-button px-6 py-3 rounded-full" 
-style="position: fixed; bottom: 80px; right: 24px; z-index: 999;">
-  🌞 / 🌙
-</button>
-
-
-
-<!-- Currency Floating Button -->
-<button id="currency-btn" class="premium-button px-6 py-3 rounded-full">
-  💱 Currency
-</button>
-
-<!-- Currency Modal -->
-<div id="currency-modal" class="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
-  <div class="modal-content max-w-md rounded-2xl p-6 bg-white">
-    <h2 class="text-xl font-bold text-yellow-400 mb-4">Select Currency</h2>
-
-    <div id="currency-options" class="grid grid-cols-3 gap-4 mb-4">
-      <!-- EGP First -->
-      <button class="currency-option premium-button py-2 px-4 bg-yellow-400 text-black" data-currency="EGP" data-rate="1">EGP</button>
-
-      <!-- Other currencies -->
-      <button class="currency-option premium-button py-2 px-4" data-currency="USD" data-rate="0.032">USD</button>
-      <button class="currency-option premium-button py-2 px-4" data-currency="EUR" data-rate="0.029">EUR</button>
-      <button class="currency-option premium-button py-2 px-4" data-currency="GBP" data-rate="0.025">GBP</button>
-      <button class="currency-option premium-button py-2 px-4" data-currency="SAR" data-rate="0.12">SAR</button>
-      <button class="currency-option premium-button py-2 px-4" data-currency="AED" data-rate="0.12">AED</button>
-      <button class="currency-option premium-button py-2 px-4" data-currency="KWD" data-rate="0.0097">KWD</button>
-      <button class="currency-option premium-button py-2 px-4" data-currency="TRY" data-rate="0.93">TRY</button>
+  <section class="section">
+    <div class="section-heading reveal">
+      <h2>Browse by Category</h2>
+      <p>Choose a category and explore exactly the templates you need faster.</p>
     </div>
 
-    <button id="apply-currency" class="premium-button w-full py-3">Apply</button>
-  </div>
-</div>
-
-<script>
-const currencyBtn = document.getElementById("currency-btn");
-const currencyModal = document.getElementById("currency-modal");
-const applyCurrencyBtn = document.getElementById("apply-currency");
-let selectedCurrency = "EGP"; 
-let selectedRate = 1;
-
-// Store original EGP prices
-const productPrices = document.querySelectorAll(".product-card p.text-gray-400");
-productPrices.forEach(p => {
-  p.dataset.egp = parseFloat(p.textContent.replace(/[^0-9.]/g, ""));
-});
-
-// Open modal
-currencyBtn.addEventListener("click", () => {
-  currencyModal.style.display = "flex";
-});
-
-// Close modal when clicking outside content
-currencyModal.addEventListener("click", (e) => {
-  if (e.target === currencyModal) currencyModal.style.display = "none";
-});
-
-// Highlight selected button
-document.querySelectorAll(".currency-option").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".currency-option").forEach(b => b.classList.remove("bg-yellow-400", "text-black"));
-    btn.classList.add("bg-yellow-400", "text-black");
-    selectedCurrency = btn.dataset.currency;
-    selectedRate = parseFloat(btn.dataset.rate);
-  });
-});
-
-// Apply currency
-applyCurrencyBtn.addEventListener("click", () => {
-  productPrices.forEach(p => {
-    let egp = parseFloat(p.dataset.egp);
-    let converted = (egp * selectedRate).toFixed(2);
-    p.textContent = `${selectedCurrency} ${converted}`;
-  });
-
-  // Update button text
-  currencyBtn.textContent = selectedCurrency;
-  currencyModal.style.display = "none";
-});
-</script>
-<!-- Checkout Modal -->
-<div id="checkout-modal" class="modal-overlay">
-<div class="modal-content rounded-2xl p-6 md:p-10 relative">
-<button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-3xl transition-colors"><i class="fas fa-times"></i></button>
-<h2 class="text-3xl font-extrabold gold-gradient-text border-b pb-3 mb-6 border-yellow-800" id="modal-title">Quick Checkout</h2>
-
-<div id="step-1-summary">
-<div class="flex items-center space-x-4 mb-6 p-4 bg-gray-900/50 rounded-lg border border-yellow-900">
-<img id="modal-product-image" src="" alt="Product Image" class="w-20 h-20 object-cover rounded-md">
-<div>
-<p class="text-xl font-bold text-yellow-400" id="modal-product-name"></p>
-<p class="text-2xl font-black text-yellow-500" id="modal-product-price"></p>
-</div>
-</div>
-<div class="mb-6">
-<label for="product-size" class="block text-gray-300 mb-2 font-medium">Select Size (MANDATORY)</label>
-<select id="product-size" class="checkout-input w-full">
-<option value="" disabled selected>Choose size...</option>
-<option value="S">Small (S)</option>
-<option value="M">Medium (M)</option>
-<option value="L">Large (L)</option>
-<option value="XL">Extra Large (XL)</option>
-</select>
-</div>
-<button onclick="nextStep(2)" id="next-to-shipping-btn" class="premium-button w-full py-3 rounded-xl text-xl transition-transform transform hover:scale-[1.02]">Proceed to Shipping <i class="fas fa-truck ml-2"></i></button>
-</div>
-
-<div id="step-2-shipping" style="display:none;">
-<p class="text-lg font-bold text-yellow-400 mb-4">1. Shipping Information</p>
-<form id="checkout-form" onsubmit="return false;">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-<input type="text" id="full-name" placeholder="Full Name" required class="checkout-input">
-<input type="tel" id="phone" placeholder="Phone Number" required class="checkout-input" maxlength="11">
-</div>
-<div class="mb-4">
-<input type="text" id="address" placeholder="Shipping Address (Street, City)" required class="checkout-input w-full">
-</div>
-
-<p class="text-lg font-bold text-yellow-400 mb-4 mt-8">2. Payment</p>
-<p class="text-sm text-red-400 mb-4 italic"><i class="fas fa-exclamation-triangle mr-2"></i> You will be redirected to PayPal to complete your payment securely.</p>
-
-<div class="mb-4">
-<input type="text" id="card-number" placeholder="Card Number (XXXX XXXX XXXX XXXX)" required class="checkout-input w-full" maxlength="19">
-</div>
-<div class="grid grid-cols-3 gap-4 mb-6">
-<input type="text" id="expiry" placeholder="MM/YY" required class="checkout-input" maxlength="5">
-<input type="text" id="cvv" placeholder="CVV" required class="checkout-input" maxlength="4">
-<select class="checkout-input" required>
-<option value="" disabled selected>Select Payment Method</option>
-<option value="cod">Cash on Delivery</option>
-<option value="card">Credit/Debit Card</option>
-</select>
-</div>
-
-<button onclick="redirectPayPal()" class="cta-button text-white w-full py-3 rounded-xl text-xl mt-8 transition-transform transform hover:scale-[1.02]">Pay Now <i class="fas fa-dollar-sign ml-2"></i></button>
-<button onclick="nextStep(1)" class="text-gray-400 hover:text-yellow-400 mt-3 text-sm w-full transition-colors"><i class="fas fa-arrow-left mr-1"></i> Back to Order Summary</button>
-</form>
-</div>
-
-<div id="step-3-confirmation" style="display:none;" class="text-center p-8">
-<i class="fas fa-check-circle text-8xl text-green-500 mb-6 animate-pulse"></i>
-<h3 class="text-4xl font-black gold-gradient-text mb-4">Payment Successful!</h3>
-<p class="text-xl text-gray-200 mb-6">Your order has been placed successfully.</p>
-<p class="text-sm text-gray-400 mb-8">You will receive a confirmation from PayPal shortly. Thank you for shopping with The Egyptian King.</p>
-<button onclick="closeModal()" class="premium-button py-3 px-8 rounded-full">Close & Continue Shopping</button>
-</div>
-</div>
-</div>
-
-<script>
-let currentProduct = {};
-let currentStep = 1;
-
-function openModal(productName, productPrice, productImage) {
-currentProduct = { name: productName, price: productPrice, image: productImage };
-document.getElementById('modal-product-name').innerText = productName;
-document.getElementById('modal-product-price').innerText = productPrice;
-document.getElementById('modal-product-image').src = productImage || '';
-document.getElementById('checkout-modal').style.display = 'flex';
-showStep(1);
-}
-
-function closeModal() {
-document.getElementById('checkout-modal').style.display = 'none';
-document.getElementById('checkout-form').reset();
-currentStep = 1;
-}
-
-function showStep(step) {
-currentStep = step;
-document.getElementById('step-1-summary').style.display = step === 1 ? 'block' : 'none';
-document.getElementById('step-2-shipping').style.display = step === 2 ? 'block' : 'none';
-document.getElementById('step-3-confirmation').style.display = step === 3 ? 'block' : 'none';
-}
-
-function nextStep(step) { showStep(step); }
-
-// Add event listeners to all Quick Buy buttons
-document.querySelectorAll('.buy-button').forEach(btn => {
-btn.addEventListener('click', function() {
-openModal(this.dataset.productName, this.dataset.productPrice, this.dataset.productImage);
-});
-});
-
-// Redirect to PayPal
-function redirectPayPal() {
-const paypalLink = 'https://www.paypal.me/OmarGlelah1';
-window.open(paypalLink, '_blank');
-showStep(3);
-}
-
-// Mobile menu toggle
-document.getElementById('menu-button').addEventListener('click', () => {
-document.getElementById('mobile-menu').classList.toggle('hidden');
-});
-let exchangeRate = 1;
-let currentCurrency = "EGP";
-
-document.getElementById('currency-btn').onclick = () => {
-  document.getElementById('currency-modal').style.display = 'flex';
-};
-
-document.getElementById('apply-currency').onclick = async () => {
-  const currency = document.getElementById('currency-select').value;
-
-  const res = await fetch(`https://api.exchangerate.host/latest?base=EGP&symbols=${currency}`);
-  const data = await res.json();
-  exchangeRate = data.rates[currency];
-  currentCurrency = currency;
-
-  document.querySelectorAll('.price-text').forEach(priceEl => {
-    const base = Number(priceEl.dataset.basePrice);
-    const converted = (base * exchangeRate).toFixed(2);
-    priceEl.innerText = `${currency} ${converted}`;
-  });
-
-  document.querySelectorAll('.buy-button').forEach(btn => {
-    const base = Number(btn.dataset.basePrice);
-    const converted = (base * exchangeRate).toFixed(2);
-    btn.dataset.productPrice = `${currency} ${converted}`;
-  });
-
-  document.getElementById('currency-modal').style.display = 'none';
-};
-
-// close modal on background click
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.onclick = e => { if (e.target === m) m.style.display = 'none'; };
-});
-// Theme toggle
-const themeBtn = document.getElementById('theme-toggle-btn');
-themeBtn.onclick = () => {
-  const body = document.body;
-  if(body.classList.contains('light-mode')){
-    body.classList.remove('light-mode');
-    body.style.backgroundColor = 'var(--background-dark)';
-    body.style.color = 'var(--text-light)';
-    themeBtn.innerText = '🌞 / 🌙';
-  } else {
-    body.classList.add('light-mode');
-    body.style.backgroundColor = '#f9fafb';
-    body.style.color = '#111827';
-    themeBtn.innerText = '🌞 / 🌙';
-  }
-};
-
-</script>
-<script>
-/*
-GLOBAL DROP SYSTEM
-Phase 1: 1 day
-Phase 2: Until next Friday 11:00 AM
-Repeats forever
-Same on all devices
-*/
-
-// 🔒 GLOBAL START (SET THIS ONCE)
-// Example: Jan 1, 2026 @ 11:00 AM UTC
-const GLOBAL_START = Date.UTC(2026, 0, 1, 11, 0, 0);
-
-const ONE_DAY = 24 * 60 * 60 * 1000;
-
-function getNextFriday11UTC(fromTime) {
-  const date = new Date(fromTime);
-  const day = date.getUTCDay(); // 0 = Sun, 5 = Fri
-  let daysUntilFriday = (5 - day + 7) % 7;
-  if (daysUntilFriday === 0 && date.getUTCHours() >= 11) {
-    daysUntilFriday = 7;
-  }
-  date.setUTCDate(date.getUTCDate() + daysUntilFriday);
-  date.setUTCHours(11, 0, 0, 0);
-  return date.getTime();
-}
-
-function getCurrentPhase() {
-  let t = GLOBAL_START;
-  let phase = "day";
-
-  while (true) {
-    if (phase === "day") {
-      if (Date.now() < t + ONE_DAY) {
-        return { phase: "day", target: t + ONE_DAY };
-      }
-      t += ONE_DAY;
-      phase = "friday";
-    } else {
-      const friday = getNextFriday11UTC(t);
-      if (Date.now() < friday) {
-        return { phase: "friday", target: friday };
-      }
-      t = friday;
-      phase = "day";
-    }
-  }
-}
-
-function updateCountdown() {
-  const { target } = getCurrentPhase();
-  let diff = target - Date.now();
-  if (diff < 0) diff = 0;
-
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((diff / (1000 * 60)) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-
-  document.getElementById("countdown-timer").textContent =
-    `${String(d).padStart(2,"0")}d ` +
-    `${String(h).padStart(2,"0")}h ` +
-    `${String(m).padStart(2,"0")}m ` +
-    `${String(s).padStart(2,"0")}s`;
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-</script>
-<script>
-function openSignChoice() {
-  document.getElementById('sign-choice-modal').style.display = 'flex';
-}
-
-function openSignIn() {
-  document.getElementById('sign-choice-modal').style.display = 'none';
-  document.getElementById('signin-modal').style.display = 'flex';
-}
-
-function openSignUp() {
-  document.getElementById('sign-choice-modal').style.display = 'none';
-  document.getElementById('signup-modal').style.display = 'flex';
-}
-</script>
-
-<script>
-// ===== USER AUTH UI =====
-
-// Generate color from email (same email = same color)
-function getColorFromEmail(email) {
-  let hash = 0;
-  for (let i = 0; i < email.length; i++) {
-    hash = email.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return `hsl(${hash % 360}, 70%, 55%)`;
-}
-
-function showUserAvatar(email) {
-  const avatar = document.getElementById('user-avatar');
-  const signBtnHeader = document.getElementById('sign-btn-header');
-  const signBtnMobile = document.getElementById('sign-btn-mobile');
-
-  const firstLetter = email.charAt(0).toUpperCase();
-  const color = getColorFromEmail(email);
-
-  avatar.textContent = firstLetter;
-  avatar.style.backgroundColor = color;
-  avatar.style.color = '#111';
-
-  avatar.classList.remove('hidden');
-  signBtnHeader.style.display = 'none';
-  signBtnMobile.style.display = 'none';
-}
-</script>
-
-<script>
-// Open Sign Out modal when avatar is clicked
-const avatar = document.getElementById('user-avatar');
-avatar.addEventListener('click', () => {
-  // Only open if avatar is visible
-  if (!avatar.classList.contains('hidden')) {
-    document.getElementById('signout-modal').style.display = 'flex';
-  }
-});
-// Logout function
-function logoutUser() {
-  localStorage.removeItem('loggedInUser');
-
-  const signBtnHeader = document.getElementById('sign-btn-header');
-  const signBtnMobile = document.getElementById('sign-btn-mobile');
-
-  avatar.classList.add('hidden');
-  avatar.textContent = '';
-  signBtnHeader.style.display = 'inline-block';
-  signBtnMobile.style.display = 'block';
-
-  closeSignModal('signout-modal');
-}
-</script>
-<script>
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPassword(password) {
-  return /^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(password);
-}
-
-</script>
-
-<footer class="bg-gray-900 py-10 mt-12 border-t border-gray-700" id="contact">
-<div class="container mx-auto px-4 text-center text-gray-400">
-<p class="mb-5 text-gray-200 text-xl font-medium"><i class="fas fa-headset mr-2 text-yellow-400"></i> Contact & Support</p>
-<p class="mb-4 text-lg"><i class="fab fa-whatsapp mr-2 text-green-500"></i> WhatsApp: <a href="https://wa.me/201025002299" target="_blank" class="text-yellow-400 hover:text-yellow-300 hover:underline transition duration-300">01025002299</a></p>
-<div class="h-px bg-gray-700 w-1/4 mx-auto my-6"></div>
-<p>© <span id="currentMonth"></span> 2026 The Egyptian King Production. All Rights Reserved.</p>
-<p class="text-xs mt-1 text-gray-500">Crafted by The Egyptian King's production team.</p>
- <script>
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const now = new Date();
-    document.getElementById("currentMonth").textContent = months[now.getMonth()];
-  </script>
-</div> 
-</footer>
-<script src="//code.tidio.co/6wkx0rcfbhp7xbkqael99zbbqiulfejy.js" async></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-<script>
-// 1. Initialize Firebase ONCE
-const firebaseConfig = {
-  apiKey: "AIzaSyCysMVjzRSEaudRwhHRd2YE2MmBqA5brYw",
-  authDomain: "elmalkkeke.firebaseapp.com",
-  projectId: "elmalkkeke",
-  storageBucket: "elmalkkeke.firebasestorage.app",
-  messagingSenderId: "1098086705134",
-  appId: "1:1098086705134:web:ff6c24cc33e407facd90ff",
-  measurementId: "G-0XWQX5YKBM"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// 2. Global variables for pagination
-let lastVisible = null;
-const reviewsPerPage = 5;
-
-// 3. Review Submission Logic (Updated for stability)
-window.submitRoyalReview = async function() {
-  const name = document.getElementById('side-rev-name').value;
-  const rating = document.getElementById('side-rev-rating').value;
-  const text = document.getElementById('side-rev-text').value;
-
-  if(!name || !text) {
-    alert("The King requests your name and message! 👑");
-    return;
-  }
-
-  try {
-    await db.collection("reviews").add({
-      name: name,
-      rating: parseInt(rating),
-      text: text,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    
-    alert("The King has received your feedback! 👑");
-    
-    // Clear the form
-    document.getElementById('side-rev-name').value = "";
-    document.getElementById('side-rev-text').value = "";
-    
-    // Refresh the list
-    loadReviews(true); 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Database Error: Make sure your Firestore rules allow 'write'.");
-  }
-};
-
-
-// 4. Load Reviews Logic
-async function loadReviews(isInitial = true) {
-  const list = document.getElementById('side-reviews-list');
-  const seeMoreBtn = document.getElementById('see-more-reviews');
-  
-  if (isInitial) {
-    list.innerHTML = "";
-    lastVisible = null;
-  }
-
-  let query = db.collection("reviews").orderBy("timestamp", "desc").limit(reviewsPerPage);
-  
-  if (!isInitial && lastVisible) {
-    query = query.startAfter(lastVisible);
-  }
-
-  try {
-    const querySnapshot = await query.get();
-    
-    if (querySnapshot.empty && isInitial) {
-      list.innerHTML = "<p class='text-[10px] text-gray-500 text-center'>No reviews yet. Be the first!</p>";
-      return;
-    }
-
-    lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const stars = "⭐".repeat(data.rating || 5);
-      const reviewHTML = `
-        <div class="border-b border-gray-800 pb-3 mb-2 animate-fade-in">
-          <div class="flex justify-between text-[10px] text-yellow-500 font-bold mb-1">
-            <span>${(data.name || "Anonymous").toUpperCase()}</span>
-            <span>${stars}</span>
+    <div class="categories-grid reveal">
+      <div class="category-card" onclick="openMarketplaceModal('PowerPoint')">
+        <div class="category-icon">📊</div>
+        <h3>PowerPoint</h3>
+        <p>Templates, full PPTs, infographics, and intro slides.</p>
+      </div>
+      <div class="category-card" onclick="openMarketplaceModal('Word')">
+        <div class="category-icon">📄</div>
+        <h3>Word Files</h3>
+        <p>Useful Word files and document products.</p>
+      </div>
+      <div class="category-card" onclick="openMarketplaceModal('Icons')">
+        <div class="category-icon">🎨</div>
+        <h3>Icons</h3>
+        <p>Single icons and icon packs.</p>
+      </div>
+      <div class="category-card" onclick="openMarketplaceModal('Coupons')">
+        <div class="category-icon">🎁</div>
+        <h3>Gift Cards</h3>
+        <p>Coupons and discount gift cards.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading reveal">
+      <h2>Latest Drops</h2>
+      <p>Discover our latest PowerPoint releases freshly added to THE EGYPTIAN KING.</p>
+    </div>
+
+    <div class="grid reveal" id="latestDropsGrid"></div>
+  </section>
+
+  <section class="section" id="marketplace">
+    <div class="section-heading reveal">
+      <h2>Quick Marketplace View</h2>
+      <p>Browse popular categories from the premium catalog below.</p>
+    </div>
+
+    <div class="filter-bar reveal" id="filterBar">
+      <div class="filter-pill active" onclick="setFilter('All')">All Categories</div>
+      <div class="filter-pill" onclick="setFilter('PowerPoint')">Presentations</div>
+      <div class="filter-pill" onclick="setFilter('Word')">Documents</div>
+      <div class="filter-pill" onclick="setFilter('Icons')">Iconography</div>
+      <div class="filter-pill" onclick="setFilter('Coupons')">Gift Cards</div>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+  </section>
+
+  <div class="overlay" id="overlay" onclick="closeModals()"></div>
+
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Shopping Cart</h3>
+      <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="cart-body">
+      <div class="cart-empty" id="cartEmpty" style="display:block;">
+        <i class="fas fa-shopping-bag" style="font-size:58px;opacity:.28;margin-bottom:18px;"></i>
+        <p style="font-size:18px;font-weight:700;">Your cart is empty.</p>
+        <p style="margin-top:8px;">Add some products to continue.</p>
+      </div>
+      <div id="cartItemsList" style="display:flex;flex-direction:column;gap:16px;"></div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Subtotal</span>
+        <span id="cartTotalValue">$0.00</span>
+      </div>
+      <button class="btn" style="width:100%;padding:18px;font-size:17px;" onclick="checkoutCart()">
+        <i class="fas fa-lock"></i> Checkout Selected Items
+      </button>
+    </div>
+  </aside>
+
+  <div class="modal" id="quickViewModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="quick-view">
+      <div class="image">
+        <img id="qvImage" src="" alt="Template Preview">
+      </div>
+      <div class="info">
+        <div class="badge-new" id="qvBadge" style="position:static;display:inline-flex;width:fit-content;margin-bottom:16px;">Premium</div>
+        <h2 id="qvTitle" style="font-family:var(--font-display);font-size:34px;font-weight:900;line-height:1.18;"></h2>
+        <div class="product-rating" style="margin-top:14px;">
+          <i class="fas fa-star"></i> <span id="qvRating" style="color:var(--warning);font-weight:800;"></span>
+          <span>(verified product)</span>
+        </div>
+        <p id="qvDesc" style="color:var(--text-muted);line-height:1.75;font-size:16px;margin:22px 0 28px;"></p>
+
+        <ul style="list-style:none;display:grid;gap:12px;color:var(--text-main);margin-bottom:28px;">
+          <li><i class="fas fa-check-circle" style="color:var(--success);margin-right:10px;"></i> Instant digital access</li>
+          <li><i class="fas fa-check-circle" style="color:var(--success);margin-right:10px;"></i> Premium design quality</li>
+          <li><i class="fas fa-check-circle" style="color:var(--success);margin-right:10px;"></i> Easy to use and edit</li>
+        </ul>
+
+        <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--border-light);padding-top:24px;">
+          <div id="qvPrice" style="font-family:var(--font-display);font-size:40px;font-weight:900;"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+            <button class="btn btn-secondary" id="qvBuyBtn" style="color:var(--text-main);">Fast Buy</button>
+            <button class="btn" id="qvAddBtn"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
           </div>
-          <p class="text-[11px] text-gray-400 italic leading-tight">"${data.text || ""}"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="authModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner" style="max-width:520px;margin:0 auto;">
+      <div class="modal-head" style="display:block;margin-bottom:18px;padding-right:0;">
+        <h2 style="text-align:center;">Sign In</h2>
+        <p class="modal-sub" style="text-align:center;">Sign in before buying or checking out.</p>
+      </div>
+
+      <div style="display:grid;gap:16px;margin-top:20px;">
+        <div>
+          <label style="display:block;font-weight:700;margin-bottom:8px;color:var(--text-muted);">Email Address</label>
+          <input type="email" id="emailInput" placeholder="name@email.com" style="width:100%;padding:16px 18px;border-radius:16px;border:1px solid var(--border-strong);background:var(--bg-surface-2);color:var(--text-main);outline:none;">
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top:24px;display:grid;grid-template-columns:1fr;gap:12px;">
+        <button class="btn" onclick="loginWithEmail()">Continue With Email</button>
+        <button class="btn btn-secondary" onclick="signInGoogle()" id="googleBtn" style="color:var(--text-main);border-color:var(--border-strong);">
+          <i class="fab fa-google"></i> Continue With Google
+        </button>
+      </div>
+
+      <div id="userStatusBox" style="margin-top:18px;color:var(--text-muted);text-align:center;"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="currencyModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2>Choose Currency</h2>
+          <p class="modal-sub">Select one of the following currencies.</p>
+        </div>
+      </div>
+
+      <div class="choice-grid" id="currencyChoices"></div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="marketplaceModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2 id="marketplaceTitle">Marketplace</h2>
+          <p class="modal-sub" id="marketplaceSubtitle">Choose from the following options.</p>
+        </div>
+      </div>
+
+      <div id="marketplaceContent"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="productListModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner product-grid-modal">
+      <div class="modal-head">
+        <div>
+          <h2 id="productListTitle">Products</h2>
+          <p class="modal-sub" id="productListSubtitle">Browse products in this section.</p>
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top:0;margin-bottom:20px;">
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="goBackMarketplace()">Back</button>
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="fullscreenProductList()">Full Screen</button>
+      </div>
+
+      <div class="grid" id="productListGrid"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="exploreModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2>Explore THE EGYPTIAN KING</h2>
+          <p class="modal-sub">Choose what you want to open.</p>
+        </div>
+      </div>
+
+      <div class="choice-grid">
+        <div class="choice-card" onclick="openAboutModal()">
+          <div class="icon">ℹ️</div>
+          <h3>About Us</h3>
+          <p>Learn more about THE EGYPTIAN KING.</p>
+        </div>
+        <div class="choice-card" onclick="openTermsModal()">
+          <div class="icon">📜</div>
+          <h3>Terms & Conditions</h3>
+          <p>Read our terms before purchase.</p>
+        </div>
+        <div class="choice-card" onclick="openPrivacyModal()">
+          <div class="icon">🔒</div>
+          <h3>Privacy Policy</h3>
+          <p>See how user data is handled.</p>
+        </div>
+        <div class="choice-card" onclick="openTutorialConfirm()">
+          <div class="icon">🎬</div>
+          <h3>Tutorials</h3>
+          <p>Watch the tutorial video.</p>
+        </div>
+        <div class="choice-card" onclick="openSocialModal()">
+          <div class="icon">📱</div>
+          <h3>Follow Us</h3>
+          <p>Open our social media links.</p>
+        </div>
+        <div class="choice-card" onclick="openDropModal()">
+          <div class="icon">🚀</div>
+          <h3>New Update / Drop</h3>
+          <p>Check the next release countdown.</p>
+        </div>
+        <div class="choice-card" onclick="openDonateModal()">
+          <div class="icon">❤️</div>
+          <h3>Donate</h3>
+          <p>Support THE EGYPTIAN KING.</p>
+        </div>
+        <div class="choice-card" onclick="subscribeAction()">
+          <div class="icon">✉️</div>
+          <h3>Subscribe</h3>
+          <p>Join for future updates.</p>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="aboutModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <h2>About THE EGYPTIAN KING</h2>
+        </div>
+      </div>
+      <div class="policy-box">
+        THE EGYPTIAN KING is a digital marketplace for modern ready-made templates. We help students, creators, freelancers, and businesses save time by offering professional and easy-to-use resources.
+        <br><br>
+        Our platform includes PowerPoint templates, infographics, Word documents, gift cards, and other design resources made to improve your work quickly and easily.
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="termsModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Terms & Conditions</h2></div></div>
+      <div class="policy-box">
+        By using THE EGYPTIAN KING, you agree to use our products for personal, educational, or business use only.
+        <br><br>
+        You may not resell, redistribute, copy, or claim any THE EGYPTIAN KING product as your own.
+        <br><br>
+        All purchases are final unless stated otherwise. THE EGYPTIAN KING may update products, prices, or platform content at any time.
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="privacyModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Privacy Policy</h2></div></div>
+      <div class="policy-box">
+        THE EGYPTIAN KING respects your privacy and does not sell your personal information.
+        <br><br>
+        We may collect basic information such as your email for login, communication, and order-related purposes.
+        <br><br>
+        Payments and checkout may be handled securely by third-party services such as Payhip.
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="socialModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Follow Us</h2><p class="modal-sub">Check us on social media.</p></div></div>
+
+      <div class="choice-grid">
+        <div class="choice-card" onclick="window.open('https://www.linkedin.com','_blank')">
+          <div class="icon"><i class="fab fa-linkedin"></i></div>
+          <h3>LinkedIn</h3>
+          <p>Open LinkedIn page</p>
+        </div>
+        <div class="choice-card" onclick="window.open('https://www.instagram.com','_blank')">
+          <div class="icon"><i class="fab fa-instagram"></i></div>
+          <h3>Instagram</h3>
+          <p>Open Instagram page</p>
+        </div>
+        <div class="choice-card" onclick="window.open('https://www.tiktok.com/@tempelatex','_blank')">
+          <div class="icon"><i class="fab fa-tiktok"></i></div>
+          <h3>TikTok</h3>
+          <p>@tempelatex</p>
+        </div>
+        <div class="choice-card" onclick="window.open('https://www.youtube.com/@TEMPELATEXXXX','_blank')">
+          <div class="icon"><i class="fab fa-youtube"></i></div>
+          <h3>YouTube</h3>
+          <p>@TEMPELATEXXXX</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="tutorialModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Tutorial Video</h2><p class="modal-sub">Do you want to check the tutorial video?</p></div></div>
+      <div class="modal-actions">
+        <button class="btn" onclick="window.open('https://www.youtube.com/watch?v=8ol86yIiXH4','_blank');closeModals();">Yes</button>
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="dropModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>New Update / Drop</h2><p class="modal-sub">Check for the next update release.</p></div></div>
+
+      <div class="policy-box" style="text-align:center;">
+        <div style="font-size:22px;font-weight:900;color:var(--text-main);" id="countdownBox">Press Start</div>
+        <div style="margin-top:14px;padding:12px 14px;border-radius:16px;background:var(--primary);color:#fff;font-weight:800;">
+          We upload every day — TEMPELATEX
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn" onclick="startCountdown()">Start</button>
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="donateModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Support THE EGYPTIAN KING</h2><p class="modal-sub">Do you want to donate to support us?</p></div></div>
+      <div style="text-align:center;">
+        <img src="https://i.ibb.co/C5PrsXgC/donation-box-throwing-coin-in-a-box-for-donations-donate-giving-money-and-love-concept-of-charity-gi.jpg" alt="donation" style="width:220px;max-width:100%;border-radius:18px;margin:10px auto 22px;display:block;">
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="window.open('https://payhip.com/b/Fit26','_blank');closeModals();">Donate</button>
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Later</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="orderModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Personal Orders</h2><p class="modal-sub">Do you want us to make you a special order?</p></div></div>
+      <div class="modal-actions">
+        <button class="btn" onclick="window.open('https://forms.gle/ZtXZTzP2Tr9aFHQn7','_blank');closeModals();">Yes</button>
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="termsConfirmModal">
+    <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+    <div class="modal-inner">
+      <div class="modal-head"><div><h2>Terms Confirmation</h2><p class="modal-sub">Please accept the terms before purchase.</p></div></div>
+      <div class="policy-box">
+        By continuing, you confirm that you agree to the THE EGYPTIAN KING Terms & Conditions and Privacy Policy.
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="approveTermsAndContinue()">I Agree</button>
+        <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer reveal">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/CKFtGb47/logo-removebg-preview.png" alt="THE EGYPTIAN KING Logo" style="height:48px;width:auto;">
+        <p>Premium marketplace for presentations, templates, Word files, and digital assets designed for creators and businesses.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.tiktok.com/@tempelatex" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.youtube.com/@TEMPELATEXXXX" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Marketplace</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openMarketplaceModal('PowerPoint');return false;">PowerPoint</a></li>
+          <li><a href="#" onclick="openMarketplaceModal('Word');return false;">Word Documents</a></li>
+          <li><a href="#" onclick="openMarketplaceModal('Icons');return false;">Icons</a></li>
+          <li><a href="#" onclick="openMarketplaceModal('Coupons');return false;">Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openAboutModal();return false;">About Us</a></li>
+          <li><a href="#" onclick="openTermsModal();return false;">Terms & Conditions</a></li>
+          <li><a href="#" onclick="openPrivacyModal();return false;">Privacy Policy</a></li>
+          <li><a href="#" onclick="openDonateModal();return false;">Donate</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-note">
+          THE EGYPTIAN KING26@hotmail.com
+          <br><br>
+          Subscribe for future drops and updates.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 THE EGYPTIAN KING Marketplace. All rights reserved.</div>
+      <div>Made for premium digital assets.</div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="//code.tidio.co/vcbcdrn4k6cy1aj05azneoffsslja1in.js" async></script>
+
+  <!-- Firebase compat version for easier and more stable loading -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+  <script>
+    // =========================
+    // FIREBASE CONFIG
+    // =========================
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcHGguebP-oiboZL80yXr7AjfbgFqI_g4",
+      authDomain: "temeplaex.firebaseapp.com",
+      projectId: "temeplaex",
+      storageBucket: "temeplaex.firebasestorage.app",
+      messagingSenderId: "1029585611540",
+      appId: "1:1029585611540:web:d954750f4a0fab59b67001",
+      measurementId: "G-H38LC3N55D"
+    };
+
+    let auth = null;
+    let googleProvider = null;
+    let firebaseReady = false;
+
+    let cart = [];
+    let currentFilter = "All";
+    let selectedCurrency = "USD";
+    let isAuthenticated = false;
+    let currentUserEmail = "";
+    let manualEmailLogin = false;
+    let pendingAction = null;
+    let dropTimer = null;
+
+    const currencyMeta = [
+      { code:"USD", label:"US Dollar" },
+      { code:"AED", label:"UAE Dirham" },
+      { code:"EGP", label:"Egyptian Pound" },
+      { code:"EUR", label:"Euro" },
+      { code:"GBP", label:"British Pound" },
+      { code:"KWD", label:"Kuwaiti Dinar" },
+      { code:"SAR", label:"Saudi Riyal" },
+      { code:"MAD", label:"Moroccan Dirham" }
+    ];
+
+    const rates = {
+      USD:1,
+      AED:3.65,
+      EGP:50,
+      EUR:0.92,
+      GBP:0.78,
+      KWD:0.350,
+      SAR:3.75,
+      MAD:10.0
+    };
+
+    const allProducts = [
+      { id:1001, title:"WELCOMING INTRO BY THE EGYPTIAN KING(3)", category:"PowerPoint", subcategory:"Intro / Ending Slides", price:0.00, rating:4.9, img:"https://i.ibb.co/4Z007TTc/Screenshot-2026-03-24-133750.png", link:"https://payhip.com/b/cURQv", tag:"NEW", desc:"A clean welcoming intro slide for presentations and projects." },
+      { id:1002, title:"CV TEMPLATE BY TEMPELATEX", category:"Word", subcategory:"Word Documents", price:6.55, rating:4.8, img:"https://i.ibb.co/FTczTtR/Screenshot-2026-03-24-133725.png", link:"https://payhip.com/b/msC67", tag:"NEW", desc:"Professional CV template designed for clean presentation and fast editing." },
+      { id:1003, title:"GIFT CARDS/COUPON (55% OFF)", category:"Coupons", subcategory:"Gift Cards", price:30.50, rating:5.0, img:"https://i.ibb.co/b5XMGQR4/images.png", link:"https://payhip.com/b/MJTYf", tag:"LAST ONE", desc:"A high-value coupon product with strong discount value." },
+
+      { id:1, title:"TEMPLATE BY TEMPELATEX (1)", category:"PowerPoint", subcategory:"Template", price:9, rating:4.9, img:"https://i.ibb.co/hJH5KBCS/Screenshot-2026-02-01-200251.png", link:"https://payhip.com/b/4WiEw", tag:"HOT", desc:"Modern presentation template made for premium-looking slides." },
+      { id:2, title:"TEMPLATE BY TEMPELATEX (2)", category:"PowerPoint", subcategory:"Template", price:0, rating:4.7, img:"https://i.ibb.co/6Jt60dvd/Screenshot-2026-02-01-200310.png", link:"https://payhip.com/b/SCswV", tag:"FREE", desc:"Free PowerPoint template ready for easy editing." },
+      { id:3, title:"TEMPLATE BY TEMPELATEX (3)", category:"PowerPoint", subcategory:"Template", price:6.20, rating:4.8, img:"https://i.ibb.co/VW7tjrwK/Screenshot-2026-02-02-205656.png", link:"https://payhip.com/b/YfA04", tag:"", desc:"Clean and professional slide template for modern work." },
+      { id:4, title:"TEMPLATE BY TEMPELATEX (4)", category:"PowerPoint", subcategory:"Template", price:0.00, rating:4.8, img:"https://i.ibb.co/N2JzGhcB/Screenshot-2026-02-02-205843.png", link:"https://payhip.com/b/8wE6k", tag:"FREE", desc:"Free ready-to-use template for quick presentation design." },
+      { id:5, title:"TEMPLATE BY TEMPELATEX (6)", category:"PowerPoint", subcategory:"Template", price:3.25, rating:4.7, img:"https://i.ibb.co/GvQ1vGXc/Screenshot-2026-02-14-145654.png", link:"https://payhip.com/b/HJtI9", tag:"", desc:"Smooth, attractive presentation template for multiple use cases." },
+      { id:6, title:"TEMPLATE BY TEMPELATEX (7)", category:"PowerPoint", subcategory:"Template", price:1.95, rating:4.7, img:"https://i.ibb.co/rRsT8r2L/Screenshot-2026-02-16-144710.png", link:"https://payhip.com/b/abdNp", tag:"", desc:"Affordable template with premium visual style." },
+      { id:7, title:"TEMPLATE BY TEMPELATEX (8)", category:"PowerPoint", subcategory:"Template", price:7.30, rating:4.8, img:"https://i.ibb.co/JRW4skBH/Screenshot-2026-02-18-194536.png", link:"https://payhip.com/b/2gWEa", tag:"", desc:"Polished slide deck template for impactful communication." },
+      { id:8, title:"TEMPLATE BY TEMPELATEX (9)", category:"PowerPoint", subcategory:"Template", price:0.00, rating:4.7, img:"https://i.ibb.co/gbddS5VD/Screenshot-2026-02-21-133426.png", link:"https://payhip.com/b/oMXnd", tag:"FREE", desc:"Free design template with easy customization." },
+      { id:9, title:"TEMPLATE BY TEMPELATEX (10)", category:"PowerPoint", subcategory:"Template", price:2.30, rating:4.6, img:"https://i.ibb.co/5g66P8Ry/Screenshot-2026-02-21-133017.png", link:"https://payhip.com/b/OkjPg", tag:"", desc:"Modern layout and good structure for clean presentations." },
+      { id:10, title:"TEMPLATE BY TEMPELATEX (11)", category:"PowerPoint", subcategory:"Template", price:2.15, rating:4.7, img:"https://i.ibb.co/NgdgztQk/Screenshot-2026-02-25-191911.png", link:"https://payhip.com/b/M3NrK", tag:"", desc:"Designed for efficient editing and premium results." },
+      { id:11, title:"TEMPLATE BY TEMPELATEX (12)", category:"PowerPoint", subcategory:"Template", price:1.15, rating:4.5, img:"https://i.ibb.co/v4R12w4J/Screenshot-2026-02-25-191835.png", link:"https://payhip.com/b/azENT", tag:"", desc:"Simple and affordable PowerPoint template." },
+      { id:12, title:"TEMPLATE BY TEMPELATEX (13)", category:"PowerPoint", subcategory:"Template", price:2.10, rating:4.6, img:"https://i.ibb.co/tpqxNZBS/Screenshot-2026-02-25-190751.png", link:"https://payhip.com/b/KgwuP", tag:"", desc:"Useful template with balanced premium layout." },
+      { id:13, title:"TEMPLATE BY TEMPELATEX 14", category:"PowerPoint", subcategory:"Template", price:5.00, rating:4.7, img:"https://i.ibb.co/v4WV9tbm/Screenshot-2026-03-05-172735.png", link:"https://payhip.com/b/Q42Wx", tag:"", desc:"Presentation template designed for premium delivery." },
+      { id:14, title:"TEMPLATE BY TEMPELATEX 15", category:"PowerPoint", subcategory:"Template", price:1.95, rating:4.6, img:"https://i.ibb.co/YF6dH2dC/Screenshot-2026-03-05-173335.png", link:"https://payhip.com/b/ahSsr", tag:"", desc:"Clean and useful design for multiple purposes." },
+      { id:15, title:"TEMPLATE BY TEMPELATEX (16)", category:"PowerPoint", subcategory:"Template", price:2.15, rating:4.7, img:"https://i.ibb.co/CpSj0wKx/Screenshot-2026-03-05-173756.png", link:"https://payhip.com/b/fXY1s", tag:"", desc:"Premium-ready PowerPoint template for clean projects." },
+
+      { id:16, title:"DIGITAL FOOTPRINT BY TEMPELATEX", category:"PowerPoint", subcategory:"Full PPT", price:6.77, rating:4.8, img:"https://i.ibb.co/rKnsDW2H/Screenshot-2026-02-14-153145.png", link:"https://payhip.com/b/hktT3", tag:"", desc:"Complete PowerPoint deck with polished slide structure." },
+      { id:17, title:"LIGHTS AND RAINBOW BY TEMPELATEX", category:"PowerPoint", subcategory:"Full PPT", price:10.10, rating:4.9, img:"https://i.ibb.co/wh92tTBq/Screenshot-2026-02-14-153203.png", link:"https://payhip.com/b/RrgGo", tag:"", desc:"Colorful full presentation deck designed to stand out." },
+      { id:18, title:"DMTE BY TEMPELATEX", category:"PowerPoint", subcategory:"Full PPT", price:5.50, rating:4.7, img:"https://i.ibb.co/B8vZRn3/Screenshot-2026-02-14-153235.png", link:"https://payhip.com/b/idsIC", tag:"", desc:"Complete deck with ready-made slides and polished layout." },
+      { id:19, title:"Business Communication by TEMPELATEX", category:"PowerPoint", subcategory:"Full PPT", price:7.00, rating:4.8, img:"https://i.ibb.co/7TzJN68/Screenshot-2026-03-05-174143.png", link:"https://payhip.com/b/XlBx7", tag:"", desc:"Business communication deck with strong presentation structure." },
+
+      { id:20, title:"INFOGRAPHICS BY TEMPLATE X (1)", category:"PowerPoint", subcategory:"Infographics", price:3.2, rating:4.7, img:"https://i.ibb.co/4ZZhGCRD/Screenshot-2026-01-28-211412.png", link:"https://payhip.com/b/04evh", tag:"", desc:"Infographic slides designed for easy visual explanation." },
+      { id:21, title:"INFOGRAPHICS BY TEMPELATEX (2)", category:"PowerPoint", subcategory:"Infographics", price:8.0, rating:4.8, img:"https://i.ibb.co/Tx3cV51b/Screenshot-2026-01-29-114105.png", link:"https://payhip.com/b/oNOeP", tag:"", desc:"Premium infographic pack for modern presentations." },
+      { id:22, title:"INFOGRAPHICS BY TEMPELATEX (3)", category:"PowerPoint", subcategory:"Infographics", price:7.0, rating:4.8, img:"https://i.ibb.co/S79Y4wPt/Screenshot-2026-01-29-114646.png", link:"https://payhip.com/b/ju8VQ", tag:"", desc:"Strong infographic layout pack for presentations." },
+      { id:23, title:"INFOGRAPHICS BY TEMPELATEX (5)", category:"PowerPoint", subcategory:"Infographics", price:4.2, rating:4.6, img:"https://i.ibb.co/931Rd6F4/Screenshot-2026-02-12-200931.png", link:"https://payhip.com/b/NWXkv", tag:"", desc:"Clean infographic product with useful elements." },
+      { id:24, title:"INFOGRAPHICS BY TEMPELATEX (6)", category:"PowerPoint", subcategory:"Infographics", price:3.15, rating:4.6, img:"https://i.ibb.co/1GSjTn9x/Screenshot-2026-02-12-203348.png", link:"https://payhip.com/b/Q4uXx", tag:"", desc:"Easy-to-use infographic slide pack." },
+      { id:25, title:"INFOGRAPHICS BY TEMPELATEX (7)", category:"PowerPoint", subcategory:"Infographics", price:4.00, rating:4.6, img:"https://i.ibb.co/bj1VGM58/Screenshot-2026-02-14-151809.png", link:"https://payhip.com/b/8JFmu", tag:"", desc:"Infographic deck with premium style." },
+      { id:26, title:"INFOGRAPHICS BY TEMPELATEX (8)", category:"PowerPoint", subcategory:"Infographics", price:6.10, rating:4.8, img:"https://i.ibb.co/xScpjzQg/Screenshot-2026-02-18-194227.png", link:"https://payhip.com/b/ynJPF", tag:"", desc:"Rich infographic slides for clean visual storytelling." },
+      { id:27, title:"INFOGRAPHICS BY TEMPELATEX (9)", category:"PowerPoint", subcategory:"Infographics", price:5.0, rating:4.7, img:"https://i.ibb.co/xSncgn6h/Screenshot-2026-02-25-191531.png", link:"https://payhip.com/b/strZi", tag:"", desc:"Useful infographic structure for premium decks." },
+      { id:28, title:"INFOGRAPHICS BY TEMPELATEX (10)", category:"PowerPoint", subcategory:"Infographics", price:3.0, rating:4.6, img:"https://i.ibb.co/p6PG1r2m/Screenshot-2026-02-25-191040.png", link:"https://payhip.com/b/v3xsk", tag:"", desc:"Affordable infographic product for slide projects." },
+      { id:29, title:"INFOGRAPHICS BY TEMPELATEX (11)", category:"PowerPoint", subcategory:"Infographics", price:2.55, rating:4.5, img:"https://i.ibb.co/MrBR7rd/Screenshot-2026-03-12-210022.png", link:"https://payhip.com/b/x4pvP", tag:"", desc:"Simple premium infographic pack." },
+      { id:30, title:"INFOGRAPHICS BY TEMPELATEX (12)", category:"PowerPoint", subcategory:"Infographics", price:4.55, rating:4.6, img:"https://i.ibb.co/x8Bc1XT2/Screenshot-2026-03-12-210037.png", link:"https://payhip.com/b/lNVti", tag:"", desc:"Modern infographic slides for better design." },
+      { id:31, title:"INFOGRAPHICS BY TEMPELATEX (13)", category:"PowerPoint", subcategory:"Infographics", price:1.55, rating:4.5, img:"https://i.ibb.co/mFGvsTc3/Screenshot-2026-03-12-210056.png", link:"https://payhip.com/b/l8uCO", tag:"", desc:"Affordable infographic pack with clean layouts." },
+      { id:32, title:"INFOGRAPHICS BY TEMPELATEX (14)", category:"PowerPoint", subcategory:"Infographics", price:3.55, rating:4.6, img:"https://i.ibb.co/YFjxtcdF/Screenshot-2026-03-12-210117.png", link:"https://payhip.com/b/Bb8Js", tag:"", desc:"Premium infographic design product." },
+
+      { id:33, title:"INTRO BY TEMPELATEX (1)", category:"PowerPoint", subcategory:"Intro / Ending Slides", price:0.00, rating:4.7, img:"https://i.ibb.co/nqXrY7Pv/Screenshot-2026-02-21-132452.png", link:"https://payhip.com/b/HQuG2", tag:"FREE", desc:"Free intro slide for projects and presentations." },
+      { id:34, title:"INTRO BY TEMPELATEX (2)", category:"PowerPoint", subcategory:"Intro / Ending Slides", price:0.00, rating:4.7, img:"https://i.ibb.co/bRNT1zGs/Screenshot-2026-02-21-132741.png", link:"https://payhip.com/b/Llrg1", tag:"FREE", desc:"Free presentation intro product." },
+
+      { id:40, title:"INCREASING PROFIT BY TEMPELATEX", category:"Word", subcategory:"Word Documents", price:1.25, rating:4.5, img:"https://i.ibb.co/tpBvxDC6/Untitled.jpg", link:"https://payhip.com/b/Bc3yD", tag:"", desc:"Word file product for professional content." },
+      { id:41, title:"PROGRAMMING LANGUAGE BY TEMPELATEX", category:"Word", subcategory:"Word Documents", price:2.00, rating:4.6, img:"https://i.ibb.co/tpBvxDC6/Untitled.jpg", link:"https://payhip.com/b/9NYjc", tag:"", desc:"Useful document product in Word format." },
+      { id:42, title:"ADVICE FOR RAISING CHILDREN BY TEMPELATEX", category:"Word", subcategory:"Word Documents", price:2.10, rating:4.5, img:"https://i.ibb.co/tpBvxDC6/Untitled.jpg", link:"https://payhip.com/b/w1J92", tag:"", desc:"Editable Word document product." },
+      { id:43, title:"BUILDING ROBOT BY TEMPELATEX DOX", category:"Word", subcategory:"Word Documents", price:1.555, rating:4.5, img:"https://i.ibb.co/WvdNkxpn/Untitled.jpg", link:"https://payhip.com/b/QJ8Bm", tag:"", desc:"Word file resource with clean structure." },
+      { id:44, title:"MAKING MUFFINS BY TEMPELATEX DOX", category:"Word", subcategory:"Word Documents", price:0.00, rating:4.4, img:"https://i.ibb.co/WvdNkxpn/Untitled.jpg", link:"https://payhip.com/b/tAw0b", tag:"FREE", desc:"Free Word file product." },
+      { id:45, title:"PREPARING GATEUX BY TEMPELATEX DOX", category:"Word", subcategory:"Word Documents", price:0.00, rating:4.4, img:"https://i.ibb.co/WvdNkxpn/Untitled.jpg", link:"https://payhip.com/b/qjpN1", tag:"FREE", desc:"Free Word document item for easy access." },
+
+      { id:50, title:"GIFT CARDS/COUPON (25% OFF)", category:"Coupons", subcategory:"Gift Cards", price:9.00, rating:4.8, img:"https://i.ibb.co/b5XMGQR4/images.png", link:"https://payhip.com/b/7oEa8", tag:"", desc:"Discount coupon product for THE EGYPTIAN KING." },
+      { id:51, title:"GIFT CARDS/COUPON (10% OFF)", category:"Coupons", subcategory:"Gift Cards", price:6.50, rating:4.7, img:"https://i.ibb.co/b5XMGQR4/images.png", link:"https://payhip.com/b/27ukq", tag:"", desc:"Coupon with discount access." },
+      { id:52, title:"GIFT CARDS/COUPON (5% OFF)", category:"Coupons", subcategory:"Gift Cards", price:3.20, rating:4.6, img:"https://i.ibb.co/b5XMGQR4/images.png", link:"https://payhip.com/b/RAG2p", tag:"", desc:"Smaller discount coupon." },
+      { id:53, title:"GIFT CARDS/COUPON ($15.00 OFF)", category:"Coupons", subcategory:"Gift Cards", price:15.50, rating:4.9, img:"https://i.ibb.co/b5XMGQR4/images.png", link:"https://payhip.com/b/3hPN2", tag:"", desc:"High value fixed discount coupon." },
+      { id:54, title:"GIFT CARDS/COUPON ($6.40 OFF)", category:"Coupons", subcategory:"Gift Cards", price:7.00, rating:4.7, img:"https://i.ibb.co/b5XMGQR4/images.png", link:"https://payhip.com/b/bWhfU", tag:"", desc:"Useful coupon with fixed discount." },
+
+      { id:60, title:"Icon Packs", category:"Icons", subcategory:"Icon Packs", price:0.00, rating:4.2, img:"https://i.ibb.co/6Jt60dvd/Screenshot-2026-02-01-200310.png", link:"", tag:"COMING SOON", desc:"Icon packs are coming soon." },
+      { id:61, title:"Icons (Single)", category:"Icons", subcategory:"Icons (Single)", price:0.00, rating:4.2, img:"https://i.ibb.co/6Jt60dvd/Screenshot-2026-02-01-200310.png", link:"", tag:"COMING SOON", desc:"Single icons are coming soon." }
+    ];
+
+    const featuredLatestDrops = [
+      allProducts.find(p => p.id === 1),
+      allProducts.find(p => p.id === 16),
+      allProducts.find(p => p.id === 1001)
+    ];
+
+    const marketplaceMaps = {
+      root: [
+        { title:"PowerPoint", icon:"📊", desc:"Templates, full PPTs, infographics, and intro slides.", action:()=>showMarketplacePowerPoint() },
+        { title:"Word Documents", icon:"📄", desc:"Useful Word files and document products.", action:()=>showMarketplaceWord() },
+        { title:"Excel", icon:"📗", desc:"Excel templates are coming soon.", action:()=>showToast("Excel Templates — Coming Soon", "info") },
+        { title:"Icons", icon:"🎨", desc:"Icon packs and single icons.", action:()=>showMarketplaceIcons() },
+        { title:"Personal Orders", icon:"🔥", desc:"Send us your custom order request.", action:()=>openOrderModal() }
+      ],
+      powerpoint: [
+        { title:"Templates", icon:"🧩", desc:"Classic PowerPoint templates.", action:()=>openProductList("PowerPoint Templates", "Premium PowerPoint templates from THE EGYPTIAN KING.", p => p.subcategory === "Template") },
+        { title:"Full PPTs", icon:"🖥️", desc:"Complete ready-made presentations.", action:()=>openProductList("Full PPTs", "Complete full PowerPoint decks.", p => p.subcategory === "Full PPT") },
+        { title:"Infographics", icon:"📈", desc:"Infographic slide products.", action:()=>openProductList("Infographics", "Visual infographic products.", p => p.subcategory === "Infographics") },
+        { title:"Intro / Ending Slides", icon:"🎬", desc:"Opening and ending slide designs.", action:()=>openProductList("Intro / Ending Slides", "Intro and ending slide products.", p => p.subcategory === "Intro / Ending Slides") }
+      ],
+      word: [
+        { title:"Word Documents", icon:"📄", desc:"Open all Word file products.", action:()=>openProductList("Word Documents", "Editable Word document products.", p => p.category === "Word") }
+      ],
+      icons: [
+        { title:"Icon Packs", icon:"🎨", desc:"Coming soon.", action:()=>showToast("Icon Packs — Coming Soon", "info") },
+        { title:"Icons (Single)", icon:"🖼️", desc:"Coming soon.", action:()=>showToast("Icons (Single) — Coming Soon", "info") }
+      ]
+    };
+
+    // =========================
+    // FIREBASE INIT
+    // =========================
+    function initFirebase(){
+      try{
+        if (!window.firebase) throw new Error("Firebase script not loaded");
+
+        if (!firebase.apps.length) {
+          firebase.initializeApp(firebaseConfig);
+        }
+
+        auth = firebase.auth();
+        googleProvider = new firebase.auth.GoogleAuthProvider();
+        firebaseReady = true;
+
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            isAuthenticated = true;
+            currentUserEmail = user.email || "Google User";
+            manualEmailLogin = false;
+          } else if (!manualEmailLogin) {
+            isAuthenticated = false;
+            currentUserEmail = "";
+          }
+          updateSigninUI();
+          updateLockedButtons();
+        });
+      } catch (e){
+        console.error("Firebase failed to initialize:", e);
+        firebaseReady = false;
+      }
+    }
+
+    // =========================
+    // INIT
+    // =========================
+    document.addEventListener("DOMContentLoaded", () => {
+      const splash = document.getElementById("splash");
+
+      setTimeout(() => {
+        if (splash) splash.classList.add("hidden");
+      }, 1800);
+
+      try{
+        initFirebase();
+        renderProducts();
+        renderLatestDrops();
+        renderCurrencyChoices();
+        setupObserver();
+        detectCountryIndicator();
+        refreshAllPrices();
+        updateSigninUI();
+        updateLockedButtons();
+        window.addEventListener("scroll", handleScroll);
+      }catch(err){
+        console.error("Startup error:", err);
+        if (splash) splash.classList.add("hidden");
+      }
+    });
+
+    window.addEventListener("error", function(e){
+      console.error("Global error:", e.message);
+      const splash = document.getElementById("splash");
+      if (splash) splash.classList.add("hidden");
+    });
+
+    // =========================
+    // GENERAL UI
+    // =========================
+    function setupObserver(){
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold:0.1 });
+
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    }
+
+    function handleScroll(){
+      const header = document.getElementById("mainHeader");
+      if(window.scrollY > 50) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+
+      const btn = document.getElementById("backToTopBtn");
+      if(window.scrollY > 400) btn.classList.add("show");
+      else btn.classList.remove("show");
+    }
+
+    function toggleTheme(){
+      const html = document.documentElement;
+      const icon = document.getElementById("themeIcon");
+      if(html.getAttribute("data-theme") === "dark"){
+        html.setAttribute("data-theme","light");
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+      }else{
+        html.setAttribute("data-theme","dark");
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+      }
+    }
+
+    function toggleMobileMenu(forceClose = false){
+      if(window.innerWidth > 1100) return;
+      const nav = document.getElementById("navMenu");
+
+      if(forceClose){
+        nav.style.display = "none";
+        return;
+      }
+
+      const isOpen = nav.style.display === "flex";
+      nav.style.display = isOpen ? "none" : "flex";
+
+      if(!isOpen){
+        nav.style.position = "fixed";
+        nav.style.top = "84px";
+        nav.style.left = "0";
+        nav.style.right = "0";
+        nav.style.transform = "none";
+        nav.style.background = "var(--bg-surface-glass)";
+        nav.style.padding = "26px";
+        nav.style.flexDirection = "column";
+        nav.style.borderBottom = "1px solid var(--border-light)";
+        nav.style.backdropFilter = "blur(24px)";
+        nav.style.zIndex = "1001";
+      }
+    }
+
+    function showToast(message, type="success"){
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = `toast ${type}`;
+      const icon = type === "success" ? "fa-check-circle" : type === "error" ? "fa-circle-exclamation" : "fa-circle-info";
+      toast.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(()=>toast.classList.add("show"), 10);
+      setTimeout(()=>{
+        toast.classList.remove("show");
+        setTimeout(()=>toast.remove(), 500);
+      }, 3000);
+    }
+
+    function openModal(id){
+      document.getElementById("overlay").classList.add("show");
+      document.querySelectorAll(".modal").forEach(m => m.classList.remove("open"));
+      document.getElementById(id).classList.add("open");
+    }
+
+    function closeModals(){
+      document.getElementById("overlay").classList.remove("show");
+      document.querySelectorAll(".modal").forEach(m => m.classList.remove("open"));
+      document.getElementById("cartSidebar").classList.remove("open");
+    }
+
+    function toggleCart(){
+      const cartSidebar = document.getElementById("cartSidebar");
+      const overlay = document.getElementById("overlay");
+      if(cartSidebar.classList.contains("open")){
+        cartSidebar.classList.remove("open");
+        if(!document.querySelector(".modal.open")) overlay.classList.remove("show");
+      }else{
+        cartSidebar.classList.add("open");
+        overlay.classList.add("show");
+      }
+    }
+
+    // =========================
+    // COUNTRY
+    // =========================
+    function getFlagEmoji(code){
+      if(!code || code.length !== 2) return "🌍";
+      return code.toUpperCase().split("").map(c => String.fromCodePoint(127397 + c.charCodeAt(0))).join("");
+    }
+
+    function getCountryName(code){
+      try{
+        const regionNames = new Intl.DisplayNames(["en"], { type:"region" });
+        return regionNames.of(code.toUpperCase()) || "Unknown";
+      }catch(e){
+        return "Unknown";
+      }
+    }
+
+    async function detectCountryIndicator(){
+      const codeEl = document.getElementById("countryCode");
+      const flagEl = document.getElementById("countryFlag");
+      const nameEl = document.getElementById("countryName");
+
+      try{
+        let code = "";
+
+        try{
+          const res1 = await fetch("https://ipapi.co/json/");
+          const data1 = await res1.json();
+          code = (data1.country_code || "").toUpperCase();
+        }catch(e){}
+
+        if(!code){
+          try{
+            const res2 = await fetch("https://ipwho.is/");
+            const data2 = await res2.json();
+            code = (data2.country_code || "").toUpperCase();
+          }catch(e){}
+        }
+
+        if(!code){
+          codeEl.textContent = "--";
+          flagEl.textContent = "🌍";
+          nameEl.textContent = "Unknown";
+          return;
+        }
+
+        codeEl.textContent = code;
+        flagEl.textContent = getFlagEmoji(code);
+        nameEl.textContent = getCountryName(code);
+      }catch(e){
+        codeEl.textContent = "--";
+        flagEl.textContent = "🌍";
+        nameEl.textContent = "Unknown";
+      }
+    }
+
+    // =========================
+    // AUTH
+    // =========================
+    function toggleAuthModal(){
+      openModal("authModal");
+    }
+
+    function continueAfterSignin(){
+      if(typeof pendingAction === "function"){
+        const action = pendingAction;
+        pendingAction = null;
+        action();
+      }
+    }
+
+    function loginWithEmail(){
+      const email = (document.getElementById("emailInput").value || "").trim().toLowerCase();
+      const allowed = ["@gmail.com","@hotmail.com","@outlook.com","@yahoo.com"];
+
+      if(!email){
+        showToast("Please enter your email.", "error");
+        return;
+      }
+
+      if(!allowed.some(d => email.endsWith(d))){
+        showToast("Email must end with @gmail.com, @hotmail.com, @outlook.com or @yahoo.com", "error");
+        return;
+      }
+
+      isAuthenticated = true;
+      currentUserEmail = email;
+      manualEmailLogin = true;
+      updateSigninUI();
+      updateLockedButtons();
+      closeModals();
+      showToast("Signed in successfully.", "success");
+      continueAfterSignin();
+    }
+
+    function signInGoogle(){
+      if(!firebaseReady || !auth || !googleProvider){
+        showToast("Google sign-in is unavailable right now.", "error");
+        return;
+      }
+
+      const googleBtn = document.getElementById("googleBtn");
+      const originalText = googleBtn.innerHTML;
+      googleBtn.disabled = true;
+      googleBtn.innerHTML = `<i class="fab fa-google"></i> Connecting...`;
+
+      auth.signInWithPopup(googleProvider)
+        .then((result) => {
+          const user = result.user;
+          isAuthenticated = true;
+          currentUserEmail = user.email || "Google User";
+          manualEmailLogin = false;
+          updateSigninUI();
+          updateLockedButtons();
+          closeModals();
+          showToast("Signed in successfully.", "success");
+          continueAfterSignin();
+        })
+        .catch((err) => {
+          console.error("Google sign-in error:", err);
+          showToast("Google sign-in failed.", "error");
+        })
+        .finally(() => {
+          googleBtn.disabled = false;
+          googleBtn.innerHTML = originalText;
+        });
+    }
+
+    function signOutUser(){
+      if(firebaseReady && auth && auth.currentUser){
+        auth.signOut().catch(() => {});
+      }
+      isAuthenticated = false;
+      currentUserEmail = "";
+      manualEmailLogin = false;
+      updateSigninUI();
+      updateLockedButtons();
+      showToast("Signed out.", "info");
+    }
+
+    function updateSigninUI(){
+      const btn = document.getElementById("headerSigninBtn");
+      const status = document.getElementById("userStatusBox");
+
+      if(isAuthenticated){
+        btn.innerHTML = `<i class="fas fa-user-check"></i> ${escapeHtml(currentUserEmail.split("@")[0])}`;
+        btn.onclick = () => {
+          openModal("authModal");
+        };
+        if(status){
+          status.innerHTML = `Signed in as <strong>${escapeHtml(currentUserEmail)}</strong><br><br>
+          <button class="btn btn-secondary" style="color:var(--text-main);margin-top:10px;" onclick="signOutUser()">Sign Out</button>`;
+        }
+      }else{
+        btn.innerHTML = `<i class="fas fa-user"></i> Sign In`;
+        btn.onclick = () => toggleAuthModal();
+        if(status) status.innerHTML = "";
+      }
+    }
+
+    function updateLockedButtons(){
+      document.querySelectorAll(".buy-lock").forEach(btn => {
+        btn.disabled = false;
+      });
+    }
+
+    function requireSignin(callback){
+      if(isAuthenticated){
+        callback();
+      }else{
+        pendingAction = callback;
+        openModal("authModal");
+        showToast("Please sign in first.", "info");
+      }
+    }
+
+    // =========================
+    // CURRENCY
+    // =========================
+    function openCurrencyModal(){
+      openModal("currencyModal");
+    }
+
+    function renderCurrencyChoices(){
+      const wrap = document.getElementById("currencyChoices");
+      wrap.innerHTML = currencyMeta.map(c => `
+        <div class="choice-card" onclick="setCurrency('${c.code}')">
+          <div class="icon">💱</div>
+          <h3>${c.code}</h3>
+          <p>${c.label}</p>
+        </div>
+      `).join("");
+    }
+
+    function convertPrice(usd){
+      const rate = rates[selectedCurrency] || 1;
+      const raw = usd * rate;
+      if(selectedCurrency === "EGP") return raw.toFixed(0);
+      if(selectedCurrency === "KWD") return raw.toFixed(3);
+      return raw.toFixed(2);
+    }
+
+    function formatMoney(usd){
+      return `${convertPrice(usd)} ${selectedCurrency}`;
+    }
+
+    function setCurrency(code){
+      selectedCurrency = code;
+      refreshAllPrices();
+      closeModals();
+      showToast(`Currency changed to ${code}`, "info");
+    }
+
+    function refreshAllPrices(){
+      document.querySelectorAll("[data-usd-price]").forEach(el => {
+        const usd = parseFloat(el.dataset.usdPrice || "0");
+        el.textContent = formatMoney(usd);
+      });
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById("cartTotalValue").textContent = formatMoney(total);
+
+      const qvPrice = document.getElementById("qvPrice");
+      if(qvPrice.dataset.usdPrice){
+        qvPrice.textContent = formatMoney(parseFloat(qvPrice.dataset.usdPrice));
+      }
+    }
+
+    // =========================
+    // RENDER
+    // =========================
+    function renderLatestDrops(){
+      const grid = document.getElementById("latestDropsGrid");
+      grid.innerHTML = "";
+      featuredLatestDrops.forEach(p => {
+        if(p) grid.appendChild(createProductCard(p));
+      });
+      refreshAllPrices();
+    }
+
+    function renderProducts(searchQuery = ""){
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = "";
+
+      let filtered = allProducts.filter(p => p.link && p.category !== "Icons");
+
+      if(currentFilter !== "All"){
+        filtered = filtered.filter(p => p.category === currentFilter);
+      }
+
+      if(searchQuery.trim()){
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.subcategory.toLowerCase().includes(q)
+        );
+      }
+
+      if(filtered.length === 0){
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:90px 20px;color:var(--text-muted);font-size:18px;">No products matched your search.</div>`;
+        return;
+      }
+
+      filtered.slice(0, 12).forEach(p => grid.appendChild(createProductCard(p)));
+      refreshAllPrices();
+    }
+
+    function createProductCard(p){
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      const badgeClass = p.tag === "HOT" || p.tag === "LAST ONE" ? "badge-new hot" : "badge-new";
+      const badge = p.tag ? `<div class="${badgeClass}">${escapeHtml(p.tag)}</div>` : "";
+
+      card.innerHTML = `
+        <div class="product-img" onclick="openQuickView(${p.id})">
+          ${badge}
+          <img src="${p.img}" alt="${escapeHtml(p.title)}">
+        </div>
+        <div class="product-info">
+          <div class="product-category">${escapeHtml(p.category)} • ${escapeHtml(p.subcategory)}</div>
+          <div class="product-title">${escapeHtml(p.title)}</div>
+          <div class="product-rating"><i class="fas fa-star"></i> ${p.rating.toFixed(1)} <span>(premium)</span></div>
+          <div class="product-action">
+            <div class="product-price"><span data-usd-price="${p.price}">${formatMoney(p.price)}</span></div>
+            <button class="btn btn-icon" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to Cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
         </div>
       `;
-      list.insertAdjacentHTML('beforeend', reviewHTML);
-    });
-
-    if (querySnapshot.docs.length === reviewsPerPage) {
-      seeMoreBtn.classList.remove('hidden');
-    } else {
-      seeMoreBtn.classList.add('hidden');
-    }
-  } catch (err) {
-    console.error("Load error:", err);
-  }
-}
-
-// 5. Auth State Logic
-auth.onAuthStateChanged((user) => {
-  const avatar = document.getElementById("user-avatar");
-  const signBtnHeader = document.getElementById("sign-btn-header");
-  const signBtnMobile = document.getElementById("sign-btn-mobile");
-
-  if (user) {
-    if (signBtnHeader) signBtnHeader.style.display = "none";
-    if (signBtnMobile) signBtnMobile.style.display = "none";
-    if (avatar) {
-      avatar.classList.remove("hidden");
-      avatar.innerHTML = `<img src="${user.photoURL || ''}" class="w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-yellow-500">`;
-    }
-  } else {
-    if (signBtnHeader) signBtnHeader.style.display = "inline-block";
-    if (signBtnMobile) signBtnMobile.style.display = "block";
-    if (avatar) {
-      avatar.classList.add("hidden");
-      avatar.innerHTML = "";
-    }
-  }
-});
-
-// 6. Google Login
-window.handleGoogleLogin = function() {
-  auth.signInWithPopup(provider).catch(err => alert(err.message));
-};
-
-// 7. Logout
-window.logoutUser = function() {
-  auth.signOut().then(() => location.reload());
-};
-
-// Start Up
-document.addEventListener("DOMContentLoaded", () => {
-  loadReviews(true);
-  
-  const googleBtn = document.getElementById("google-signin-btn");
-  if(googleBtn) googleBtn.onclick = handleGoogleLogin;
-  
-  document.getElementById('see-more-reviews').onclick = () => loadReviews(false);
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let currentItem = null;
-
-// OPEN
-function showMiniCart() {
-  document.getElementById("mini-cart-overlay").classList.remove("hidden");
-}
-
-// CLOSE
-window.closeMiniCart = function() {
-  document.getElementById("mini-cart-overlay").classList.add("hidden");
-}
-
-// UPDATE UI
-function updateMiniCartUI() {
-  if (!currentItem) return;
-
-  document.getElementById("cart-quantity").textContent = currentItem.quantity;
-  document.getElementById("cart-total").textContent =
-    `EGP ${currentItem.price * currentItem.quantity}`;
-}
-
-// SAVE
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateMiniCartUI();
-  updateCartCount();
-}
-
-// COUNT
-function updateCartCount() {
-  let total = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById("cart-count").textContent = total;
-}
-
-// ADD TO CART
-document.addEventListener("click", function(e) {
-  if (e.target.closest(".add-to-cart")) {
-
-    const btn = e.target.closest(".add-to-cart");
-
-    const name = btn.dataset.productName;
-    const price = parseInt(btn.dataset.productPrice.replace(/[^0-9]/g, ""));
-    const image = btn.dataset.productImage;
-
-    let existing = cart.find(item => item.name === name);
-
-    if (existing) {
-      existing.quantity++;
-      currentItem = existing;
-    } else {
-      const newItem = { name, price, image, quantity: 1 };
-      cart.push(newItem);
-      currentItem = newItem;
+      return card;
     }
 
-    saveCart();
-    showMiniCart();
-  }
-});
+    function setFilter(category){
+      currentFilter = category;
+      document.querySelectorAll(".filter-pill").forEach(pill => {
+        pill.classList.remove("active");
+        if(
+          (category === "All" && pill.textContent.includes("All")) ||
+          pill.textContent.toLowerCase().includes(category.toLowerCase())
+        ){
+          pill.classList.add("active");
+        }
+      });
+      renderProducts(document.getElementById("searchInput").value);
+    }
 
-// + BUTTON
-document.getElementById("cart-increase").addEventListener("click", () => {
-  if (!currentItem) return;
-  currentItem.quantity++;
-  saveCart();
-});
+    function handleSearch(){
+      renderProducts(document.getElementById("searchInput").value);
+    }
 
-// - BUTTON
-document.getElementById("cart-decrease").addEventListener("click", () => {
-  if (!currentItem) return;
+    function runSearchAction(){
+      const value = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+      if(!value){
+        renderProducts("");
+        return;
+      }
 
-  if (currentItem.quantity > 1) {
-    currentItem.quantity--;
-  } else {
-    cart = cart.filter(item => item.name !== currentItem.name);
-    closeMiniCart();
-  }
+      if(value.includes("power") || value.includes("ppt") || value.includes("presentation")){
+        openMarketplaceModal("PowerPoint");
+        return;
+      }
+      if(value.includes("word") || value.includes("doc")){
+        openMarketplaceModal("Word");
+        return;
+      }
+      if(value.includes("icon")){
+        openMarketplaceModal("Icons");
+        return;
+      }
+      if(value.includes("gift") || value.includes("coupon") || value.includes("card")){
+        openMarketplaceModal("Coupons");
+        return;
+      }
+      if(value.includes("infographic")){
+        openProductList("Infographics", "Visual infographic products.", p => p.subcategory === "Infographics");
+        return;
+      }
+      if(value.includes("intro") || value.includes("ending")){
+        openProductList("Intro / Ending Slides", "Intro and ending slide products.", p => p.subcategory === "Intro / Ending Slides");
+        return;
+      }
+      if(value.includes("full")){
+        openProductList("Full PPTs", "Complete full PowerPoint decks.", p => p.subcategory === "Full PPT");
+        return;
+      }
+      if(value.includes("excel")){
+        showToast("Excel Templates — Coming Soon", "info");
+        return;
+      }
 
-  saveCart();
-});
+      renderProducts(value);
+    }
 
-// CART ICON CLICK
-document.querySelector(".fa-shopping-cart").addEventListener("click", () => {
-  window.location.href = "cart.html";
-});
+    // =========================
+    // QUICK VIEW
+    // =========================
+    function openQuickView(id){
+      const product = allProducts.find(p => p.id === id);
+      if(!product) return;
 
-// LOAD
-updateCartCount();
+      document.getElementById("qvImage").src = product.img;
+      document.getElementById("qvTitle").textContent = product.title;
+      document.getElementById("qvBadge").textContent = product.subcategory;
+      document.getElementById("qvRating").textContent = product.rating.toFixed(1);
+      document.getElementById("qvDesc").textContent = product.desc;
 
-});
-</script>
-<script>
-// 1️⃣ Disable right-click
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-  alert("Right-click is disabled on this site!");
-});
+      const priceEl = document.getElementById("qvPrice");
+      priceEl.dataset.usdPrice = product.price;
+      priceEl.textContent = formatMoney(product.price);
 
-// 2️⃣ Disable key combinations commonly used for dev tools
-document.addEventListener('keydown', function(e) {
-  // F12
-  if(e.key === "F12") {
-    e.preventDefault();
-    alert("Opening DevTools is disabled!");
-  }
-  // Ctrl+Shift+I (Inspect)
-  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
-    e.preventDefault();
-    alert("Inspect is disabled!");
-  }
-  // Ctrl+Shift+J (Console)
-  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
-    e.preventDefault();
-    alert("Console is disabled!");
-  }
-  // Ctrl+U (View Source)
-  if(e.ctrlKey && e.key.toLowerCase() === "u") {
-    e.preventDefault();
-    alert("View Source is disabled!");
-  }
-  // Ctrl+Shift+C (Inspect Element)
-  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c") {
-    e.preventDefault();
-    alert("Inspect Element is disabled!");
-  }
-});
-</script>
+      document.getElementById("qvBuyBtn").onclick = () => requestFastBuy(product.link);
+      document.getElementById("qvAddBtn").onclick = () => addToCart(product.id);
+
+      openModal("quickViewModal");
+    }
+
+    // =========================
+    // CART
+    // =========================
+    function addToCart(id){
+      const product = allProducts.find(p => p.id === id);
+      if(!product) return;
+
+      if(cart.find(item => item.id === id)){
+        showToast("Item is already in your cart.", "info");
+        return;
+      }
+
+      cart.push(product);
+      updateCart();
+      showToast("Added to cart.", "success");
+    }
+
+    function removeCart(id){
+      cart = cart.filter(item => item.id !== id);
+      updateCart();
+    }
+
+    function updateCart(){
+      const count = document.getElementById("cartCount");
+      const empty = document.getElementById("cartEmpty");
+      const list = document.getElementById("cartItemsList");
+      const totalEl = document.getElementById("cartTotalValue");
+
+      count.textContent = cart.length;
+
+      if(cart.length === 0){
+        empty.style.display = "block";
+        list.innerHTML = "";
+        totalEl.textContent = formatMoney(0);
+        return;
+      }
+
+      empty.style.display = "none";
+      list.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price;
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <img src="${item.img}" alt="${escapeHtml(item.title)}">
+          <div style="flex:1;">
+            <div class="cart-item-title">${escapeHtml(item.title)}</div>
+            <div class="cart-item-price">${formatMoney(item.price)}</div>
+            <div class="cart-item-remove" onclick="removeCart(${item.id})">Remove Item</div>
+          </div>
+        `;
+        list.appendChild(row);
+      });
+
+      totalEl.textContent = formatMoney(total);
+    }
+
+    function checkoutCart(){
+      if(cart.length === 0){
+        showToast("Add items to cart first.", "error");
+        return;
+      }
+
+      requireSignin(() => {
+        pendingAction = () => {
+          cart.forEach((item, index) => {
+            setTimeout(() => {
+              if(item.link) window.open(item.link, "_blank");
+            }, index * 250);
+          });
+          showToast("Opening selected items.", "success");
+        };
+        openModal("termsConfirmModal");
+      });
+    }
+
+    // =========================
+    // TERMS + BUY FLOW
+    // =========================
+    function requestFastBuy(link){
+      requireSignin(() => {
+        pendingAction = () => {
+          if(link) window.open(link, "_blank");
+          showToast("Opening product link.", "success");
+        };
+        openModal("termsConfirmModal");
+      });
+    }
+
+    function approveTermsAndContinue(){
+      closeModals();
+      if(typeof pendingAction === "function"){
+        const action = pendingAction;
+        pendingAction = null;
+        action();
+      }
+    }
+
+    // =========================
+    // MARKETPLACE
+    // =========================
+    function openMarketplaceModal(start = null){
+      if(start === "PowerPoint"){
+        showMarketplacePowerPoint();
+        return;
+      }
+      if(start === "Word"){
+        showMarketplaceWord();
+        return;
+      }
+      if(start === "Icons"){
+        showMarketplaceIcons();
+        return;
+      }
+      if(start === "Coupons"){
+        openProductList("Gift Cards / Coupons", "Browse gift card and coupon products.", p => p.category === "Coupons");
+        return;
+      }
+      renderMarketplaceRoot();
+    }
+
+    function renderMarketplaceRoot(){
+      document.getElementById("marketplaceTitle").textContent = "Marketplace";
+      document.getElementById("marketplaceSubtitle").textContent = "Choose from the following options.";
+      document.getElementById("marketplaceContent").innerHTML = renderChoiceCards(marketplaceMaps.root, false);
+      openModal("marketplaceModal");
+    }
+
+    function showMarketplacePowerPoint(){
+      document.getElementById("marketplaceTitle").textContent = "PowerPoint";
+      document.getElementById("marketplaceSubtitle").textContent = "Choose one of the PowerPoint sections.";
+      document.getElementById("marketplaceContent").innerHTML = renderChoiceCards(marketplaceMaps.powerpoint, true);
+      openModal("marketplaceModal");
+    }
+
+    function showMarketplaceWord(){
+      document.getElementById("marketplaceTitle").textContent = "Word Documents";
+      document.getElementById("marketplaceSubtitle").textContent = "Open Word document products.";
+      document.getElementById("marketplaceContent").innerHTML = renderChoiceCards(marketplaceMaps.word, true);
+      openModal("marketplaceModal");
+    }
+
+    function showMarketplaceIcons(){
+      document.getElementById("marketplaceTitle").textContent = "Icons";
+      document.getElementById("marketplaceSubtitle").textContent = "Choose icon type.";
+      document.getElementById("marketplaceContent").innerHTML = renderChoiceCards(marketplaceMaps.icons, true);
+      openModal("marketplaceModal");
+    }
+
+    function renderChoiceCards(items, back = false){
+      const cards = items.map((item, idx) => `
+        <div class="choice-card" onclick="window.__marketAction(${idx})">
+          <div class="icon">${item.icon}</div>
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+        </div>
+      `).join("");
+
+      window.__marketAction = (idx) => items[idx].action();
+
+      return `
+        <div class="choice-grid">${cards}</div>
+        <div class="modal-actions">
+          ${back ? `<button class="btn btn-secondary" style="color:var(--text-main);" onclick="renderMarketplaceRoot()">Back</button>` : ``}
+          <button class="btn btn-secondary" style="color:var(--text-main);" onclick="closeModals()">Close</button>
+        </div>
+      `;
+    }
+
+    function openProductList(title, subtitle, filterFn){
+      const items = allProducts.filter(filterFn);
+
+      document.getElementById("productListTitle").textContent = title;
+      document.getElementById("productListSubtitle").textContent = subtitle;
+      const grid = document.getElementById("productListGrid");
+      grid.innerHTML = "";
+
+      if(items.length === 0){
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);">Coming Soon</div>`;
+      }else{
+        items.forEach(p => grid.appendChild(createProductCard(p)));
+      }
+
+      openModal("productListModal");
+    }
+
+    function goBackMarketplace(){
+      document.getElementById("productListModal").classList.remove("open");
+      document.getElementById("marketplaceModal").classList.add("open");
+      document.getElementById("overlay").classList.add("show");
+    }
+
+    function fullscreenProductList(){
+      const modal = document.getElementById("productListModal");
+      if(modal.requestFullscreen) modal.requestFullscreen();
+    }
+
+    // =========================
+    // EXPLORE
+    // =========================
+    function openExploreModal(){ openModal("exploreModal"); }
+    function openAboutModal(){ openModal("aboutModal"); }
+    function openTermsModal(){ openModal("termsModal"); }
+    function openPrivacyModal(){ openModal("privacyModal"); }
+    function openSocialModal(){ openModal("socialModal"); }
+    function openTutorialConfirm(){ openModal("tutorialModal"); }
+    function openDonateModal(){ openModal("donateModal"); }
+    function openOrderModal(){ openModal("orderModal"); }
+    function openDropModal(){ openModal("dropModal"); }
+
+    function subscribeAction(){
+      closeModals();
+      showToast("Subscribe feature coming soon.", "info");
+    }
+
+    // =========================
+    // COUNTDOWN
+    // =========================
+    function startCountdown(){
+      const target = new Date("2026-04-10T19:00:00").getTime();
+      if(dropTimer) clearInterval(dropTimer);
+
+      dropTimer = setInterval(() => {
+        const now = Date.now();
+        const distance = target - now;
+        const box = document.getElementById("countdownBox");
+
+        if(distance < 0){
+          box.textContent = "Version Released!";
+          clearInterval(dropTimer);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000*60*60*24));
+        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+        const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+        box.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+    }
+
+    // =========================
+    // HELPERS
+    // =========================
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+  </script>
 </body>
 </html>
