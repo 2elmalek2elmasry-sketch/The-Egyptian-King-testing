@@ -2147,5 +2147,30 @@ const provider = new firebase.auth.GoogleAuthProvider();
 })();
 
 </script>
+<script>
+    // 1. Prevent Right Click
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // 2. Prevent Common Keyboard Shortcuts (Ctrl+U, F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J)
+    document.onkeydown = function(e) {
+        if (
+            e.keyCode === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
+            (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    };
+
+    // 3. Disable Text Selection/Dragging
+    document.body.onselectstart = function() { return false; };
+    document.body.ondragstart = function() { return false; };
+
+    // 4. Basic anti-view-source: hack (Doesn't work in all browsers)
+    if (window.location.href.indexOf("view-source:") === 0) {
+        window.location.href = "about:blank";
+    }
+</script>
 </body>
 </html>
