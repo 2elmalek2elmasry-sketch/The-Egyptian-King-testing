@@ -16,15 +16,15 @@
   <style>
     :root{
       /* Egyptian King Gold Theme */
-      --primary:#f59e0b;
+      --primary:#ffffff;
       --primary-hover:#d97706;
       --primary-glow:rgba(245,158,11,.32);
-      --secondary:#fbbf24;
-      --secondary-glow:rgba(251,191,36,.28);
+      --secondary:#ffffff;
+      --secondary-glow:#ffff00;
       --success:#10b981;
-      --danger:#ef4444;
-      --warning:#f59e0b;
-      --info:#38bdf8;
+      --danger:#000000;
+      --warning:#ffffff;
+      --info:#ffffff;
 
       --font-display:'Outfit',sans-serif;
       --font-body:'Plus Jakarta Sans',sans-serif;
@@ -34,31 +34,31 @@
     }
 
     [data-theme="dark"]{
-      --bg-base:#030712;
-      --bg-surface:#0f172a;
-      --bg-surface-2:#111c32;
+      --bg-base:#000000;
+      --bg-surface:#000000;
+      --bg-surface-2:#000000;
       --bg-surface-glass:rgba(15,23,42,.68);
-      --text-main:#fef3c7;
-      --text-muted:#d1d5db;
-      --border-light:rgba(251,191,36,.08);
-      --border-strong:rgba(251,191,36,.15);
+      --text-main:#ffffff;
+      --text-muted:#888888;
+      --border-light:#ffffff;
+      --border-strong:#ffffff;
       --shadow-glass:0 12px 40px rgba(0,0,0,.32);
       --shadow-neon:0 0 22px var(--primary-glow);
-      --card-image:#1f2937;
+      --card-image:#000000;
     }
 
     [data-theme="light"]{
-      --bg-base:#fef3c7;
+      --bg-base:#ffffff;
       --bg-surface:#fff;
-      --bg-surface-2:#fef3c7;
+      --bg-surface-2:#ffffff;
       --bg-surface-glass:rgba(254,243,199,.86);
-      --text-main:#1f2937;
-      --text-muted:#4b5563;
-      --border-light:rgba(0,0,0,.08);
-      --border-strong:rgba(0,0,0,.15);
-      --shadow-glass:0 12px 40px rgba(0,0,0,.08);
+      --text-main:#000000;
+      --text-muted:#888888;
+      --border-light:#888888;
+      --border-strong:#888888;
+      --shadow-glass:0 12px 40px #888888;
       --shadow-neon:0 10px 25px rgba(245,158,11,.15);
-      --card-image:#fef3c7;
+      --card-image:#ffffff;
     }
 
    /* Reset and base styles */
@@ -157,7 +157,7 @@ body {
   font-size: 14px;
 }
 .btn:hover {
-  background: #444;
+  background: #000000;
 }
 .btn-secondary {
   background: #eee;
@@ -184,7 +184,7 @@ body {
   right: -5px;
   width: 18px;
   height: 18px;
-  background: #ef4444;
+  background: #000000;
   color: #fff;
   border-radius: 50%;
   font-size: 11px;
@@ -215,7 +215,7 @@ body {
   padding: 160px 20px 80px; /* Increased padding to account for header height */
   text-align: center;
   margin-top: 0; /* REMOVED THE GAP */
-  background: linear-gradient(135deg, #fcd34d, #facc15);
+  background: linear-gradient(135deg, #ffffff, #ffffff);
 }
 
 .hero .title {
@@ -225,7 +225,7 @@ body {
   margin-bottom: 20px;
 }
 .gradient-text {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: linear-gradient(135deg, #ffffff, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -249,7 +249,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
-  color: #555;
+  color: #888888;
 }
 #countdown-timer {
   font-family: 'Outfit', sans-serif;
@@ -273,7 +273,7 @@ body {
 }
 .section-heading p {
   font-size: 16px;
-  color: #555;
+  color: #888888;
   text-align: center;
   max-width: 700px;
   margin: 0 auto 30px;
@@ -315,7 +315,7 @@ body {
 .category-card p {
   font-size: 14px;
   text-align: center;
-  color: #555;
+  color: #888888;
 }
 
 /* Product Grid */
@@ -418,7 +418,7 @@ button {
   transition: background 0.3s ease;
 }
 button:hover {
-  background: #444;
+  background: #000000;
 }
 
 /* Filters styling (unchanged) */
