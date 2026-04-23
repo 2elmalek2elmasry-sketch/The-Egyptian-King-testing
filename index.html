@@ -195,12 +195,29 @@ body {
 }
 
 /* Hero section */
+/* REPLACEMENT CODE */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 2000; /* Ensure it stays above everything */
+}
+
 .hero {
-  padding: 130px 20px 60px;
+  padding: 160px 20px 80px; /* Increased padding to account for header height */
   text-align: center;
-  margin-top: 80px;
+  margin-top: 0; /* REMOVED THE GAP */
   background: linear-gradient(135deg, #fcd34d, #facc15);
 }
+
 .hero .title {
   font-family: 'Outfit', sans-serif;
   font-size: 48px;
@@ -423,6 +440,35 @@ button:hover {
   background: #222;
   color: #fff;
 }
+/* Unified CSS to hide all drawers/modals by default */
+.modal-overlay, #cartSidebar, #currencyModal, #signModal, #quickViewModal {
+  display: none; 
+}
+
+/* Logic to show them */
+.active-modal, .cart-sidebar.open, .modal.open {
+  display: flex !important;
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Specific fix for Cart Sidebar to appear on the right */
+#cartSidebar.open {
+  display: block !important;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  position: fixed;
+  background: white;
+  width: 350px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+}
+
+
+/* Add this class to show them when clicked */
+.active-modal {
+  display: flex !important;
+}
   </style>
 </head>
 <body>
@@ -452,12 +498,56 @@ button:hover {
     <div class="header-actions">
       <button class="btn-icon" onclick="openCurrencyModal()"><i class="fas fa-coins"></i></button>
       <div class="cart-icon-wrapper" onclick="toggleCart()">
-        <i class="fas fa-shopping-cart" style="font-size:20px;color:var(--primary)"></i>
-        <span class="cart-badge" id="cart-count">0</span>
-      </div>
-      <button class="btn" onclick="openSignModal()">
-        <i class="fas fa-crown"></i> Sign In
-      </button>
+  <i class="fas fa-shopping-cart"></i>
+  <span class="cart-badge" id="cart-count">0</span>
+</div>
+
+<button class="btn" onclick="openSignModal()">Sign In</button>/* Unified CSS to hide all drawers/modals by default */
+.modal-overlay, #cartSidebar, #currencyModal, #signModal, #quickViewModal {
+  display: none; 
+}
+
+/* Logic to show them */
+.active-modal, .cart-sidebar.open, .modal.open {
+  display: flex !important;
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Specific fix for Cart Sidebar to appear on the right */
+#cartSidebar.open {
+  display: block !important;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  position: fixed;
+  background: white;
+  width: 350px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+}/* Unified CSS to hide all drawers/modals by default */
+.modal-overlay, #cartSidebar, #currencyModal, #signModal, #quickViewModal {
+  display: none; 
+}
+
+/* Logic to show them */
+.active-modal, .cart-sidebar.open, .modal.open {
+  display: flex !important;
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Specific fix for Cart Sidebar to appear on the right */
+#cartSidebar.open {
+  display: block !important;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  position: fixed;
+  background: white;
+  width: 350px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+}
+
       <button class="btn-icon mobile-menu-btn" onclick="toggleMobileMenu()">
         <i class="fas fa-bars"></i>
       </button>
@@ -531,29 +621,13 @@ button:hover {
       <h2 class="gradient-text">Connect with the King</h2>
       <p>Follow us for new drops and exclusive content!</p>
     </div>
+<div style="display: flex; justify-content: center; gap: 20px; padding: 30px; background: #fff;">
+  <a href="#" style="text-decoration: none; color: #000; font-weight: bold; font-size: 1.2rem;">TikTok</a>
+  <a href="#" style="text-decoration: none; color: #000; font-weight: bold; font-size: 1.2rem;">Instagram</a>
+  <a href="#" style="text-decoration: none; color: #000; font-weight: bold; font-size: 1.2rem;">Snapchat</a>
+  <a href="#" style="text-decoration: none; color: #000; font-weight: bold; font-size: 1.2rem;">Facebook</a>
+</div>
 
-    <div class="features-grid">
-      <a href="https://www.tiktok.com/@the.egyptian.king123" target="_blank" class="feature-card" style="text-decoration:none;">
-        <div class="feature-icon"><i class="fab fa-tiktok"></i></div>
-        <h3>TikTok</h3>
-        <p>Watch our latest drops and behind-the-scenes content</p>
-      </a>
-      <a href="https://www.instagram.com/the.egyptian.king10" target="_blank" class="feature-card" style="text-decoration:none;">
-        <div class="feature-icon"><i class="fab fa-instagram"></i></div>
-        <h3>Instagram</h3>
-        <p>Follow our royal journey and style inspiration</p>
-      </a>
-      <a href="https://www.snapchat.com/add/tek" target="_blank" class="feature-card" style="text-decoration:none;">
-        <div class="feature-icon"><i class="fab fa-snapchat-ghost"></i></div>
-        <h3>Snapchat</h3>
-        <p>Exclusive snaps and early access to drops</p>
-      </a>
-      <a href="https://www.facebook.com/the.egyptian.king10" target="_blank" class="feature-card" style="text-decoration:none;">
-        <div class="feature-icon"><i class="fab fa-facebook"></i></div>
-        <h3>Facebook</h3>
-        <p>Join our community of royal streetwear enthusiasts</p>
-      </a>
-    </div>
   </section>
 
   <!-- Footer -->
@@ -626,7 +700,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
   <!-- Cart Sidebar -->
   <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-  <div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-sidebar" id="cartSidebar" style="display:none;">k
     <div class="cart-header">
       <h3>🛒 Your Cart</h3>
       <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
@@ -651,7 +725,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
   <!-- Currency Modal -->
   <div class="overlay" id="currencyOverlay" onclick="closeCurrencyModal()"></div>
-  <div class="modal" id="currencyModal">
+  <div class="modal" id="currencyModal" style="display:none;">
     <button class="modal-close" onclick="closeCurrencyModal()"><i class="fas fa-times"></i></button>
     <div class="modal-inner">
       <div class="modal-head">
@@ -678,7 +752,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
   <!-- Sign In Modal -->
   <div class="overlay" id="signOverlay" onclick="closeSignModal()"></div>
-  <div class="modal" id="signModal">
+  <div class="modal" id="signModal" style="display:none;">
     <button class="modal-close" onclick="closeSignModal()"><i class="fas fa-times"></i></button>
     <div class="modal-inner">
       <div class="modal-head">
@@ -1571,6 +1645,24 @@ const provider = new firebase.auth.GoogleAuthProvider();
     if (window.location.href.indexOf("view-source:") === 0) {
         window.location.href = "about:blank";
     }
+</script>
+<script>
+ window.onclick = function(event) {
+  // Close everything if clicking the overlay
+  if (event.target.classList.contains('overlay')) {
+    toggleCart(); // Closes cart
+    closeCurrencyModal();
+    closeSignModal();
+    closeQuickView();
+  }
+}
+
+// Ensure the sign-in modal opens correctly
+function openSignModal() {
+  document.getElementById('signModal').classList.add('open');
+  document.getElementById('signOverlay').classList.add('show');
+}
+
 </script>
 </body>
 </html>
