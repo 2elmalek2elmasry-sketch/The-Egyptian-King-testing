@@ -6,7 +6,7 @@
     <title>THE ARCHIVE | Concept Store</title>
     <style>
         :root {
-            --accent: #d1ff27; 
+            --accent: #d1ff27; /* Neon yellow */
             --bg: #0a0a0a;
             --text: #ffffff;
             --font-main: 'Inter', sans-serif;
@@ -21,15 +21,17 @@
             overflow-x: hidden;
         }
 
-        /* Nav Header */
+        /* 1. Header with the 3 original buttons */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
             padding: 30px 50px; mix-blend-mode: difference;
         }
         .logo { font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -1px; }
+        nav { display: flex; gap: 40px; }
+        nav a { color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        /* 1. Hero Section */
+        /* 2. Hero Section */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
             position: relative; overflow: hidden;
@@ -44,7 +46,7 @@
             line-height: 0.8; letter-spacing: -10px; z-index: 2; mix-blend-mode: overlay;
         }
 
-        /* 2. Marquee */
+        /* 3. Marquee */
         .marquee {
             background: var(--accent); color: #000; padding: 25px 0;
             overflow: hidden; white-space: nowrap; display: flex;
@@ -54,62 +56,76 @@
         .marquee-inner span { margin-right: 60px; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* 3. Featured Collection Section (Visual Variety) */
+        /* 4. Featured Bento Grid */
         .featured-row {
             padding: 150px 50px;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
         }
         .feature-item { position: relative; aspect-ratio: 3/4; background: #1a1a1a; border-radius: 10px; overflow: hidden; }
-        .feature-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
-        .feature-item:hover img { transform: scale(1.05); opacity: 1; }
+        .feature-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
         .feature-label { position: absolute; bottom: 20px; left: 20px; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; }
 
-        /* 4. The Editorial "Newspaper" Section */
+        /* 5. Editorial Section */
         .editorial {
             padding: 100px 50px; display: flex; gap: 50px; align-items: center;
-            background: #fff; color: #000; /* Contrast shift to white background */
+            background: #fff; color: #000; 
         }
         .editorial-img { width: 40%; aspect-ratio: 1/1; background: #eee; }
         .editorial-content { width: 50%; }
         .editorial-content h2 { font-size: 6vw; text-transform: uppercase; margin-bottom: 20px; }
         .editorial-content p { font-size: 1.2rem; line-height: 1.5; margin-bottom: 30px; }
 
-        /* 5. Lookbook Grid (Fills the space) */
+        /* 6. Lookbook Grid */
         .lookbook-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); height: 80vh;
         }
         .look-img { background: #111; border: 1px solid #222; background-size: cover; background-position: center; }
 
-        /* 6. Newsletter / CTA */
+        /* 7. Newsletter */
         .newsletter {
             height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: var(--accent); color: #000; text-align: center;
+            background: #000; color: #fff; text-align: center;
         }
         .newsletter h2 { font-size: 5vw; text-transform: uppercase; margin-bottom: 20px; }
         .newsletter input {
-            background: transparent; border: none; border-bottom: 4px solid #000;
+            background: transparent; border: none; border-bottom: 4px solid var(--accent);
             font-size: 2rem; text-align: center; width: 60%; padding: 10px; font-weight: 900;
-            outline: none; text-transform: uppercase;
+            outline: none; text-transform: uppercase; color: var(--accent);
         }
 
-        /* 7. Huge Final Shop Button */
+        /* 8. The Oval Neon "Shop Now" Button Section */
         .final-cta {
             padding: 150px 0; text-align: center;
+            background: #000;
         }
         .shop-btn {
-            font-size: 8vw; font-weight: 900; color: #fff; text-decoration: none;
-            text-transform: uppercase; transition: color 0.3s;
+            display: inline-block;
+            background-color: var(--accent);
+            color: #000;
+            padding: 25px 80px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 100px; /* Makes it an oval */
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(209, 255, 39, 0.4);
         }
-        .shop-btn:hover { color: var(--accent); }
+        .shop-btn:hover { 
+            transform: scale(1.1); 
+            background-color: #fff; 
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+        }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
+            header { padding: 20px; }
+            nav { gap: 15px; }
             .hero-title { font-size: 25vw; }
             .featured-row { grid-template-columns: 1fr; }
-            .editorial { flex-direction: column; text-align: center; }
-            .editorial-img, .editorial-content { width: 100%; }
+            .editorial { flex-direction: column; }
             .lookbook-grid { grid-template-columns: repeat(2, 1fr); height: auto; }
             .look-img { height: 300px; }
+            .shop-btn { padding: 20px 50px; font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -117,16 +133,20 @@
 
     <header>
         <div class="logo">Archive™</div>
+        <!-- Original 3 Buttons -->
+        <nav>
+            <a href="shop.html">Shop All</a>
+            <a href="#">Archives</a>
+            <a href="#">Information</a>
+        </nav>
         <div style="font-weight: 800;">BAG (0)</div>
     </header>
 
-    <!-- SECTION 1: HERO -->
     <section class="hero">
         <div class="hero-image"></div>
         <h1 class="hero-title">VINTAGE<br>FUTURE</h1>
     </section>
 
-    <!-- SECTION 2: MARQUEE -->
     <div class="marquee">
         <div class="marquee-inner">
             <span>DYNASTY COLLECTION</span> <span>FREE SHIPPING GLOBAL</span>
@@ -134,16 +154,14 @@
         </div>
     </div>
 
-    <!-- SECTION 3: FEATURED BENTO -->
     <section class="featured-row">
         <div class="feature-item"><div class="feature-label">Outerwear</div></div>
         <div class="feature-item"><div class="feature-label">Graphics</div></div>
         <div class="feature-item"><div class="feature-label">Basics</div></div>
     </section>
 
-    <!-- SECTION 4: EDITORIAL (WHITE BACKGROUND SHIFT) -->
     <section class="editorial">
-        <div class="editorial-img" style="background-image: url('newspaper-detail.jpg'); background-size: cover;"></div>
+        <div class="editorial-img"></div>
         <div class="editorial-content">
             <h2>The Newspaper Project</h2>
             <p>A fusion of Algiers street culture and ancient Egyptian iconography. Every piece tells a story through custom typography and heavyweight silhouettes.</p>
@@ -151,31 +169,28 @@
         </div>
     </section>
 
-    <!-- SECTION 5: LOOKBOOK (QUICK VIEW) -->
     <section class="lookbook-grid">
-        <div class="look-img" style="background-image: url('look1.jpg')"></div>
-        <div class="look-img" style="background-image: url('look2.jpg')"></div>
-        <div class="look-img" style="background-image: url('look3.jpg')"></div>
-        <div class="look-img" style="background-image: url('look4.jpg')"></div>
+        <div class="look-img"></div>
+        <div class="look-img"></div>
+        <div class="look-img"></div>
+        <div class="look-img"></div>
     </section>
 
-    <!-- SECTION 6: NEWSLETTER -->
     <section class="newsletter">
         <h2>Join the Archive</h2>
         <input type="email" placeholder="YOUR@EMAIL.COM">
     </section>
 
-    <!-- SECTION 7: FINAL CALL TO ACTION -->
     <section class="final-cta">
-        <a href="shop.html" class="shop-btn">Enter Store</a>
+        <!-- The Neon Oval Shop Now Button -->
+        <a href="shop.html" class="shop-btn">Shop Now</a>
     </section>
 
-    <footer style="padding: 100px 50px; display: flex; justify-content: space-between; border-top: 1px solid #222; font-size: 0.8rem; color: #555;">
+    <footer style="padding: 80px 50px; display: flex; justify-content: space-between; border-top: 1px solid #222; font-size: 0.8rem; color: #555;">
         <div>© 2026 THE ARCHIVE</div>
         <div style="display: flex; gap: 20px;">
             <span>INSTAGRAM</span>
             <span>TIKTOK</span>
-            <span>PRIVACY</span>
         </div>
     </footer>
 
