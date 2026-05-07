@@ -444,15 +444,21 @@
                 <button class="buy-button" onclick="nextStep(2)">Next: Shipping</button>
             </div>
 
-            <div id="step-2-shipping" style="display:none;">
-                <h3 style="margin-bottom: 15px;">Shipping Details</h3>
-                <form id="checkout-form">
-                    <input type="text" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff;">
-                    <input type="text" placeholder="Address" style="width:100%; padding:10px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff;">
-                </form>
-                <button class="buy-button" onclick="redirectPayPal()">Pay with PayPal</button>
-            </div>
-
+<div id="step-2-shipping" style="display:none;">
+            <h3 style="margin-bottom: 15px; font-family: var(--font-display); text-transform: uppercase; font-size: 0.9rem;">Contact Details</h3>
+            <form id="checkout-form">
+                <input type="text" id="cust-name" placeholder="Full Name" required 
+                    style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
+                
+                <input type="email" id="cust-email" placeholder="Your Email" required 
+                    style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
+                
+                <input type="tel" id="cust-phone" placeholder="Phone Number" required 
+                    style="width:100%; padding:12px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
+            </form>
+            <button class="buy-button" onclick="handleCheckout()">Send Details & Pay</button>
+        </div>
+            
             <div id="step-3-confirmation" style="display:none; text-align: center;">
                 <h2>Order Placed!</h2>
                 <p style="margin: 15px 0;">Redirecting to PayPal...</p>
@@ -471,7 +477,7 @@
     </footer>
 
     <script>
-        let currentProduct = {};
+     let currentProduct = {};
         let currentStep = 1;
 
         function openModal(productName, productPrice, productImage) {
@@ -497,23 +503,41 @@
 
         function nextStep(step) { showStep(step); }
 
-        function redirectPayPal() {
-            window.open('https://www.paypal.me/OmarGlelah1', '_blank');
-            showStep(3);
+        function handleCheckout() {
+            const name = document.getElementById('cust-name').value;
+            const email = document.getElementById('cust-email').value;
+            const phone = document.getElementById('cust-phone').value;
+
+            if(!name || !email || !phone) {
+                alert("Please enter your details so I can contact you!");
+                return;
+            }
+
+            // 1. Create the Email content
+            const recipient = "YOUR_EMAIL@GMAIL.COM"; // <--- CHANGE THIS TO YOUR EMAIL
+            const subject = `Order: ${currentProduct.name}`;
+            const body = `Customer Info:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nProduct: ${currentProduct.name}\nPrice: ${currentProduct.price}`;
+
+            // 2. Open User's Email App
+            window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // 3. Open PayPal in new tab after a tiny delay
+            setTimeout(() => {
+                window.open('https://www.paypal.me/OmarGlelah1', '_blank');
+                showStep(3);
+            }, 1000);
         }
 
         // Initialize click listeners for buttons
         document.addEventListener('click', function (e) {
-            if (e.target.classList.contains('buy-button') && e.target.hasAttribute('data-product-name')) {
-                const btn = e.target;
+            const btn = e.target.closest('.buy-button');
+            if (btn && btn.hasAttribute('data-product-name')) {
                 openModal(btn.dataset.productName, btn.dataset.productPrice, btn.dataset.productImage);
             }
         });
 
-        // Close on overlay click
         window.onclick = function(event) {
-            let modal = document.getElementById('checkout-modal');
-            if (event.target == modal) closeModal();
+            if (event.target.classList.contains('modal-overlay')) closeModal();
         }
     </script>
 </body>
