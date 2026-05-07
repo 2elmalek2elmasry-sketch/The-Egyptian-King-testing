@@ -445,19 +445,19 @@
             </div>
 
 <div id="step-2-shipping" style="display:none;">
-    <h3 style="margin-bottom: 15px; font-family: var(--font-display); text-transform: uppercase; font-size: 0.9rem;">Contact Details</h3>
-    <form id="checkout-form">
-        <input type="text" id="cust-name" placeholder="Full Name" required 
-            style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-        
-        <input type="email" id="cust-email" placeholder="Your Email" required 
-            style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-        
-        <input type="tel" id="cust-phone" placeholder="Phone Number" required 
-            style="width:100%; padding:12px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-    </form>
-    <button class="buy-button" onclick="handleCheckout()">Send Info & Pay</button>
-</div>
+            <h3 style="margin-bottom: 15px; font-family: var(--font-display); text-transform: uppercase; font-size: 0.9rem;">Contact Details</h3>
+            <form id="checkout-form">
+                <input type="text" id="cust-name" placeholder="Full Name" required 
+                    style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
+                
+                <input type="email" id="cust-email" placeholder="Your Email" required 
+                    style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
+                
+                <input type="tel" id="cust-phone" placeholder="Phone Number" required 
+                    style="width:100%; padding:12px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
+            </form>
+            <button class="buy-button" onclick="handleCheckout()">Send Details & Pay</button>
+        </div>
             
             <div id="step-3-confirmation" style="display:none; text-align: center;">
                 <h2>Order Placed!</h2>
@@ -503,32 +503,42 @@
 
         function nextStep(step) { showStep(step); }
 
-       function handleCheckout() {
-    const name = document.getElementById('cust-name').value;
-    const email = document.getElementById('cust-email').value;
-    const phone = document.getElementById('cust-phone').value;
+        function handleCheckout() {
+            const name = document.getElementById('cust-name').value;
+            const email = document.getElementById('cust-email').value;
+            const phone = document.getElementById('cust-phone').value;
 
-    if(!name || !email || !phone) {
-        alert("Please enter your details so I can contact you!");
-        return;
-    }
+            if(!name || !email || !phone) {
+                alert("Please enter your details so I can contact you!");
+                return;
+            }
 
-    // 1. Prepare Email Data
-    const myEmail = "2el.malek.2el.masry@gmail.com";
-    const subject = `ORDER: ${currentProduct.name}`;
-    const body = `CUSTOMER DETAILS:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nPRODUCT:\n${currentProduct.name}\nPrice: ${currentProduct.price}`;
+            // 1. Create the Email content
+            const recipient = "YOUR_EMAIL@GMAIL.COM"; // <--- CHANGE THIS TO YOUR EMAIL
+            const subject = `Order: ${currentProduct.name}`;
+            const body = `Customer Info:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nProduct: ${currentProduct.name}\nPrice: ${currentProduct.price}`;
 
-    // 2. Trigger the Email App (Mailto)
-    // This will open Gmail App on mobile or Default Mail on PC
-    window.location.href = `mailto:${myEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            // 2. Open User's Email App
+            window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // 3. Redirect to PayPal after a short delay
-    // We use a 2-second delay to give the mail app time to open first
-    setTimeout(() => {
-        window.open('https://www.paypal.me/OmarGlelah1', '_blank');
-        showStep(3);
-    }, 2000);
-}
+            // 3. Open PayPal in new tab after a tiny delay
+            setTimeout(() => {
+                window.open('https://www.paypal.me/OmarGlelah1', '_blank');
+                showStep(3);
+            }, 1000);
+        }
+
+        // Initialize click listeners for buttons
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.buy-button');
+            if (btn && btn.hasAttribute('data-product-name')) {
+                openModal(btn.dataset.productName, btn.dataset.productPrice, btn.dataset.productImage);
+            }
+        });
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) closeModal();
+        }
     </script>
 </body>
 </html>
