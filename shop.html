@@ -77,25 +77,46 @@
 
         .product-card:hover img { transform: scale(1.1); }
 
-        .product-info { padding: 25px; }
+/* Product Info Layout */
+        .product-info { 
+            padding: 20px; 
+            display: grid;
+            grid-template-areas: 
+                "tag tag"
+                "name price"
+                "btn btn";
+            align-items: end;
+            gap: 10px;
+        }
         
-        .category-tag {
-            font-size: 10px; font-weight: 800; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: block;
+        .category-tag { grid-area: tag; margin-bottom: 5px; }
+        .product-name { grid-area: name; font-size: 1rem; }
+        .price { grid-area: price; text-align: right; }
+
+        /* The New Compact Button Styling */
+        .buy-button {
+            grid-area: btn;
+            justify-self: end; /* Moves it to the bottom right */
+            width: auto; /* Removes full width */
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 100px; /* Makes it pill-shaped */
+            font-size: 0.75rem;
+            background-color: var(--neon-yellow);
+            color: #000;
+            font-family: var(--font-display);
+            font-weight: 900;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            letter-spacing: 1px;
         }
 
-        .details { display: flex; justify-content: space-between; align-items: flex-end; }
-
-        .product-name { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; }
-
-        .price { font-family: var(--font-display); color: var(--primary); font-weight: 900; font-size: 1.2rem; }
-
-        .buy-button {
-            display: block; width: 100%; background-color: var(--neon-yellow);
-            color: #000; text-align: center; padding: 15px; margin-top: 15px;
-            border-radius: 12px; font-family: var(--font-display); font-weight: 900;
-            text-transform: uppercase; border: none; cursor: pointer;
-            transition: var(--transition-bounce); box-shadow: 0 0 15px rgba(209, 255, 39, 0.3);
+        .buy-button:hover {
+            background-color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(209, 255, 39, 0.4);
         }
 
         .buy-button:hover {
@@ -514,7 +535,7 @@
             }
 
             // 1. Create the Email content
-            const recipient = "YOUR_EMAIL@GMAIL.COM"; // <--- CHANGE THIS TO YOUR EMAIL
+            const recipient = "2el.malek.2el.masry@gmail.com";
             const subject = `Order: ${currentProduct.name}`;
             const body = `Customer Info:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nProduct: ${currentProduct.name}\nPrice: ${currentProduct.price}`;
 
