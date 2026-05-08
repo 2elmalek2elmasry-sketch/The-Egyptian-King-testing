@@ -476,6 +476,49 @@
         <p style="font-size: 0.7rem; opacity: 0.3; letter-spacing: 2px;">© 2026 THE EGYPTIAN KING CLOTHING BRAND</p>
     </footer>
 
+    <!-- Quick Buy Modal / Section -->
+<div id="quick-buy-container" style="background: #111; padding: 40px; border-radius: 15px; border: 1px solid var(--accent); max-width: 500px; margin: 20px auto;">
+    <h2 style="text-transform: uppercase; font-weight: 900; margin-bottom: 20px; color: var(--accent);">Quick Buy</h2>
+    
+    <form id="order-form">
+        <!-- Contact Info -->
+        <input type="text" placeholder="FULL NAME" required style="width: 100%; padding: 15px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: #fff;">
+        <input type="email" placeholder="EMAIL ADDRESS" required style="width: 100%; padding: 15px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: #fff;">
+        <input type="tel" placeholder="PHONE NUMBER (WHATSAPP)" required style="width: 100%; padding: 15px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: #fff;">
+
+        <!-- Size Selection (Added here as requested) -->
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 0.8rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase;">Select Size (All Hoodies are Oversized):</label>
+            <div style="display: flex; gap: 10px;">
+                <label class="size-btn"><input type="radio" name="size" value="S" required><span>S</span></label>
+                <label class="size-btn"><input type="radio" name="size" value="M"><span>M</span></label>
+                <label class="size-btn"><input type="radio" name="size" value="L"><span>L</span></label>
+                <label class="size-btn"><input type="radio" name="size" value="XL"><span>XL</span></label>
+            </div>
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 20px; background: var(--accent); color: #000; font-weight: 900; border: none; border-radius: 50px; cursor: pointer; text-transform: uppercase;">Continue to Payment</button>
+    </form>
+</div>
+
+<style>
+    /* Styling the radio buttons to look like streetwear tags */
+    .size-btn input { display: none; }
+    .size-btn span {
+        display: block;
+        padding: 10px 20px;
+        border: 1px solid #333;
+        background: #000;
+        cursor: pointer;
+        font-weight: 900;
+        transition: 0.3s;
+    }
+    .size-btn input:checked + span {
+        background: var(--accent);
+        color: #000;
+        border-color: var(--accent);
+    }
+</style>
     <script>
      let currentProduct = {};
         let currentStep = 1;
