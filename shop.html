@@ -117,6 +117,52 @@
         .size-selector input:checked + span { background: var(--neon-yellow); color: #000; }
 
         footer { padding: 80px 5%; background: var(--bg-surface); border-top: 1px solid var(--border-light); margin-top: 60px; }
+        /* --- MOBILE RESPONSIVENESS FIX --- */
+@media (max-width: 768px) {
+    /* Adjust overall spacing */
+    .container, .story-section, footer {
+        padding: 40px 20px !important;
+    }
+
+    /* Make the product grid 1 column on small phones, 2 on tablets */
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+        gap: 20px !important;
+    }
+
+    /* Fix the Story Section (stack images on top of text) */
+    .story-section > div {
+        flex-direction: column !important;
+        gap: 30px !important;
+        text-align: center;
+    }
+
+    /* Scale down the big headings so they don't break lines */
+    h1, h2, .story-section h2 {
+        font-size: 12vw !important;
+    }
+
+    /* Adjust the footer layout */
+    footer > div {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 40px !important;
+    }
+
+    footer div:last-child {
+        justify-content: center !important;
+    }
+
+    /* Modal Fix: Make it fill the screen on mobile */
+    #checkout-modal > div {
+        width: 95% !important;
+        padding: 20px !important;
+    }
+
+    .logo {
+        font-size: 1rem !important;
+    }
+}
     </style>
 </head>
 <body>
