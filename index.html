@@ -128,24 +128,18 @@
 
         /* --- HERO AREA --- */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden; padding-top: 80px;
-        }
-        
-        }
-        .hero-title {
-            position: absolute; 
-            font-size: 16vw; 
-            font-weight: 900; 
-            text-transform: uppercase;
-            line-height: 0.8; 
-            letter-spacing: -6px; 
-            z-index: 2; 
-            color: var(--stealth-grey) !important;
-            text-align: left;
-            pointer-events: none;
-            transition: color 0.5s ease;
-        }
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .hero-image {
+            width: 45%; height: 65%;
+            background: url('hero-img.jpg') center/cover no-repeat;
+            border-radius: 4px; z-index: 1;
+        }
+        .hero-title {
+            position: absolute; font-size: 18vw; font-weight: 900; text-transform: uppercase;
+            line-height: 0.8; letter-spacing: -10px; z-index: 2; mix-blend-mode: overlay;
+        }
 
         /* --- MARQUEE --- */
         .marquee {
@@ -203,8 +197,11 @@
         .editorial-content a { color: inherit; font-weight: 900; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid; }
 
         /* --- GALLERY LOOKBOOK --- */
-        .lookbook-grid { display: grid; grid-template-columns: repeat(4, 1fr); height: 60vh; }
-        .look-img { background: rgba(128,128,128,0.05); border: 1px solid rgba(128,128,128,0.1); background-size: cover; background-position: center; }
+         .lookbook-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); height: 80vh;
+        }
+        .look-img { background: #111; border: 1px solid #222; background-size: cover; background-position: center; }
+
 
         /* --- INTERNALS & MARKETING --- */
         .newsletter {
@@ -315,12 +312,12 @@
         </div>
     </section>
 
-    <section class="lookbook-grid">
-        <div class="#"></div>
-        <div class="#"></div>
-        <div class="#"></div>
-        <div class="#"></div>
-    </section>
+<section class="lookbook-grid">
+        <div class="look-img"></div>
+        <div class="look-img"></div>
+        <div class="look-img"></div>
+        <div class="look-img"></div>
+    </section>
 
     <section class="newsletter">
         <h2>Join The Egyptian King</h2>
