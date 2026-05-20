@@ -825,7 +825,7 @@ async function initSystemArchitecture() {
         localStorage.setItem('theme', newTheme);
     });
 
-    // 2. Run Worldwide Geolocation and Currency Conversion Engine
+    // 2. Run Custom Parallel Market Currency Pipeline
     await runDynamicPricingEngine();
 }
 
@@ -834,8 +834,16 @@ async function runDynamicPricingEngine() {
     const nameEl = document.getElementById("countryName");
     const flagEl = document.getElementById("countryFlagIcon");
 
+    // --- CUSTOM BLACK MARKET / PARALLEL RATE CONFIGURATION ---
+    // You can manually change these values below anytime the street rate shifts!
+    const blackMarketRates = {
+        "DZD": 242.50,  // Exact custom black market weight for 1 USD to Algerian Dinar
+        "EGP": 53.50,   // Exact custom parallel market weight for 1 USD to Egyptian Pound
+        "LBP": 89500.00 // Example for Lebanese Pound parallel rate
+    };
+
     try {
-        // Step A: Detect User Country Code via Cloudflare (Works globally for any IP address)
+        // Step A: Geolocation via Cloudflare 
         const traceRes = await fetch("https://www.cloudflare.com/cdn-cgi/trace");
         const traceText = await traceRes.text();
         const locLine = traceText.split("\n").find(l => l.startsWith("loc="));
@@ -843,49 +851,55 @@ async function runDynamicPricingEngine() {
         if (!locLine) throw new Error("Trace failed");
         const countryCode = locLine.split("=")[1].trim().toUpperCase();
 
-        // Step B: Fetch universal country details from the global REST Countries API
+        // Step B: Fetch Country Registry data for Flags & Currencies
         const countryRes = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
         const countryData = await countryRes.json();
         const country = countryData[0];
 
-        // Update the top navigation navbar indicator (Flag, Code, and Name)
+        // Update Nav bar Indicators
         codeEl.textContent = countryCode;
         nameEl.textContent = country?.name?.common || "Unknown";
         flagEl.src = `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`;
 
-        // Isolate the local currency system key dynamically
         const currencies = country?.currencies;
         if (!currencies) return;
         const targetCurrency = Object.keys(currencies)[0];
         const currencySymbol = currencies[targetCurrency].symbol || targetCurrency;
 
-        // Step C: Fetch live global exchange rates relative to USD
-        const rateRes = await fetch("https://open.er-api.com/v6/latest/USD");
-        const rateData = await rateRes.json();
-        
-        if (rateData && rateData.rates && rateData.rates[targetCurrency]) {
-            const conversionRate = rateData.rates[targetCurrency];
-            
-            // Step D: Loop through every item price block and convert the values automatically
-            document.querySelectorAll(".price").forEach(priceTag => {
-                const usdAmount = parseFloat(priceTag.getAttribute("data-usd-price"));
-                if (!isNaN(usdAmount)) {
-                    // If the user is in the US, show only standard USD layout
-                    if (targetCurrency === "USD") {
-                        priceTag.textContent = `$${usdAmount.toFixed(2)}`;
-                    } else {
-                        // For every other country worldwide, calculate the local exchange rate value
-                        const localAmount = (usdAmount * conversionRate).toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        });
-                        priceTag.textContent = `${currencySymbol}${localAmount} ${targetCurrency}`;
-                    }
-                }
-            });
+        let finalConversionRate = 1;
+
+        // Step C: Determine if we use Black Market Overrides or Official Global API
+        if (blackMarketRates[targetCurrency] !== undefined) {
+            // Use your custom street valuation override directly
+            finalConversionRate = blackMarketRates[targetCurrency];
+        } else {
+            // For all other countries globally, fallback safely to standard international base rates
+            const rateRes = await fetch("https://open.er-api.com/v6/latest/USD");
+            const rateData = await rateRes.json();
+            if (rateData && rateData.rates && rateData.rates[targetCurrency]) {
+                finalConversionRate = parseFloat(rateData.rates[targetCurrency]);
+            }
         }
+        
+        // Step D: Loop and modify visual shop grids seamlessly
+        document.querySelectorAll(".price").forEach(priceTag => {
+            const usdAmount = parseFloat(priceTag.getAttribute("data-usd-price"));
+            if (!isNaN(usdAmount)) {
+                if (targetCurrency === "USD") {
+                    priceTag.textContent = `$${usdAmount.toFixed(2)}`;
+                } else {
+                    const calculatedAmount = usdAmount * finalConversionRate;
+                    const localAmount = calculatedAmount.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    priceTag.textContent = `${currencySymbol}${localAmount} ${targetCurrency}`;
+                }
+            }
+        });
+
     } catch (error) {
-        console.log("PRICING_ENGINE_ERROR: Reverting fallback system values to baseline USD layout.");
+        console.log("PRICING_ENGINE_ERROR: Using baseline fallback layouts.");
         codeEl.textContent = "--";
         nameEl.textContent = "Global Terminal";
         flagEl.src = "https://flagcdn.com/w40/un.png";
