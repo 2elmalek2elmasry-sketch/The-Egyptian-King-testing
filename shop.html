@@ -308,6 +308,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                     <div class="details">
                         <span class="product-name">QUEEN NEFERTITI HOODIE</span>
                         <span class="price">EGP 850</span>
+                        <div class="price" data-usd-price="15.46">$15.46</div>
                     </div>
                     <button class="buy-button" 
                         data-product-name="QUEEN NEFERTITI HOODIE" 
@@ -332,6 +333,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">KHABY LAME HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -360,6 +362,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">LEBRON JAMES HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -388,6 +391,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">DWAYNE JOHNSON HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -416,6 +420,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">JUDE BELLINGHAM HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -444,6 +449,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">SOCIAL MEDIA HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -472,6 +478,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">EGYPTIAN RULERS HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -500,6 +507,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">EGYPTIAN CULTURE HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -528,6 +536,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">FIFA WORLD CUP HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -556,6 +565,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">ALGERIAN CULTURE HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -584,6 +594,7 @@ nav a { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font
                 <span class="product-name">TUNISIA CULTURE HOODIE</span>
 
                 <span class="price price-text" data-base-price="800">EGP 800</span>
+                <div class="price" data-usd-price="14.55">$14.55</div>
 
             </div>
 
@@ -793,6 +804,87 @@ function setFallbackLocation(code, name, flag) {
     code.textContent = "--";
     name.textContent = "Global Terminal";
     flag.src = "https://flagcdn.com/w40/un.png";
+}
+</script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    initSystemArchitecture();
+});
+
+async function initSystemArchitecture() {
+    // 1. Theme Switcher Sync Manager
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // 2. Run Geolocation and Currency Conversion Engine
+    await runDynamicPricingEngine();
+}
+
+async function runDynamicPricingEngine() {
+    const codeEl = document.getElementById("countryCode");
+    const nameEl = document.getElementById("countryName");
+    const flagEl = document.getElementById("countryFlagIcon");
+
+    try {
+        // Step A: Detect User Country Code via Cloudflare
+        const traceRes = await fetch("https://www.cloudflare.com/cdn-cgi/trace");
+        const traceText = await traceRes.text();
+        const locLine = traceText.split("\n").find(l => l.startsWith("loc="));
+
+        if (!locLine) throw new Error("Trace failed");
+        const countryCode = locLine.split("=")[1].trim().toUpperCase();
+
+        // Step B: Fetch Country Data to discover local currency code
+        const countryRes = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
+        const countryData = await countryRes.json();
+        const country = countryData[0];
+
+        // Update the top navigation navbar indicator
+        codeEl.textContent = countryCode;
+        nameEl.textContent = country?.name?.common || "Unknown";
+        flagEl.src = `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`;
+
+        // Isolate the currency identifier array keys (e.g., "DZD", "EGP", "USD")
+        const currencies = country?.currencies;
+        if (!currencies) return;
+        const targetCurrency = Object.keys(currencies)[0];
+        const currencySymbol = currencies[targetCurrency].symbol || targetCurrency;
+
+        // Step C: Fetch Live Conversion Multipliers from live USD exchange feed
+        const rateRes = await fetch("https://open.er-api.com/v6/latest/USD");
+        const rateData = await rateRes.json();
+        
+        if (rateData && rateData.rates && rateData.rates[targetCurrency]) {
+            const conversionRate = rateData.rates[targetCurrency];
+            
+            // Step D: Loop through every item price block and alter values instantly
+            document.querySelectorAll(".price").forEach(priceTag => {
+                const usdAmount = parseFloat(priceTag.getAttribute("data-usd-price"));
+                if (!isNaN(usdAmount)) {
+                    const localAmount = (usdAmount * conversionRate).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    priceTag.textContent = `${currencySymbol}${localAmount} ${targetCurrency}`;
+                }
+            });
+        }
+    } catch (error) {
+        console.log("PRICING_ENGINE_ERROR: Reverting fallback system values to baseline layout.");
+        codeEl.textContent = "--";
+        nameEl.textContent = "Global Terminal";
+        flagEl.src = "https://flagcdn.com/w40/un.png";
+    }
 }
 </script>
     
