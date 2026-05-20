@@ -806,8 +806,7 @@ function setFallbackLocation(code, name, flag) {
     flag.src = "https://flagcdn.com/w40/un.png";
 }
 </script>
-
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     initSystemArchitecture();
 });
@@ -826,7 +825,7 @@ async function initSystemArchitecture() {
         localStorage.setItem('theme', newTheme);
     });
 
-    // 2. Run Geolocation and Currency Conversion Engine
+    // 2. Run Worldwide Geolocation and Currency Conversion Engine
     await runDynamicPricingEngine();
 }
 
@@ -836,7 +835,7 @@ async function runDynamicPricingEngine() {
     const flagEl = document.getElementById("countryFlagIcon");
 
     try {
-        // Step A: Detect User Country Code via Cloudflare
+        // Step A: Detect User Country Code via Cloudflare (Works globally for any IP address)
         const traceRes = await fetch("https://www.cloudflare.com/cdn-cgi/trace");
         const traceText = await traceRes.text();
         const locLine = traceText.split("\n").find(l => l.startsWith("loc="));
@@ -844,43 +843,49 @@ async function runDynamicPricingEngine() {
         if (!locLine) throw new Error("Trace failed");
         const countryCode = locLine.split("=")[1].trim().toUpperCase();
 
-        // Step B: Fetch Country Data to discover local currency code
+        // Step B: Fetch universal country details from the global REST Countries API
         const countryRes = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
         const countryData = await countryRes.json();
         const country = countryData[0];
 
-        // Update the top navigation navbar indicator
+        // Update the top navigation navbar indicator (Flag, Code, and Name)
         codeEl.textContent = countryCode;
         nameEl.textContent = country?.name?.common || "Unknown";
         flagEl.src = `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`;
 
-        // Isolate the currency identifier array keys (e.g., "DZD", "EGP", "USD")
+        // Isolate the local currency system key dynamically
         const currencies = country?.currencies;
         if (!currencies) return;
         const targetCurrency = Object.keys(currencies)[0];
         const currencySymbol = currencies[targetCurrency].symbol || targetCurrency;
 
-        // Step C: Fetch Live Conversion Multipliers from live USD exchange feed
+        // Step C: Fetch live global exchange rates relative to USD
         const rateRes = await fetch("https://open.er-api.com/v6/latest/USD");
         const rateData = await rateRes.json();
         
         if (rateData && rateData.rates && rateData.rates[targetCurrency]) {
             const conversionRate = rateData.rates[targetCurrency];
             
-            // Step D: Loop through every item price block and alter values instantly
+            // Step D: Loop through every item price block and convert the values automatically
             document.querySelectorAll(".price").forEach(priceTag => {
                 const usdAmount = parseFloat(priceTag.getAttribute("data-usd-price"));
                 if (!isNaN(usdAmount)) {
-                    const localAmount = (usdAmount * conversionRate).toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
-                    priceTag.textContent = `${currencySymbol}${localAmount} ${targetCurrency}`;
+                    // If the user is in the US, show only standard USD layout
+                    if (targetCurrency === "USD") {
+                        priceTag.textContent = `$${usdAmount.toFixed(2)}`;
+                    } else {
+                        // For every other country worldwide, calculate the local exchange rate value
+                        const localAmount = (usdAmount * conversionRate).toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        });
+                        priceTag.textContent = `${currencySymbol}${localAmount} ${targetCurrency}`;
+                    }
                 }
             });
         }
     } catch (error) {
-        console.log("PRICING_ENGINE_ERROR: Reverting fallback system values to baseline layout.");
+        console.log("PRICING_ENGINE_ERROR: Reverting fallback system values to baseline USD layout.");
         codeEl.textContent = "--";
         nameEl.textContent = "Global Terminal";
         flagEl.src = "https://flagcdn.com/w40/un.png";
