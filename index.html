@@ -24,8 +24,8 @@
             overflow-x: hidden;
         }
 
-        /* 1. Header */
-        header {
+        /* 1.  */
+         {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
             padding: 30px 50px; mix-blend-mode: difference;
@@ -157,7 +157,7 @@
         }
 
         @media (max-width: 768px) {
-            header { padding: 20px; }
+             { padding: 20px; }
             nav { gap: 15px; }
             .hero-title { font-size: 25vw; }
             .featured-row { flex-direction: column; }
@@ -212,6 +212,44 @@
         font-size: 1rem !important;
     }
 }
+        .country-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--standard-text);
+    border-radius: 50px; /* Pill design */
+    font-family: monospace; /* Technical terminal font */
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--standard-text);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+#countryFlagIcon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(20%); /* Blends nicely with the newspaper vibe */
+}
+
+#countryCode {
+    color: var(--accent); /* Uses your neon yellow accent for the code */
+    font-weight: 900;
+}
+
+/* Hide the full country name on tiny mobile screens so it doesn't crowd the header */
+@media (max-width: 480px) {
+    #countryName {
+        display: none;
+    }
+    .country-indicator {
+        padding: 8px;
+    }
+}
     </style>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -220,7 +258,7 @@
 </head>
 <body>
 
-    <header>
+    <>
         <div class="logo">THE EGYPTIAN KING™</div>
         <nav>
             <a href="shop.html">Shop All</a>
@@ -234,7 +272,16 @@
         <div class="hero-image"></div>
         <h1 class="hero-title">THE<br>EGYPTIAN KING</h1>
     </section>
-
+        
+<div style="display: flex; align-items: center; gap: 15px;">
+        
+        <div class="country-indicator" id="locationIndicator" title="Detected country">
+            <i class="fas fa-location-dot" style="font-size: 0.85rem;"></i>
+            <img id="countryFlagIcon" src="https://flagcdn.com/w40/un.png" alt="Country Flag">
+            <span id="countryCode">--</span>
+            <span class="name" id="countryName">Detecting...</span>
+        </div>
+    
     <div class="marquee">
         <div class="marquee-inner">
             <span>DYNASTY COLLECTION</span> <span>GLOBAL SHIPPING</span> <span>WEEKLY DROP</span>
@@ -290,6 +337,45 @@
             <span>TIKTOK</span>
         </div>
     </footer>
+<script>
+    // Initialize on page load
+document.addEventListener("DOMContentLoaded", () => {
+    detectCustomerCountry();
+});
 
+async function detectCustomerCountry() {
+    const codeEl = document.getElementById("countryCode");
+    const nameEl = document.getElementById("countryName");
+    const flagEl = document.getElementById("countryFlagIcon");
+
+    try {
+        const res = await fetch("https://www.cloudflare.com/cdn-cgi/trace");
+        const text = await res.text();
+        const lines = text.split("\n");
+        const loc = lines.find(l => l.startsWith("loc="));
+
+        if (loc) {
+            const code = loc.split("=")[1].trim().toUpperCase();
+            const countryRes = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+            const data = await countryRes.json();
+
+            codeEl.textContent = code;
+            nameEl.textContent = data[0]?.name?.common || "Unknown";
+            flagEl.src = `https://flagcdn.com/w40/${code.toLowerCase()}.png`;
+        } else {
+            setFallbackLocation(codeEl, nameEl, flagEl);
+        }
+    } catch (error) {
+        console.log("LOCATION_ERROR: Using fallback terminal coordinates.");
+        setFallbackLocation(codeEl, nameEl, flagEl);
+    }
+}
+
+function setFallbackLocation(code, name, flag) {
+    code.textContent = "--";
+    name.textContent = "Global Terminal";
+    flag.src = "https://flagcdn.com/w40/un.png";
+}
+</script>
 </body>
 </html>
