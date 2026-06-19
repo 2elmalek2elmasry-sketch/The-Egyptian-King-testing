@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Checkout | THE EGYPTIAN KING</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="brand-row">
+                <a href="hoodies.html" class="logo-title">THE EGYPTIAN KING</a>
+                <a href="checkout.html" class="cart-counter-btn">BAG (<span id="global-cart-count">0</span>)</a>
+            </div>
+            <ul class="nav-links-row">
+                <li><a href="hoodies.html">HOODIES</a></li>
+                <li><a href="tshirts.html">T-SHIRTS</a></li>
+                <li><a href="zippers.html">DOUBLE ZIPPER HOODIES</a></li>
+                <li><a href="checkout.html" class="active">CHECKOUT</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="checkout-layout">
+            
+            <div>
+                <h3 class="checkout-section-title">Shipping Details</h3>
+                <form id="ecom-purchase-form" onsubmit="executePayPalRedirectionCharge(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="cust-fname" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="cust-lname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <input type="text" id="cust-address" placeholder="Street Name, Building, City" required>
+                    </div>
+
+                    <div class="payment-box">
+                        <label style="font-weight: 800; font-size: 0.75rem; margin-bottom: 10px; display: block; letter-spacing: 0.5px;">PAYMENT METHOD</label>
+                        <label class="payment-radio">
+                            <input type="radio" name="gateway" value="PAYPAL" checked>
+                            Pay Securely via PayPal
+                        </label>
+                    </div>
+
+                    <button type="submit" class="place-order-button">Complete Order & Pay</button>
+                </form>
+            </div>
+
+            <div class="cart-summary-panel">
+                <h3 class="checkout-section-title">Your Order Summary</h3>
+                <div id="live-checkout-items-target"></div>
+                <div class="totals-breakdown">
+                    <div class="total-line">
+                        <span>TOTAL:</span>
+                        <span>EGP <span id="summary-total-val">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="cart-engine.js"></script>
+    <script>
+        let calculatedTotalEGP = 0;
+
+        function renderCheckoutSummary() {
+            const listTarget = document.getElementById('live-checkout-items-target');
+            const totalDisplay = document.getElementById('summary-total-val');
+            
+            listTarget.innerHTML = '';
+            calculatedTotalEGP = 0;
+
+            if (cart.length === 0) {
+                listTarget.innerHTML = '<p style="color: var(--grey-dark); font-size: 0.9rem; padding: 20px 0;">Your bag is empty.</p>';
+                totalDisplay.innerText = "0";
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                calculatedTotalEGP += (item.price * item.quantity);
+                listTarget.innerHTML += `
+                    <div class="checkout-item-row">
+                        <img src="${item.image}" class="item-thumb">
+                        <div class="item-meta">
+                            <span class="item-title">${item.name}</span>
+                            <div class="qty-control">
+                                <button class="qty-btn" type="button" onclick="modifyItemQty(${index}, -1)">-</button>
+                                <span class="qty-val">${item.quantity}</span>
+                                <button class="qty-btn" type="button" onclick="modifyItemQty(${index}, 1)">+</button>
+                            </div>
+                            <span class="item-price-total">EGP ${(item.price * item.quantity).toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalDisplay.innerText = calculatedTotalEGP.toLocaleString();
+        }
+
+        function modifyItemQty(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            syncCartStorage();
+            renderCheckoutSummary();
+        }
+
+        function executePayPalRedirectionCharge(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) {
+                alert("Your bag is empty.");
+                return;
+            }
+
+            // Target base PayPal link
+            const payPalBaseLink = "https://www.paypal.com/paypalme/OmarGlelah1";
+            
+            // Send value directly using EGP currency formatting strings
+            const dynamicChargeUrl = `${payPalBaseLink}/${calculatedTotalEGP}EGP`;
+
+            alert(`Redirecting to PayPal to complete your payment of EGP ${calculatedTotalEGP.toLocaleString()}...`);
+            
+            // Open direct charging link interface
+            window.open(dynamicChargeUrl, '_blank');
+
+            // Clear configuration out post redirection tracking
+            cart = [];
+            localStorage.removeItem('egyptian_king_cart');
+            document.getElementById('ecom-purchase-form').reset();
+            renderCheckoutSummary();
+            updateGlobalCounterUI();
+        }
+
+        document.addEventListener("DOMContentLoaded", renderCheckoutSummary);
+    </script>
+</body>
+</html>
