@@ -1,47 +1,74 @@
-let cart = JSON.parse(localStorage.getItem('egyptian_king_cart')) || [];
+// cart-engine.js
+let cartItems = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateGlobalCounterUI();
-
-    const buyButtons = document.querySelectorAll('.buy-button');
-    buyButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const name = btn.getAttribute('data-product-name');
-            const price = parseInt(btn.getAttribute('data-base-price'), 10);
-            const image = btn.getAttribute('data-product-image');
-            
-            executeAddToCart(name, price, image);
-        });
-    });
-});
-
-function executeAddToCart(name, price, image) {
-    const matchedIndex = cart.findIndex(item => item.name === name);
-
-    if (matchedIndex > -1) {
-        cart[matchedIndex].quantity += 1;
-    } else {
-        cart.push({
-            name: name,
-            price: price,
-            image: image,
-            quantity: 1
-        });
-    }
-
-    syncCartStorage();
-    alert(`${name} added to your bag!`);
+function addToCart(product) {
+  cartItems.push(product);
+  updateCartUI();
 }
 
-function syncCartStorage() {
-    localStorage.setItem('egyptian_king_cart', JSON.stringify(cart));
-    updateGlobalCounterUI();
+function updateCartUI() {
+  // Update cart icon badge or UI if needed
 }
 
-function updateGlobalCounterUI() {
-    const counterDisplay = document.getElementById('global-cart-count');
-    if (counterDisplay) {
-        const totalItems = cart.reduce((acc, current) => acc + current.quantity, 0);
-        counterDisplay.innerText = totalItems;
-    }
+function showCheckout() {
+  // Populate checkout modal with cart items
+  const modal = document.getElementById('checkout-modal');
+  const summaryContainer = document.getElementById('step-1-summary');
+
+  // Clear previous
+  summaryContainer.innerHTML = '';
+
+  let total = 0;
+  cartItems.forEach(item => {
+    total += item.price;
+    summaryContainer.innerHTML += `
+      <div style="display:flex; align-items:center; margin-bottom:10px;">
+        <img src="${item.image}" style="width:50px; margin-right:10px;">
+        <div>
+          <div>${item.name}</div>
+          <div>EGP ${item.price}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Set total
+  document.getElementById('modal-product-price').innerText = `EGP ${total}`;
+  document.getElementById('checkout-modal').style.display = 'flex';
+  showStep(1);
+}
+
+function handleCheckout() {
+  // Collect billing info
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const address = document.getElementById('billingAddress').value.trim();
+  const payMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+
+  if (!firstName || !lastName || !address || !payMethod) {
+    alert('Please fill all billing info and select payment method.');
+    return;
+  }
+
+  // Generate order summary
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const orderBody = `
+    Product(s): ${cartItems.map(i => i.name).join(', ')}
+    Total: EGP ${totalPrice}
+    Billing: ${firstName} ${lastName}, ${address}
+    Payment Method: ${payMethod}
+  `;
+
+  // Send email order (simulate)
+  window.location.href = `mailto:2el.malek.2el.masry@gmail.com?subject=Order from The Egyptian King&body=${encodeURIComponent(orderBody)}`;
+
+  // Redirect to PayPal if selected
+  if (payMethod === 'paypal') {
+    window.open('https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID', '_blank');
+  } else {
+    alert('Order placed with COD.');
+  }
+  // Clear cart
+  cartItems = [];
+  closeModal();
 }
