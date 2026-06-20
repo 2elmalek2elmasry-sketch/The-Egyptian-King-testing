@@ -1,51 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="shop-page" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <title>THE EGYPTIAN KING | Zippers</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zippers | THE EGYPTIAN KING</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<header>
+  <a href="index.html" class="logo">THE EGYPTIAN KING™</a>
+  <nav>
+    <a href="shop.html">Shop All</a>
+    <a href="#">PAST HISTORY</a>
+    <a href="terms.html">Information</a>
+  </nav>
+</header>
 
-    <header>
-        <div class="nav-container">
-            <div class="brand-row">
-                <a href="hoodies.html" class="logo-title">THE EGYPTIAN KING</a>
-                <a href="checkout.html" class="cart-counter-btn">BAG (<span id="global-cart-count">0</span>)</a>
-            </div>
-            <ul class="nav-links-row">
-                <li><a href="hoodies.html">HOODIES</a></li>
-                <li><a href="tshirts.html">T-SHIRTS</a></li>
-                <li><a href="zippers.html" class="active">DOUBLE ZIPPER HOODIES</a></li>
-                <li><a href="checkout.html">CHECKOUT</a></li>
-            </ul>
+<main class="container">
+<h2 class="category-title">ZIPPERS</h2>
+
+<div class="product-grid">
+  <!-- Product 1 -->
+  <div class="product-card">
+    <div class="img-holder">
+      <img src="https://i.postimg.cc/V6sf3BQH/Untitled-design-(6).png" alt="KOSHK EL 2AMAAN ZIP-UP HOODIE" />
+    </div>
+    <div class="product-info">
+      <span class="category-tag">Collection: Dynasty</span>
+      <div class="details">
+        <span class="product-name">KOSHK EL 2AMAAN ZIP-UP HOODIE</span>
+        <div class="price-container">
+          <span class="price price-text" data-base-price="1100">EGP 1100</span>
         </div>
-    </header>
+      </div>
+      <button class="buy-button" 
+        data-product-name="KOSHK EL 2AMAAN ZIP-UP" 
+        data-product-price="EGP 1100" 
+        data-base-price="1100"
+        data-product-image="https://i.postimg.cc/V6sf3BQH/Untitled-design-(6).png">Quick Buy</button>
+    </div>
+  </div>
+  <!-- Add more products here following the same structure -->
+</div>
+</main>
 
-    <main class="container">
-        <div class="grid-breakout-row">
-            <h2 class="category-title">DOUBLE ZIPPER HOODIES</h2>
-        </div>
-
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="img-holder">
-                    <img src="https://i.postimg.cc/V6sf3BQH/Untitled-design-(6).png" alt="KOSHK EL 2AMAAN">
-                </div>
-                <div class="product-info">
-                    <span class="category-tag">Collection: Dynasty</span>
-                    <div class="details">
-                        <span class="product-name">KOSHK EL 2AMAAN ZIP-UP HOODIE</span>
-                        <div class="price-container">
-                            <span class="price price-text" data-base-price="1100">EGP 1,100</span>
-                        </div>
-                    </div>
-                    <button class="buy-button" data-product-name="KOSHK EL 2AMAAN ZIP-UP HOODIE" data-base-price="1100" data-product-image="https://i.postimg.cc/V6sf3BQH/Untitled-design-(6).png">Quick Buy</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script src="cart-engine.js"></script>
+<script src="cart-engine.js"></script>
+<script>
+  document.querySelectorAll('.buy-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const product = {
+        name: btn.dataset.productName,
+        price: parseFloat(btn.dataset.productPrice.replace('EGP ', '')),
+        image: btn.dataset.productImage
+      };
+      addToCart(product);
+      showCheckout();
+    });
+  });
+</script>
 </body>
 </html>
