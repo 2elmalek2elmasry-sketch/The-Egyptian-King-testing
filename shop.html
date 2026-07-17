@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - THE EGYPTIAN KING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Reuses your main color/nav styles -->
+    <link rel="stylesheet" href="shop-style.css"> <!-- Shop specific styles -->
+</head>
+<body>
+
+    <!-- Header / Navigation (Matches your homepage exactly) -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="search" aria-label="Search">
+            </div>
+        </div>
+
+        <div class="nav-center">
+            <nav class="nav-links">
+                <a href="shop.html" class="nav-link active">SHOP</a>
+                <a href="index.html" class="brand-logo">THE EGYPTIAN KING</a>
+                <div class="nav-right-links">
+                    <a href="index.html#about" class="nav-link">ABOUT</a>
+                    <a href="index.html#blog" class="nav-link">BLOG</a>
+                    <a href="index.html#contact" class="nav-link">CONTACT</a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="nav-right-icons">
+            <a href="#cart" aria-label="Cart" class="icon-link"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="#wishlist" aria-label="Wishlist" class="icon-link"><i class="fa-regular fa-heart"></i></a>
+            <a href="#account" aria-label="Account" class="icon-link"><i class="fa-regular fa-user"></i></a>
+        </div>
+    </header>
+
+    <!-- Main Catalog Area -->
+    <main class="shop-catalog-container">
+        <!-- Filter Toolbar -->
+        <div class="catalog-toolbar">
+            <div class="filter-left">
+                <span class="results-count">Showing all 6 items</span>
+            </div>
+            <div class="filter-right">
+                <select aria-label="Sort Products">
+                    <option>Default Sorting</option>
+                    <option>Sort by popularity</option>
+                    <option>Sort by latest drop</option>
+                    <option>Sort by price: low to high</option>
+                    <option>Sort by price: high to low</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Hidden Product Grid Panel -->
+        <div class="shop-product-grid">
+            
+            <!-- Item 1 -->
+            <a href="checkout.html" class="catalog-product-card">
+                <div class="img-frame">
+                    <img src="hoodie1.jpg" alt="Basic NFH Hoodie">
+                    <span class="drop-badge">HOT</span>
+                </div>
+                <div class="card-meta">
+                    <h3>"BASIC NFH" HEAVYWEIGHT HOODIE</h3>
+                    <p>EGP 1,950.00</p>
+                </div>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="checkout.html" class="catalog-product-card">
+                <div class="img-frame">
+                    <img src="tee1.jpg" alt="Arabic Typography Tee">
+                </div>
+                <div class="card-meta">
+                    <h3>ARABIC TYPOGRAPHY OVERSIZED TEE</h3>
+                    <p>EGP 1,200.00</p>
+                </div>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="checkout.html" class="catalog-product-card">
+                <div class="img-frame">
+                    <img src="zipper1.jpg" alt="Double Zipper Track Jacket">
+                    <span class="drop-badge limited">LIMITED</span>
+                </div>
+                <div class="card-meta">
+                    <h3>HEAVYWEIGHT DOUBLE ZIPPER HOODIE</h3>
+                    <p>EGP 2,400.00</p>
+                </div>
+            </a>
+
+            <!-- Item 4 -->
+            <a href="checkout.html" class="catalog-product-card">
+                <div class="img-frame">
+                    <img src="worldcup.jpg" alt="Edition World Hoodie">
+                </div>
+                <div class="card-meta">
+                    <h3>EDITION WORLD HOODIE (2026)</h3>
+                    <p>EGP 2,100.00</p>
+                </div>
+            </a>
+
+            <!-- Item 5 -->
+            <a href="checkout.html" class="catalog-product-card">
+                <div class="img-frame">
+                    <img src="pants1.jpg" alt="Baggy Streetwear Cargo">
+                </div>
+                <div class="card-meta">
+                    <h3>STRUCTURED BAGGY PANTS</h3>
+                    <p>EGP 1,850.00</p>
+                </div>
+            </a>
+
+            <!-- Item 6 -->
+            <a href="checkout.html" class="catalog-product-card">
+                <div class="img-frame">
+                    <img src="hoodie2.jpg" alt="Minimalist Drop Hoodie">
+                </div>
+                <div class="card-meta">
+                    <h3>ESSENTIAL EARTH TONE HOODIE</h3>
+                    <p>EGP 1,950.00</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Simple line divider before footer -->
+    <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.05); width: 92%; margin: 60px auto 0 auto;">
+
+    <!-- Footer Inherited from Home Layout -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <h3 class="footer-brand-title">THE EGYPTIAN KING</h3>
+                <p>Premium streetwear engineered to command presence.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Hoodies</a></li>
+                    <li><a href="#">T-Shirts</a></li>
+                    <li><a href="#">Double Zippers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
