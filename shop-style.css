@@ -1,0 +1,132 @@
+/* Catalog Workspace Layout styling */
+.shop-catalog-container {
+    padding: 40px 4% 80px 4%;
+    background-color: #e2e8df; /* Mutes context smoothly with index homepage */
+}
+
+/* Sorting Toolbar */
+.catalog-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding-bottom: 15px;
+}
+
+.results-count {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.filter-right select {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    padding: 8px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    outline: none;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+/* 3-Column Minimal Grid Layout */
+.shop-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 30px;
+}
+
+.catalog-product-card {
+    text-decoration: none;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.02);
+    margin-bottom: 18px;
+}
+
+.img-frame img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Hover Zoom Effect */
+.catalog-product-card:hover .img-frame img {
+    transform: scale(1.03);
+}
+
+/* Minimalist Editorial Tags */
+.drop-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #111;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+}
+
+.drop-badge.limited {
+    background-color: #702119; /* Muted red hue */
+}
+
+/* Metadata Text Line Up */
+.card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 2px;
+}
+
+.card-meta h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+.card-meta p {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Highlight the active navigation page link indicator */
+.nav-link.active {
+    border-bottom: 1px solid #111;
+    padding-bottom: 2px;
+}
+
+/* Responsive Viewports rules */
+@media (max-width: 900px) {
+    .shop-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .shop-product-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .catalog-toolbar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
