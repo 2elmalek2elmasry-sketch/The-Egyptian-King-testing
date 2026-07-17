@@ -1,20 +1,188 @@
-<!-- Place this inside your existing page, usually at the end of body -->
-<div id="checkout-modal" class="modal-overlay" style="display:none;">
-  <div style="background:#111; padding:30px; border-radius:20px; max-width:500px; width:100%; position:relative;">
-    <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; cursor:pointer;">✕</span>
-    <div id="step-1-summary"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - THE EGYPTIAN KING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="checkout-style.css">
+</head>
+<body>
 
-    <div id="step-2-shipping" style="display:none; margin-top:20px;">
-      <h3>Billing Details</h3>
-      <form id="billingForm" onsubmit="event.preventDefault();">
-        <input type="text" id="firstName" placeholder="First Name" required style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-        <input type="text" id="lastName" placeholder="Last Name" required style="width:100%; padding:12px; margin-bottom:10px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-        <input type="text" id="billingAddress" placeholder="Billing Address" required style="width:100%; padding:12px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; border-radius:8px;">
-        <h4>Choose Payment Method</h4>
-        <label><input type="radio" name="paymentMethod" value="card" required> Pay with Card</label>
-        <label><input type="radio" name="paymentMethod" value="paypal" required> Pay with PayPal</label>
-        <button type="submit" onclick="handleCheckout()">Place Order</button>
-      </form>
+    <div class="checkout-container">
+        <!-- Left Side: Scrolling Form Sections -->
+        <main class="checkout-form-side">
+            <header class="checkout-header">
+                <h1 class="brand-title">THE EGYPTIAN KING</h1>
+            </header>
+
+            <form>
+                <!-- 1. Contact Info Section -->
+                <section class="form-section">
+                    <div class="section-heading-row">
+                        <h2>Contact</h2>
+                        <a href="#" class="login-link">Sign in</a>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="Email or mobile phone number" required>
+                    </div>
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        <span class="checkbox-text">Email me with news and offers</span>
+                    </label>
+                </section>
+
+                <!-- 2. Delivery Address Section -->
+                <section class="form-section">
+                    <h2>Delivery</h2>
+                    <div class="input-group">
+                        <select aria-label="Country/Region">
+                            <option value="EG">Egypt</option>
+                            <option value="US">United States</option>
+                            <option value="AE">United Arab Emirates</option>
+                        </select>
+                    </div>
+                    <div class="input-row-2">
+                        <div class="input-group">
+                            <input type="text" placeholder="First name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Last name" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="Address" required>
+                    </div>
+                    <div class="input-row-3">
+                        <div class="input-group">
+                            <input type="text" placeholder="City" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Governorate">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Postal code (optional)">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" placeholder="Phone" required>
+                    </div>
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <span class="checkbox-text">Save this information for next time</span>
+                    </label>
+                </section>
+
+                <!-- 3. Shipping Method Section -->
+                <section class="form-section">
+                    <h2>Shipping method</h2>
+                    <div class="shipping-notice">
+                        Enter your shipping address to view available shipping methods.
+                    </div>
+                </section>
+
+                <!-- 4. Payment Methods Stacked Stack Section -->
+                <section class="form-section">
+                    <h2>Payment</h2>
+                    <p class="section-subtitle">All transactions are secure and encrypted.</p>
+                    
+                    <div class="payment-selection-box">
+                        <!-- Option A: Cash on Delivery -->
+                        <label class="payment-option">
+                            <div class="option-left">
+                                <input type="radio" name="payment_method" value="cod" checked>
+                                <span class="option-label-text">Cash on Delivery (COD)</span>
+                            </div>
+                        </label>
+
+                        <!-- Option B: Pay with Card -->
+                        <label class="payment-option">
+                            <div class="option-left">
+                                <input type="radio" name="payment_method" value="card">
+                                <span class="option-label-text">Pay with Card</span>
+                            </div>
+                            <div class="option-right-icons">
+                                <i class="fa-brands fa-cc-visa"></i>
+                                <i class="fa-brands fa-cc-mastercard"></i>
+                            </div>
+                        </label>
+
+                        <!-- Option C: Pay with PayPal -->
+                        <label class="payment-option">
+                            <div class="option-left">
+                                <input type="radio" name="payment_method" value="paypal">
+                                <span class="option-label-text">Pay with PayPal</span>
+                            </div>
+                            <div class="option-right-icons">
+                                <i class="fa-brands fa-cc-paypal"></i>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- 5. Billing Address Configuration Section -->
+                <section class="form-section">
+                    <h2>Billing address</h2>
+                    <div class="billing-selection-box">
+                        <label class="billing-option">
+                            <input type="radio" name="billing_address_type" value="same" checked>
+                            <span class="option-label-text">Same as shipping address</span>
+                        </label>
+                        <label class="billing-option">
+                            <input type="radio" name="billing_address_type" value="different">
+                            <span class="option-label-text">Use a different billing address</span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Form Action submission -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-complete-order">Complete order</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Right Side: Sticky Order Summary Panel -->
+        <aside class="checkout-summary-side">
+            <div class="summary-wrapper">
+                <!-- Cart Item Row -->
+                <div class="cart-item-row">
+                    <div class="item-visual-block">
+                        <img src="hero-image.jpg" alt="Basic NFH Item Mockup" class="item-thumb">
+                        <span class="item-quantity-badge">1</span>
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-title">"BASIC NFH" Heavyweight Hoodie</h3>
+                        <p class="item-variant">Small</p>
+                    </div>
+                    <div class="item-price-column">
+                        EGP 1,950.00
+                    </div>
+                </div>
+
+                <!-- Calculations lines -->
+                <div class="summary-calculations">
+                    <div class="calc-line">
+                        <span class="calc-label">Subtotal</span>
+                        <span class="calc-val">EGP 1,950.00</span>
+                    </div>
+                    <div class="calc-line">
+                        <span class="calc-label">Shipping</span>
+                        <span class="calc-val hint-text">Enter shipping address</span>
+                    </div>
+                </div>
+
+                <!-- Final Total line -->
+                <div class="summary-total-row">
+                    <span class="total-label">Total</span>
+                    <span class="total-price-value"><span class="currency-code">EGP</span> 1,950.00</span>
+                </div>
+            </div>
+        </aside>
     </div>
-  </div>
-</div>
+
+</body>
+</html>
