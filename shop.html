@@ -8,17 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <!-- Reuses your main color/nav styles -->
-    <link rel="stylesheet" href="shop-style.css"> <!-- Shop specific styles -->
+    <link rel="stylesheet" href="style.css"> <!-- Main global styling -->
+    <link rel="stylesheet" href="shop-style.css"> <!-- Shop custom rules -->
 </head>
 <body>
 
-    <!-- Header / Navigation (Matches your homepage exactly) -->
+    <!-- Header / Navigation -->
     <header class="navbar">
         <div class="nav-left">
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" placeholder="search" aria-label="Search">
+                <!-- Added ID "shopSearchInput" to handle real-time search filtering -->
+                <input type="text" id="shopSearchInput" placeholder="search" aria-label="Search">
             </div>
         </div>
 
@@ -46,7 +47,8 @@
         <!-- Filter Toolbar -->
         <div class="catalog-toolbar">
             <div class="filter-left">
-                <span class="results-count">Showing all 6 items</span>
+                <!-- ID "resultsCounter" updates count on search actions -->
+                <span class="results-count" id="resultsCounter">Showing all 6 items</span>
             </div>
             <div class="filter-right">
                 <select aria-label="Sort Products">
@@ -59,84 +61,86 @@
             </div>
         </div>
 
-        <!-- Hidden Product Grid Panel -->
-        <div class="shop-product-grid">
+        <!-- Hidden Product Grid Panel with optimized average sized cards layout -->
+        <div class="shop-product-grid" id="productGrid">
             
             <!-- Item 1 -->
-            <a href="checkout.html" class="catalog-product-card">
+            <a href="checkout.html" class="catalog-product-card" data-title="basic nfh heavyweight hoodie">
                 <div class="img-frame">
                     <img src="hoodie1.jpg" alt="Basic NFH Hoodie">
                     <span class="drop-badge">HOT</span>
                 </div>
                 <div class="card-meta">
-                    <h3>"BASIC NFH" HEAVYWEIGHT HOODIE</h3>
-                    <p>EGP 1,950.00</p>
+                    <h3 class="product-title-text">"BASIC NFH" HEAVYWEIGHT HOODIE</h3>
+                    <p class="product-price-text">EGP 1,950.00</p>
                 </div>
             </a>
 
             <!-- Item 2 -->
-            <a href="checkout.html" class="catalog-product-card">
+            <a href="checkout.html" class="catalog-product-card" data-title="arabic typography oversized tee">
                 <div class="img-frame">
                     <img src="tee1.jpg" alt="Arabic Typography Tee">
                 </div>
                 <div class="card-meta">
-                    <h3>ARABIC TYPOGRAPHY OVERSIZED TEE</h3>
-                    <p>EGP 1,200.00</p>
+                    <h3 class="product-title-text">ARABIC TYPOGRAPHY OVERSIZED TEE</h3>
+                    <p class="product-price-text">EGP 1,200.00</p>
                 </div>
             </a>
 
             <!-- Item 3 -->
-            <a href="checkout.html" class="catalog-product-card">
+            <a href="checkout.html" class="catalog-product-card" data-title="heavyweight double zipper hoodie">
                 <div class="img-frame">
                     <img src="zipper1.jpg" alt="Double Zipper Track Jacket">
                     <span class="drop-badge limited">LIMITED</span>
                 </div>
                 <div class="card-meta">
-                    <h3>HEAVYWEIGHT DOUBLE ZIPPER HOODIE</h3>
-                    <p>EGP 2,400.00</p>
+                    <h3 class="product-title-text">HEAVYWEIGHT DOUBLE ZIPPER HOODIE</h3>
+                    <p class="product-price-text">EGP 2,400.00</p>
                 </div>
             </a>
 
             <!-- Item 4 -->
-            <a href="checkout.html" class="catalog-product-card">
+            <a href="checkout.html" class="catalog-product-card" data-title="edition world hoodie 2026 fifa world cup">
                 <div class="img-frame">
                     <img src="worldcup.jpg" alt="Edition World Hoodie">
                 </div>
                 <div class="card-meta">
-                    <h3>EDITION WORLD HOODIE (2026)</h3>
-                    <p>EGP 2,100.00</p>
+                    <h3 class="product-title-text">EDITION WORLD HOODIE (2026)</h3>
+                    <p class="product-price-text">EGP 2,100.00</p>
                 </div>
             </a>
 
             <!-- Item 5 -->
-            <a href="checkout.html" class="catalog-product-card">
+            <a href="checkout.html" class="catalog-product-card" data-title="structured baggy pants cargo">
                 <div class="img-frame">
                     <img src="pants1.jpg" alt="Baggy Streetwear Cargo">
                 </div>
                 <div class="card-meta">
-                    <h3>STRUCTURED BAGGY PANTS</h3>
-                    <p>EGP 1,850.00</p>
+                    <h3 class="product-title-text">STRUCTURED BAGGY PANTS</h3>
+                    <p class="product-price-text">EGP 1,850.00</p>
                 </div>
             </a>
 
             <!-- Item 6 -->
-            <a href="checkout.html" class="catalog-product-card">
+            <a href="checkout.html" class="catalog-product-card" data-title="essential earth tone hoodie">
                 <div class="img-frame">
                     <img src="hoodie2.jpg" alt="Minimalist Drop Hoodie">
                 </div>
                 <div class="card-meta">
-                    <h3>ESSENTIAL EARTH TONE HOODIE</h3>
-                    <p>EGP 1,950.00</p>
+                    <h3 class="product-title-text">ESSENTIAL EARTH TONE HOODIE</h3>
+                    <p class="product-price-text">EGP 1,950.00</p>
                 </div>
             </a>
 
         </div>
+
+        <!-- Clean notice box if search yields no outcomes -->
+        <div id="noResultsMsg" class="no-results-alert" style="display: none;">
+            No items matched your search query. Try looking for "Hoodie", "Tee", or "Pants".
+        </div>
     </main>
 
-    <!-- Simple line divider before footer -->
-    <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.05); width: 92%; margin: 60px auto 0 auto;">
-
-    <!-- Footer Inherited from Home Layout -->
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col brand-col">
@@ -168,6 +172,42 @@
             </div>
         </div>
     </footer>
+
+    <!-- Interactive Live Search logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('shopSearchInput');
+            const productCards = document.querySelectorAll('.catalog-product-card');
+            const resultsCounter = document.getElementById('resultsCounter');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                let matchCount = 0;
+
+                productCards.forEach(card => {
+                    const searchTitle = card.getAttribute('data-title');
+                    
+                    if (searchTitle.includes(query)) {
+                        card.style.display = 'flex';
+                        matchCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update counter text
+                resultsCounter.textContent = `Showing ${matchCount} item${matchCount === 1 ? '' : 's'}`;
+
+                // Display fallback alert message if nothing remains visible
+                if (matchCount === 0) {
+                    noResultsMsg.style.display = 'block';
+                } else {
+                    noResultsMsg.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
