@@ -3,222 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - THE EGYPTIAN KING</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <!-- Main global styling -->
-    <link rel="stylesheet" href="shop-style.css"> <!-- Shop custom rules -->
+    <title>THE EGYPTIAN KING — Shop Collection</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000000;
+            --surface: #0a0a0a;
+            --surface-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --border: #ffffff;
+            --border-subtle: #222222;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.25rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        nav ul { display: flex; list-style: none; gap: 2.5rem; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        nav a:hover, nav a.active { color: var(--text-main); }
+
+        .cart-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+        }
+
+        .container { max-width: 1250px; margin: 3rem auto 6rem; padding: 0 2rem; width: 100%; }
+
+        .page-header {
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover { border-color: var(--text-main); transform: translateY(-4px); }
+
+        .product-image-box {
+            width: 100%;
+            height: 380px;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .product-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.5s ease;
+        }
+
+        .product-card:hover .product-image-box img { filter: grayscale(0%); transform: scale(1.04); }
+
+        .product-details { padding: 1.5rem; }
+        .product-category { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .product-name { font-size: 1.05rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .product-price { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+
+        .btn-add-cart {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            padding: 0.75rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add-cart:hover { background: var(--text-main); color: var(--bg); }
+
+        footer { background: var(--surface); padding: 4rem 2rem 2rem; margin-top: auto; text-align: center; }
+        .footer-brand { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 6px; margin-bottom: 1.5rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        .copyright { font-size: 0.75rem; color: #444; border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; }
+    </style>
 </head>
 <body>
 
-    <!-- Header / Navigation --> 
-    <header class="navbar">
-        <div class="nav-left">
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <!-- Added ID "shopSearchInput" to handle real-time search filtering -->
-                <input type="text" id="shopSearchInput" placeholder="search" aria-label="Search">
-            </div>
-        </div>
-
-        <div class="nav-center">
-            <nav class="nav-links">
-                <a href="shop.html" class="nav-link active">SHOP</a>
-                <a href="index.html" class="brand-logo">THE EGYPTIAN KING</a>
-                <div class="nav-right-links">
-                    <a href="index.html#about" class="nav-link">ABOUT</a>
-                    <a href="index.html#blog" class="nav-link">BLOG</a>
-                    <a href="index.html#contact" class="nav-link">CONTACT</a>
-                </div>
-            </nav>
-        </div>
-
-        <div class="nav-right-icons">
-            <a href="#cart" aria-label="Cart" class="icon-link"><i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="#wishlist" aria-label="Wishlist" class="icon-link"><i class="fa-regular fa-heart"></i></a>
-            <a href="#account" aria-label="Account" class="icon-link"><i class="fa-regular fa-user"></i></a>
-        </div>
+    <header>
+        <a href="index.html" class="brand-logo">The Egyptian King</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="terms.html">Terms & Policies</a></li>
+            </ul>
+        </nav>
+        <button class="cart-btn" onclick="alert('Bag ready for checkout!')">
+            BAG (<span id="cart-count">0</span>)
+        </button>
     </header>
 
-    <!-- Main Catalog Area -->
-    <main class="shop-catalog-container">
-        <!-- Filter Toolbar -->
-        <div class="catalog-toolbar">
-            <div class="filter-left">
-                <!-- ID "resultsCounter" updates count on search actions -->
-                <span class="results-count" id="resultsCounter">Showing all 6 items</span>
-            </div>
-            <div class="filter-right">
-                <select aria-label="Sort Products">
-                    <option>Default Sorting</option>
-                    <option>Sort by popularity</option>
-                    <option>Sort by latest drop</option>
-                    <option>Sort by price: low to high</option>
-                    <option>Sort by price: high to low</option>
-                </select>
-            </div>
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Drop 01 Collection</h1>
         </div>
 
-        <!-- Hidden Product Grid Panel with optimized average sized cards layout -->
-        <div class="shop-product-grid" id="productGrid">
-            
-            <!-- Item 1 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="QUEEN NEFERTITI HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" alt="QUEEN NEFERTITI HOODIE">
-                    <span class="drop-badge">HOT</span>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image-box">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Hoodie">
                 </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">"QUEEN NEFERTITI HOODIE"</h3>
-                    <p class="product-price-text">EGP 950.00</p>
+                <div class="product-details">
+                    <div class="product-category">Heavyweight Fleece</div>
+                    <div class="product-name">Pharaoh Oversized Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
                 </div>
-            </a>
+            </div>
 
-            <!-- Item 2 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="EGYPTIAN RULERS HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg" alt="EYPTIAN RULERS HOODIE">
+            <div class="product-card">
+                <div class="product-image-box">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" alt="Tee">
                 </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">EGYPTIAN RULERS HOODIE</h3>
-                    <p class="product-price-text">EGP 900.00</p>
+                <div class="product-details">
+                    <div class="product-category">Luxury Cotton</div>
+                    <div class="product-name">Dynasty Emblem Tee</div>
+                    <div class="product-price">$65.00</div>
+                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
                 </div>
-            </a>
+            </div>
 
-            <!-- Item 3 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="RWAYET EL 3OMR HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/ZKC1zyjb/Untitled-design.png" alt="RWAYET EL 3OMR HOODIE">
-                    <span class="drop-badge limited">LIMITED</span>
+            <div class="product-card">
+                <div class="product-image-box">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Jacket">
                 </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">RWAYET EL 3OMR HOODIE</h3>
-                    <p class="product-price-text">EGP 950.00</p>
+                <div class="product-details">
+                    <div class="product-category">Outerwear</div>
+                    <div class="product-name">Sovereign Track Jacket</div>
+                    <div class="product-price">$160.00</div>
+                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
                 </div>
-            </a>
+            </div>
 
-            <!-- Item 4 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="3EESH W MAL7 HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/MpZ36MBJ/Untitled-design-(1).png" alt="3EESH W MAL7 HOODIE">
+            <div class="product-card">
+                <div class="product-image-box">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=600&q=80" alt="Cargo">
                 </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">3EESH W MAL7 HOODIE</h3>
-                    <p class="product-price-text">EGP 950.00</p>
+                <div class="product-details">
+                    <div class="product-category">Bottoms</div>
+                    <div class="product-name">Tactical Cargo Pants</div>
+                    <div class="product-price">$135.00</div>
+                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
                 </div>
-            </a>
-
-            <!-- Item 5 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="8AZL BANAAT HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/qv0qz0Jb/Untitled-design-(2).png" alt="8AZL BANAAT HOODIE">
-                </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">8AZL BANAAT HOODIE</h3>
-                    <p class="product-price-text">EGP 950.00</p>
-                </div>
-            </a>
-
-            <!-- Item 6 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="YOMAK 3ASAL HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/4xdC8FBJ/Untitled-design-(3).png" alt="YOMAK 3ASAL HOODIE">
-                </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">YOMAK 3ASAL HOODIE</h3>
-                    <p class="product-price-text">EGP 950.00</p>
-                </div>
-            </a>
-
-            <!-- Item 6 -->
-            <a href="checkout.html" class="catalog-product-card" data-title="MARKEB EL BO7EYRA HOODIE">
-                <div class="img-frame">
-                    <img src="https://i.postimg.cc/htkn3Rv7/Untitled-design-(4).png" alt="MARKEB EL BO7EYRA HOODIE">
-                </div>
-                <div class="card-meta">
-                    <h3 class="product-title-text">MARKEB EL BO7EYRAL HOODIE</h3>
-                    <p class="product-price-text">EGP 950.00</p>
-                </div>
-            </a>
-
-        </div>
-
-        <!-- Clean notice box if search yields no outcomes -->
-        <div id="noResultsMsg" class="no-results-alert" style="display: none;">
-            No items matched your search query. Try looking for "Hoodie", "Tee",etc...".
+            </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col brand-col">
-                <h3 class="footer-brand-title">THE EGYPTIAN KING</h3>
-                <p>Premium streetwear engineered to command presence.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Categories</h4>
-                <ul>
-                    <li><a href="#">Hoodies</a></li>
-                    <li><a href="#">T-Shirts</a></li>
-                    <li><a href="#">Double Zippers</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="index.html#about">About</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Track Order</a></li>
-                </ul>
-            </div>
+    <footer>
+        <div class="footer-brand">THE EGYPTIAN KING</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="terms.html">Terms & Policies</a>
+        </div>
+        <div class="copyright">
+            © 2026 THE EGYPTIAN KING. All rights reserved.
         </div>
     </footer>
 
-    <!-- Interactive Live Search logic Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('shopSearchInput');
-            const productCards = document.querySelectorAll('.catalog-product-card');
-            const resultsCounter = document.getElementById('resultsCounter');
-            const noResultsMsg = document.getElementById('noResultsMsg');
-
-            searchInput.addEventListener('input', function(e) {
-                const query = e.target.value.toLowerCase().trim();
-                let matchCount = 0;
-
-                productCards.forEach(card => {
-                    const searchTitle = card.getAttribute('data-title');
-                    
-                    if (searchTitle.includes(query)) {
-                        card.style.display = 'flex';
-                        matchCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                // Update counter text
-                resultsCounter.textContent = `Showing ${matchCount} item${matchCount === 1 ? '' : 's'}`;
-
-                // Display fallback alert message if nothing remains visible
-                if (matchCount === 0) {
-                    noResultsMsg.style.display = 'block';
-                } else {
-                    noResultsMsg.style.display = 'none';
-                }
-            });
-        });
+        let count = 0;
+        function addToCart() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+        }
     </script>
-
 </body>
 </html>
