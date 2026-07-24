@@ -13,7 +13,7 @@
             --card-bg: rgba(18, 18, 24, 0.75);
             --border-glow: rgba(255, 255, 255, 0.15);
             --text-main: #ffffff;
-            --text-muted: #a0a0b0; 
+            --text-muted: #a0a0b0;
             --accent-primary: #ffffff;
             --accent-glow: rgba(255, 255, 255, 0.4);
             --blob-1: #ffffff;
@@ -231,6 +231,24 @@
         }
         nav a:hover, nav a.active { color: #fff; }
 
+        .nav-actions { display: flex; gap: 1rem; align-items: center; }
+
+        .btn-bag {
+            background: transparent;
+            border: 1px solid var(--border-glow);
+            color: #fff;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-bag:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+
         .btn-glow {
             background: var(--accent-primary);
             color: #000;
@@ -252,99 +270,168 @@
             box-shadow: 0 0 30px var(--accent-glow);
         }
 
+        /* HERO SECTION */
         .hero {
-            min-height: 80vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 4rem 1.5rem;
+            padding: 5rem 1.5rem;
+            position: relative;
         }
 
         .hero-badge {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-glow);
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.4rem;
             border-radius: 30px;
             font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             backdrop-filter: blur(10px);
             color: var(--accent-primary);
         }
 
         .hero-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 900;
             letter-spacing: 6px;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            line-height: 1.05;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(180deg, #ffffff 40%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
-            max-width: 650px;
+            max-width: 720px;
             color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.8rem;
         }
 
+        .hero-stats {
+            display: flex;
+            gap: 3.5rem;
+            margin-top: 3.5rem;
+            border-top: 1px solid var(--border-glow);
+            padding-top: 2.5rem;
+        }
+
+        .stat-item h4 { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--accent-primary); }
+        .stat-item p { font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-top: 4px; }
+
+        /* BRAND PILLARS / EXPANDED CONTENT */
+        .section-padding { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
         .section-title {
             text-align: center;
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             letter-spacing: 4px;
-            margin: 4rem 0 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 4rem;
             text-transform: uppercase;
         }
 
-        .showcase-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1.5rem 6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 3.5rem;
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .float-card {
+        .pillar-card {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
-            border-radius: 24px;
-            padding: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            backdrop-filter: blur(15px);
-            animation: floatCard 6s ease-in-out infinite alternate;
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
         }
 
-        .float-card:nth-child(even) {
-            flex-direction: row-reverse;
-            animation-delay: -3s;
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
         }
 
-        @keyframes floatCard {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-12px); }
+        .pillar-icon {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-primary);
         }
 
-        .card-info h3 {
+        .pillar-card h3 {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
             letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
 
-        .card-info p {
+        .pillar-card p {
             color: var(--text-muted);
             line-height: 1.7;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
+
+        /* MANIFESTO / STORY BANNER */
+        .manifesto-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 28px;
+            padding: 4.5rem 3rem;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            margin: 4rem auto 6rem;
+            max-width: 1100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto-box h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.4rem;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .manifesto-box p {
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* SPECS TABLE */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .spec-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+        }
+
+        .spec-item h4 { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .spec-item div { font-size: 1.1rem; font-weight: 800; color: #fff; }
 
         .theme-switch-trigger {
             position: fixed;
@@ -375,7 +462,7 @@
         @media (max-width: 768px) {
             header { padding: 1rem 1.5rem; }
             .theme-grid { grid-template-columns: 1fr; }
-            .float-card, .float-card:nth-child(even) { flex-direction: column; text-align: center; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
         }
     </style>
 </head>
@@ -425,30 +512,84 @@
                 <li><a href="terms.html">Terms & Policies</a></li>
             </ul>
         </nav>
-        <a href="shop.html" class="btn-glow">Enter Shop</a>
+        <div class="nav-actions">
+            <a href="cart.html" class="btn-bag">BAG (<span id="nav-cart-count">0</span>)</a>
+            <a href="shop.html" class="btn-glow">Enter Shop</a>
+        </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-badge">Sovereign Culture & Streetwear</div>
         <h1 class="hero-title">THE EGYPTIAN KING</h1>
-        <p class="hero-subtitle">High-end heavyweight apparel engineered with zero compromises. Experience the full drop in our interactive store layout.</p>
+        <p class="hero-subtitle">High-end heavyweight apparel engineered with zero compromises. Bridging ancient majesty with futuristic modern street culture.</p>
         <a href="shop.html" class="btn-glow">Explore Official Shop</a>
-    </section>
 
-    <h2 class="section-title">Craftsmanship & Vision</h2>
-
-    <section class="showcase-container">
-        <div class="float-card">
-            <div class="card-info">
-                <h3>Heavyweight Fabric Mechanics</h3>
-                <p>Every piece is custom knitted from high-density combed cotton fleece ranging from 280 GSM to 500 GSM, engineered to hold structure through hundreds of wears.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <h4>500 GSM</h4>
+                <p>Heavyweight Fleece</p>
+            </div>
+            <div class="stat-item">
+                <h4>22 CAPSULES</h4>
+                <p>Exclusive Apparel</p>
+            </div>
+            <div class="stat-item">
+                <h4>100% COTTON</h4>
+                <p>Combed & Custom Knitted</p>
             </div>
         </div>
+    </section>
 
-        <div class="float-card">
-            <div class="card-info">
-                <h3>Strictly Limited Drops</h3>
-                <p>We do not mass produce. Each collection is released in exclusive batches and once a design sells out, it will never be printed again.</p>
+    <!-- BRAND PILLARS -->
+    <section class="section-padding">
+        <h2 class="section-title">The Standard of Craft</h2>
+        <p class="section-sub">Built to outlast trends and endure time</p>
+
+        <div class="grid-3">
+            <div class="pillar-card">
+                <div class="pillar-icon">🏛️</div>
+                <h3>Heritage & Iconography</h3>
+                <p>Each drop translates iconic cultural figures and historical motifs into cutting-edge graphic silhouettes tailored for the contemporary wardrobe.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">⚡</div>
+                <h3>Precision Fabrication</h3>
+                <p>Engineered with double-needle flatlock seams, oversized hoods, custom drop shoulders, and pre-shrunk fabrics designed for perfection.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">👑</div>
+                <h3>Strictly Limited</h3>
+                <p>We operate on limited batch releases. Once a capsule sells out globally, it enters the vault and will never be reproduced.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFESTO BOX -->
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="manifesto-box">
+            <h2>ROYALTY IS AN ATTITUDE</h2>
+            <p>From Cairo to the world stage, THE EGYPTIAN KING was born out of a desire to create heavy, structured, unyielding streetwear that commands respect in any room. Designed for leaders, creators, and legends.</p>
+            
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>Fit Style</h4>
+                    <div>Oversized Boxy Fit</div>
+                </div>
+                <div class="spec-item">
+                    <h4>Print Technique</h4>
+                    <div>High-Density Screenprint</div>
+                </div>
+                <div class="spec-item">
+                    <h4>Fabric Weight</h4>
+                    <div>Heavy Fleece & 280 GSM Tees</div>
+                </div>
+                <div class="spec-item">
+                    <h4>Worldwide Ship</h4>
+                    <div>Door-to-Door Delivery</div>
+                </div>
             </div>
         </div>
     </section>
@@ -461,6 +602,12 @@
     </footer>
 
     <script>
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('kingCart')) || [];
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('nav-cart-count').innerText = totalCount;
+        }
+
         function applyTheme(theme) {
             if (theme === 'basic') {
                 document.body.removeAttribute('data-theme');
@@ -480,6 +627,7 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            updateCartBadge();
             const savedTheme = localStorage.getItem('selectedTheme');
             if (savedTheme) {
                 applyTheme(savedTheme);
