@@ -5,27 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE EGYPTIAN KING — Shop Collection</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #000000;
-            --surface: #0a0a0a;
-            --surface-card: #121212;
+            --bg: #050508;
+            --card-bg: rgba(18, 18, 24, 0.75);
+            --border-glow: rgba(255, 255, 255, 0.15);
             --text-main: #ffffff;
-            --text-muted: #888888;
-            --border: #ffffff;
-            --border-subtle: #222222;
+            --text-muted: #a0a0b0;
+            --accent-primary: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.4);
+        }
+
+        body[data-theme="neon"] {
+            --bg: #090014;
+            --card-bg: rgba(24, 9, 43, 0.8);
+            --border-glow: rgba(236, 72, 153, 0.4);
+            --accent-primary: #ec4899;
+            --accent-glow: rgba(236, 72, 153, 0.6);
+        }
+
+        body[data-theme="ai"] {
+            --bg: #030712;
+            --card-bg: rgba(15, 23, 42, 0.8);
+            --border-glow: rgba(56, 189, 248, 0.35);
+            --accent-primary: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.5);
+        }
+
+        body[data-theme="royalty"] {
+            --bg: #0a0802;
+            --card-bg: rgba(28, 23, 13, 0.85);
+            --border-glow: rgba(234, 179, 8, 0.35);
+            --accent-primary: #eab308;
+            --accent-glow: rgba(234, 179, 8, 0.5);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
 
         header {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-subtle);
-            padding: 1.25rem 3rem;
+            background: rgba(5, 5, 8, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 1.25rem 4rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -34,45 +58,27 @@
             align-items: center;
         }
 
-        .brand-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: var(--text-main);
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
+        .brand-logo { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; color: #fff; text-decoration: none; text-transform: uppercase; }
         nav ul { display: flex; list-style: none; gap: 2.5rem; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-        nav a:hover, nav a.active { color: var(--text-main); }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        nav a:hover, nav a.active { color: #fff; }
 
-        .cart-btn {
+        .btn-bag {
             background: transparent;
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border-glow);
+            color: #fff;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
             font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-weight: 800;
             cursor: pointer;
+            letter-spacing: 1.5px;
         }
 
-        .container { max-width: 1250px; margin: 3rem auto 6rem; padding: 0 2rem; width: 100%; }
+        .container { max-width: 1300px; margin: 3rem auto 6rem; padding: 0 2rem; width: 100%; }
 
-        .page-header {
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .page-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
+        .page-header { border-bottom: 1px solid var(--border-glow); padding-bottom: 1.5rem; margin-bottom: 3rem; }
+        .page-title { font-family: 'Cinzel', serif; font-size: 2.5rem; letter-spacing: 4px; text-transform: uppercase; }
 
         .product-grid {
             display: grid;
@@ -81,56 +87,56 @@
         }
 
         .product-card {
-            background: var(--surface-card);
-            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
-        .product-card:hover { border-color: var(--text-main); transform: translateY(-4px); }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent-primary);
+        }
 
-        .product-image-box {
+        .product-img-box {
             width: 100%;
-            height: 380px;
+            height: 360px;
             background: #111;
             overflow: hidden;
         }
 
-        .product-image-box img {
+        .product-img-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%);
-            transition: all 0.5s ease;
+            transition: transform 0.5s ease;
         }
 
-        .product-card:hover .product-image-box img { filter: grayscale(0%); transform: scale(1.04); }
+        .product-card:hover .product-img-box img { transform: scale(1.06); }
 
         .product-details { padding: 1.5rem; }
-        .product-category { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.4rem; }
-        .product-name { font-size: 1.05rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; text-transform: uppercase; }
-        .product-price { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+        .product-name { font-size: 0.95rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .product-price { font-size: 1.1rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 1.2rem; }
 
-        .btn-add-cart {
+        .btn-add {
             width: 100%;
-            background: transparent;
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            padding: 0.75rem;
-            font-weight: 700;
+            background: var(--accent-primary);
+            color: #000;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 800;
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .btn-add-cart:hover { background: var(--text-main); color: var(--bg); }
-
-        footer { background: var(--surface); padding: 4rem 2rem 2rem; margin-top: auto; text-align: center; }
-        .footer-brand { font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 6px; margin-bottom: 1.5rem; }
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2.5rem; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
-        .copyright { font-size: 0.75rem; color: #444; border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; }
+        footer { background: rgba(5, 5, 8, 0.95); border-top: 1px solid var(--border-glow); padding: 4rem 2rem 2rem; text-align: center; margin-top: auto; }
+        .copyright { color: #555; font-size: 0.8rem; margin-top: 1.5rem; }
     </style>
 </head>
 <body>
@@ -140,81 +146,224 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="shop.html" class="active">Shop Collection</a></li>
                 <li><a href="terms.html">Terms & Policies</a></li>
             </ul>
         </nav>
-        <button class="cart-btn" onclick="alert('Bag ready for checkout!')">
-            BAG (<span id="cart-count">0</span>)
-        </button>
+        <button class="btn-bag">BAG (<span id="cart-count">0</span>)</button>
     </header>
 
     <main class="container">
         <div class="page-header">
-            <h1 class="page-title">Drop 01 Collection</h1>
+            <h1 class="page-title">Full Apparel Collection</h1>
         </div>
 
         <div class="product-grid">
+            
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Hoodie">
-                </div>
+                <div class="product-img-box"><img src="https://i.postimg.cc/Y0QxV6g3/516715712-17866882896411646-829132566278910828-n.jpg" alt="Queen Nefertiti Hoodie"></div>
                 <div class="product-details">
-                    <div class="product-category">Heavyweight Fleece</div>
-                    <div class="product-name">Pharaoh Oversized Hoodie</div>
+                    <div class="product-name">Queen Nefertiti Hoodie</div>
                     <div class="product-price">$120.00</div>
-                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" alt="Tee">
-                </div>
+                <div class="product-img-box"><img src="https://i.postimg.cc/zXB9x1w5/472608428-17843821857411646-5190413624021546847-n.jpg" alt="Khaby Lame Hoodie"></div>
                 <div class="product-details">
-                    <div class="product-category">Luxury Cotton</div>
-                    <div class="product-name">Dynasty Emblem Tee</div>
+                    <div class="product-name">Khaby Lame Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/SKqdt60g/472633368-17843821560411646-1301946515224713514-n.jpg" alt="LeBron James Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">LeBron James Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/zGmYvcWH/472640130-17843821824411646-6190914740358970487-n.jpg" alt="Dwayne Johnson Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Dwayne Johnson Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/ydXfJtXr/470948200-17843821491411646-2530782776797434651-n.jpg" alt="Jude Bellingham Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Jude Bellingham Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/kGWtXPxZ/472698557-17843821893411646-1529126455755902565-n.jpg" alt="Social Media Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Social Media Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/4NFDZGb6/472626436-17843821371411646-4896956000507693153-n.jpg" alt="Egyptian Rulers Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Egyptian Rulers Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/pLSSzx93/606046002-17886492576411646-3278374060857878734-n.jpg" alt="Egyptian Culture Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Egyptian Culture Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/qRHPBMmP/unnamed.png" alt="FIFA World Cup Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">FIFA World Cup Hoodie</div>
+                    <div class="product-price">$125.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/3rZnLTjD/IMG-5187.png" alt="Algerian Culture Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Algerian Culture Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/cCZv3NHh/IMG-5259.jpg" alt="Tunisia Culture Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Tunisia Culture Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/ZKC1zyjb/Untitled-design.png" alt="Rewayet El 3omr Hoodie"></div>
+                <div class="product-details">
+                    <div class="product-name">Rewayet El 3omr Hoodie</div>
+                    <div class="product-price">$120.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/J4FSGRPh/Untitled-design-(1).png" alt="El Donya Raby3 T-Shirt"></div>
+                <div class="product-details">
+                    <div class="product-name">El Donya Raby3 T-Shirt</div>
                     <div class="product-price">$65.00</div>
-                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Jacket">
-                </div>
+                <div class="product-img-box"><img src="https://i.postimg.cc/wMGX0HkZ/Untitled-design-2.png" alt="El R7la Wl Fekr T-Shirt"></div>
                 <div class="product-details">
-                    <div class="product-category">Outerwear</div>
-                    <div class="product-name">Sovereign Track Jacket</div>
-                    <div class="product-price">$160.00</div>
-                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
+                    <div class="product-name">El R7la Wl Fekr T-Shirt</div>
+                    <div class="product-price">$65.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-box">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=600&q=80" alt="Cargo">
-                </div>
+                <div class="product-img-box"><img src="https://i.postimg.cc/6qbrYRKJ/Untitled-design-(4).png" alt="Zkrayat 3310 T-Shirt"></div>
                 <div class="product-details">
-                    <div class="product-category">Bottoms</div>
-                    <div class="product-name">Tactical Cargo Pants</div>
-                    <div class="product-price">$135.00</div>
-                    <button class="btn-add-cart" onclick="addToCart()">Add to Bag</button>
+                    <div class="product-name">Zkrayat 3310 T-Shirt</div>
+                    <div class="product-price">$65.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
                 </div>
             </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/XYJgrdmV/Untitled-design-(5).png" alt="Sa7et El Syf T-Shirt"></div>
+                <div class="product-details">
+                    <div class="product-name">Sa7et El Syf T-Shirt</div>
+                    <div class="product-price">$65.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/RVgJBSCq/Untitled-design-(7).png" alt="2skndereya T-Shirt"></div>
+                <div class="product-details">
+                    <div class="product-name">2skndereya T-Shirt</div>
+                    <div class="product-price">$65.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/CxRFZDkV/Untitled-design-(9).png" alt="The Egyptian King Basic Black"></div>
+                <div class="product-details">
+                    <div class="product-name">Basic Core — Black</div>
+                    <div class="product-price">$55.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/MH3CxPsq/Untitled-design-(10).png" alt="The Egyptian King Basic Grey"></div>
+                <div class="product-details">
+                    <div class="product-name">Basic Core — Grey</div>
+                    <div class="product-price">$55.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/G2qNJgng/Untitled-design-(11).png" alt="The Egyptian King Basic Pink"></div>
+                <div class="product-details">
+                    <div class="product-name">Basic Core — Pink</div>
+                    <div class="product-price">$55.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/5tJRcW4f/Untitled-design-(13).png" alt="The Egyptian King Basic Blue"></div>
+                <div class="product-details">
+                    <div class="product-name">Basic Core — Blue</div>
+                    <div class="product-price">$55.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.postimg.cc/ncQRChry/Untitled-design-(12).png" alt="The Egyptian King Basic Brown"></div>
+                <div class="product-details">
+                    <div class="product-name">Basic Core — Brown</div>
+                    <div class="product-price">$55.00</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Bag</button>
+                </div>
+            </div>
+
         </div>
     </main>
 
     <footer>
-        <div class="footer-brand">THE EGYPTIAN KING</div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="terms.html">Terms & Policies</a>
-        </div>
-        <div class="copyright">
-            © 2026 THE EGYPTIAN KING. All rights reserved.
-        </div>
+        <div class="brand-logo">THE EGYPTIAN KING</div>
+        <div class="copyright">© 2026 THE EGYPTIAN KING. All rights reserved.</div>
     </footer>
 
     <script>
@@ -223,6 +372,13 @@
             count++;
             document.getElementById('cart-count').innerText = count;
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'neon';
+            if (savedTheme !== 'basic') {
+                document.body.setAttribute('data-theme', savedTheme);
+            }
+        });
     </script>
 </body>
 </html>
