@@ -63,6 +63,10 @@
             transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg);
             color: var(--text-main);
@@ -860,10 +864,12 @@
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="shop.html">Shop Collection</a></li>
+                <li><a href="#reviews">Reviews</a></li>
                 <li><a href="terms.html">Terms & Policies</a></li>
             </ul>
         </nav>
         <div class="nav-actions">
+            <a href="#reviews" class="btn-bag">REVIEWS ★</a>
             <a href="cart.html" class="btn-bag">BAG (<span id="nav-cart-count">0</span>)</a>
             <button class="btn-bag" id="authNavBtn" onclick="openAuthModal()">SIGN IN</button>
             <a href="shop.html" class="btn-glow">Enter Shop</a>
@@ -994,7 +1000,7 @@
     </section>
 
     <!-- REVIEWS & REPUTATION -->
-    <section class="section-padding" style="padding-top: 0;">
+    <section id="reviews" class="section-padding" style="padding-top: 0;">
         <h2 class="section-title">Community Voice</h2>
         <p class="section-sub">Feedback from the royal collective</p>
 
@@ -1048,6 +1054,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="shop.html">Shop Collection</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
                     <li><a href="cart.html">View Bag</a></li>
                 </ul>
             </div>
