@@ -78,6 +78,7 @@
             justify-content: space-between;
             gap: 2rem;
             backdrop-filter: blur(10px);
+            position: relative;
         }
 
         .cart-item-left { display: flex; align-items: center; gap: 1.5rem; }
@@ -87,7 +88,28 @@
 
         .cart-actions { display: flex; align-items: center; gap: 1.2rem; }
         .qty-controls { display: flex; align-items: center; gap: 0.8rem; background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 30px; border: 1px solid var(--border-glow); }
-        .qty-btn { background: none; border: none; color: #fff; font-size: 1rem; font-weight: 800; cursor: pointer; }
+        .qty-btn { background: none; border: none; color: #fff; font-size: 1rem; font-weight: 800; cursor: pointer; padding: 0 4px; }
+
+        .btn-remove {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glow);
+            color: #ef4444;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-remove:hover {
+            background: #ef4444;
+            color: #fff;
+            border-color: #ef4444;
+        }
 
         .btn-buy-now {
             background: var(--accent-primary);
@@ -104,7 +126,6 @@
             box-shadow: 0 0 15px var(--accent-glow);
             transition: transform 0.2s ease;
         }
-
         .btn-buy-now:hover { transform: scale(1.05); }
 
         .empty-state { text-align: center; padding: 5rem 1rem; color: var(--text-muted); }
@@ -114,6 +135,7 @@
         .copyright { color: #555; font-size: 0.8rem; margin-top: 1.5rem; }
 
         @media (max-width: 768px) {
+            header { padding: 1rem 1.5rem; }
             .cart-item { flex-direction: column; text-align: center; }
             .cart-item-left { flex-direction: column; }
             .cart-actions { flex-direction: column; width: 100%; }
@@ -122,7 +144,6 @@
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="brand-logo">The Egyptian King</a>
         <nav>
@@ -136,7 +157,6 @@
 
     <main class="container">
         <h1 class="page-title">Your Shopping Bag</h1>
-        
         <div id="cart-container" class="cart-list">
             <!-- ITEMS LOADED VIA JS -->
         </div>
@@ -144,7 +164,7 @@
 
     <footer>
         <div class="brand-logo">THE EGYPTIAN KING</div>
-        <div class="copyright">© 2026 THE EGYPTIAN KING. All rights reserved.</div>
+        <div class="copyright">&copy; 2026 THE EGYPTIAN KING. All rights reserved.</div>
     </footer>
 
     <script>
@@ -152,7 +172,7 @@
             const cart = JSON.parse(localStorage.getItem('kingCart')) || [];
             const container = document.getElementById('cart-container');
 
-            if (cart.length === 0) {
+            if (!cart || cart.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
                         <h2>YOUR BAG IS EMPTY</h2>
@@ -163,36 +183,53 @@
                 return;
             }
 
-            container.innerHTML = cart.map((item, index) => `
-                <div class="cart-item">
-                    <div class="cart-item-left">
-                        <img src="${item.img}" alt="${item.name}" class="cart-img">
-                        <div class="cart-info">
-                            <h3>${item.name}</h3>
-                            <p>E£${(item.price * item.qty).toFixed(2)}</p>
+            container.innerHTML = cart.map((item, index) => {
+                const itemPrice = Number(item.price) || 0;
+                const itemQty = Number(item.qty) || 1;
+                const totalPrice = (itemPrice * itemQty).toFixed(2);
+                const itemImg = item.img ? `<img src="${item.img}" alt="${item.name}" class="cart-img">` : `<div class="cart-img" style="display:flex;align-items:center;justify-content:center;font-size:2rem;">𓀀</div>`;
+
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-left">
+                            ${itemImg}
+                            <div class="cart-info">
+                                <h3>${item.name || 'Custom Garment'}</h3>
+                                <p>E£${totalPrice}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cart-actions">
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                <span>${itemQty}</span>
+                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                            <button class="btn-remove" onclick="removeItem(${index})" title="Remove Item">✕</button>
+                            <button class="btn-buy-now" onclick="proceedToCheckout(${item.id})">BUY NOW</button>
                         </div>
                     </div>
-                    
-                    <div class="cart-actions">
-                        <div class="qty-controls">
-                            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                            <span>${item.qty}</span>
-                            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                        </div>
-                        <button class="btn-buy-now" onclick="proceedToCheckout(${item.id})">BUY NOW</button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function changeQty(index, delta) {
             let cart = JSON.parse(localStorage.getItem('kingCart')) || [];
-            cart[index].qty += delta;
+            if (!cart[index]) return;
+
+            cart[index].qty = (cart[index].qty || 1) + delta;
 
             if (cart[index].qty <= 0) {
                 cart.splice(index, 1);
             }
 
+            localStorage.setItem('kingCart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('kingCart')) || [];
+            cart.splice(index, 1);
             localStorage.setItem('kingCart', JSON.stringify(cart));
             renderCart();
         }
