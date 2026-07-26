@@ -3,58 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="THE EGYPTIAN KING — Archival Streetwear Architecture & Heavyweight Apparel drops.">
+  <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE">
   <title>THE EGYPTIAN KING — Archival Apparel Architecture</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       01. CSS CUSTOM PROPERTIES & DESIGN TOKENS
+       01. THEME VARIABLES & COLOR SCHEMES
        ========================================================================== */
     :root {
-      /* Colors */
-      --color-bg-primary: #ffffff;
-      --color-bg-secondary: #fbfbfb;
-      --color-bg-tertiary: #f4f4f4;
-      --color-bg-alt: #111111;
-      
-      --color-text-primary: #111111;
-      --color-text-secondary: #555555;
-      --color-text-muted: #888888;
-      --color-text-light: #ffffff;
-      
-      --color-border-light: #eeeeee;
-      --color-border-medium: #e0e0e0;
-      --color-border-dark: #111111;
-      
-      --color-accent-gold: #c5a059;
-      --color-accent-hover: #333333;
+      /* Default Theme (Minimal Dark Luxe) */
+      --bg-main: #0a0a0c;
+      --bg-card: #121216;
+      --bg-overlay: rgba(10, 10, 12, 0.85);
+      --border-color: #22222a;
+      --text-main: #f3f3f6;
+      --text-muted: #8a8a9a;
+      --accent: #00A3FF;
+      --accent-glow: rgba(0, 163, 255, 0.3);
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+    }
 
-      /* Review Section Dark Theme Specifics */
-      --color-review-bg: #070B14;
-      --color-review-card-bg: #0C1221;
-      --color-review-border: #1E293B;
-      --color-review-star: #00A3FF;
+    [data-theme="neon"] {
+      --bg-main: #050508;
+      --bg-card: #0d0d14;
+      --border-color: #00ffcc33;
+      --text-main: #ffffff;
+      --text-muted: #708090;
+      --accent: #00ffcc;
+      --accent-glow: rgba(0, 255, 204, 0.4);
+    }
 
-      /* Typography */
-      --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-family-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-      
-      /* Spacing */
-      --spacing-xs: 8px;
-      --spacing-sm: 16px;
-      --spacing-md: 24px;
-      --spacing-lg: 40px;
-      --spacing-xl: 80px;
-      --spacing-xxl: 140px;
+    [data-theme="ai"] {
+      --bg-main: #060814;
+      --bg-card: #0d1226;
+      --border-color: #7000ff44;
+      --text-main: #e2e8ff;
+      --text-muted: #6b7c9e;
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.4);
+    }
 
-      /* Layout */
-      --container-max-width: 1320px;
-      --header-height: 80px;
-
-      /* Transitions */
-      --transition-fast: 0.2s ease;
-      --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    [data-theme="royalty"] {
+      --bg-main: #080604;
+      --bg-card: #14100b;
+      --border-color: #c5a05944;
+      --text-main: #fcefdc;
+      --text-muted: #8c7b6c;
+      --accent: #c5a059;
+      --accent-glow: rgba(197, 160, 89, 0.4);
     }
 
     /* ==========================================================================
@@ -66,37 +68,25 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      background-color: var(--color-bg-primary);
-      color: var(--color-text-primary);
-    }
-
     body {
-      font-family: var(--font-family-sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-main);
       overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 800;
+    h1, h2, h3, h4, .brand-logo {
+      font-family: var(--font-heading);
+      text-transform: uppercase;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--color-text-primary);
-    }
-
-    p {
-      color: var(--color-text-secondary);
-      margin-bottom: 1rem;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-      transition: color var(--transition-fast);
     }
 
     button {
@@ -106,126 +96,136 @@
       background: none;
     }
 
-    ul, ol {
-      list-style: none;
+    /* ==========================================================================
+       03. AMBIENT ANIMATED BLOBS BACKGROUND
+       ========================================================================== */
+    .ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+    .blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      filter: blur(120px);
+      animation: floatBlob 18s infinite alternate ease-in-out;
+    }
+
+    .blob-1 { top: -100px; left: -100px; }
+    .blob-2 { bottom: -150px; right: -100px; animation-delay: -9s; }
+
+    @keyframes floatBlob {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(100px, 80px) scale(1.2); }
     }
 
     /* ==========================================================================
-       03. REUSABLE UTILITY CLASSES
+       04. LAYOUT & UTILITIES
        ========================================================================== */
     .container {
       width: 100%;
-      max-width: var(--container-max-width);
+      max-width: 1280px;
       margin: 0 auto;
-      padding-left: var(--spacing-md);
-      padding-right: var(--spacing-md);
+      padding: 0 24px;
     }
 
     .section-padding {
-      padding-top: var(--spacing-xxl);
-      padding-bottom: var(--spacing-xxl);
-      border-bottom: 1px solid var(--color-border-light);
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .section-tag {
-      display: inline-block;
       font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
+      font-weight: 800;
       letter-spacing: 3px;
-      color: var(--color-text-muted);
-      margin-bottom: var(--spacing-sm);
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
     }
 
-    .section-heading {
+    .section-title {
       font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: var(--spacing-lg);
-      letter-spacing: -1px;
+      margin-bottom: 40px;
     }
 
     .btn {
+      padding: 16px 32px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 18px 42px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      transition: all var(--transition-normal);
-      border: 1px solid var(--color-text-primary);
-      cursor: pointer;
-      text-align: center;
+      gap: 10px;
     }
 
-    .btn-dark {
-      background-color: var(--color-text-primary);
-      color: var(--color-bg-primary);
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
-    .btn-dark:hover {
-      background-color: var(--color-bg-primary);
-      color: var(--color-text-primary);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px var(--accent-glow);
     }
 
     .btn-outline {
-      background-color: transparent;
-      color: var(--color-text-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
     }
 
     .btn-outline:hover {
-      background-color: var(--color-text-primary);
-      color: var(--color-bg-primary);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      font-size: 0.65rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border: 1px solid var(--color-border-medium);
-      background-color: var(--color-bg-secondary);
+    /* Floating Theme Switcher Button */
+    .theme-switch-floating {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--accent);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      cursor: pointer;
     }
 
     /* ==========================================================================
-       04. ANNOUNCEMENT BAR & NAVIGATION BAR
+       05. HEADER & NAVIGATION
        ========================================================================== */
-    .announcement-bar {
-      background-color: var(--color-bg-alt);
-      color: var(--color-text-light);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 10px var(--spacing-sm);
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--color-border-light);
-      z-index: 1000;
-      height: var(--header-height);
+    .header {
+      height: 90px;
       display: flex;
       align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-overlay);
     }
 
-    .nav-wrapper {
+    .header-wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -233,411 +233,181 @@
     }
 
     .brand-logo {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 900;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    .nav-links {
+    .nav-menu {
       display: flex;
-      gap: 36px;
+      gap: 32px;
+      list-style: none;
     }
 
     .nav-link {
       font-size: 0.8rem;
       font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: var(--color-text-secondary);
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--color-text-primary);
-      transition: width var(--transition-fast);
+      color: var(--text-muted);
+      transition: color 0.3s ease;
     }
 
     .nav-link:hover {
-      color: var(--color-text-primary);
+      color: var(--accent);
     }
 
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .mobile-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-    }
-
-    .mobile-toggle span {
-      width: 25px;
-      height: 2px;
-      background-color: var(--color-text-primary);
-    }
-
-    /* ==========================================================================
-       05. SECTION 1 — HERO SECTION
-       ========================================================================== */
-    .hero {
-      min-height: calc(100vh - var(--header-height));
+    .header-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      background-color: var(--color-bg-secondary);
-      position: relative;
-      padding: var(--spacing-xl) var(--spacing-md);
-      border-bottom: 1px solid var(--color-border-light);
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .hero-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--color-text-muted);
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .hero-title {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -2px;
-      line-height: 0.95;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .hero-description {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--color-text-secondary);
-      max-width: 650px;
-      margin: 0 auto var(--spacing-lg) auto;
-      font-weight: 400;
-    }
-
-    .hero-cta-group {
-      display: flex;
       gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
     }
 
-    /* ==========================================================================
-       06. SECTION 2 — CATEGORIES & CAPSULE SHOWCASE
-       ========================================================================== */
-    .filter-tabs {
-      display: flex;
-      gap: 15px;
-      margin-bottom: var(--spacing-lg);
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 10px 24px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border: 1px solid var(--color-border-medium);
-      background: var(--color-bg-primary);
-      transition: all var(--transition-fast);
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--color-text-primary);
-      color: var(--color-bg-primary);
-      border-color: var(--color-text-primary);
-    }
-
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-md);
-    }
-
-    .category-card {
-      background-color: var(--color-bg-secondary);
-      border: 1px solid var(--color-border-medium);
-      padding: 45px 35px;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all var(--transition-normal);
+    .cart-badge-btn {
       position: relative;
-    }
-
-    .category-card:hover {
-      border-color: var(--color-text-primary);
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.05);
-    }
-
-    .card-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .card-number {
       font-size: 0.8rem;
       font-weight: 800;
-      color: var(--color-text-muted);
-    }
-
-    .card-title {
-      font-size: 2rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-top: var(--spacing-md);
-      margin-bottom: var(--spacing-xs);
-    }
-
-    .card-desc {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      line-height: 1.7;
-    }
-
-    .card-footer {
-      margin-top: var(--spacing-lg);
-    }
-
-    .card-link {
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-bottom: 2px solid var(--color-text-primary);
-      padding-bottom: 4px;
-      display: inline-block;
-    }
-
-    /* ==========================================================================
-       07. SECTION 3 — BRAND MANIFESTO
-       ========================================================================== */
-    .manifesto-wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .manifesto-quote {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 300;
-      letter-spacing: -0.5px;
-      line-height: 1.3;
-      margin-bottom: var(--spacing-lg);
-      color: var(--color-text-primary);
-    }
-
-    .manifesto-quote strong {
-      font-weight: 800;
-    }
-
-    .manifesto-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-lg);
-      text-align: left;
-    }
-
-    .manifesto-col p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--color-text-secondary);
-    }
-
-    /* ==========================================================================
-       08. SECTION 4 — FABRIC & CRAFT EDITORIAL
-       ========================================================================== */
-    .editorial-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: var(--spacing-xl);
-      align-items: center;
-    }
-
-    .editorial-visual {
-      background-color: var(--color-bg-tertiary);
-      border: 1px solid var(--color-border-medium);
-      height: 550px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: var(--spacing-lg);
-      position: relative;
-    }
-
-    .editorial-visual-inner {
-      border: 1px dashed var(--color-text-muted);
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .visual-label {
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-    }
-
-    .editorial-content h3 {
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .editorial-content p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .spec-list {
-      margin-bottom: var(--spacing-lg);
-      border-top: 1px solid var(--color-border-light);
-    }
-
-    .spec-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--color-border-light);
-      font-size: 0.85rem;
-    }
-
-    .spec-name {
-      font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    .spec-val {
-      color: var(--color-text-secondary);
-    }
-
-    /* ==========================================================================
-       09. SECTION 5 — LOOKBOOK GALLERY SHOWCASE
-       ========================================================================== */
-    .lookbook-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .lookbook-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--spacing-sm);
-    }
-
-    .lookbook-card {
-      height: 480px;
-      background-color: var(--color-bg-tertiary);
-      border: 1px solid var(--color-border-light);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: var(--spacing-md);
-      transition: all var(--transition-normal);
-      overflow: hidden;
-    }
-
-    .lookbook-card:hover {
-      border-color: var(--color-text-primary);
-    }
-
-    .lookbook-tag {
+    .cart-count {
+      background: var(--accent);
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 10px;
       font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      margin-bottom: 4px;
-    }
-
-    .lookbook-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      text-transform: uppercase;
+      margin-left: 4px;
     }
 
     /* ==========================================================================
-       10. SECTION 6 — COMMUNITY REVIEWS (MATCHING DESIGN)
+       06. HERO SECTION
        ========================================================================== */
-    .reviews-section {
-      background-color: var(--color-review-bg);
-      color: #ffffff;
-      padding: var(--spacing-xxl) 0;
-      border-bottom: 1px solid var(--color-border-dark);
-    }
-
-    .reviews-header-block {
+    .hero {
+      padding: 140px 0 100px 0;
       text-align: center;
-      margin-bottom: var(--spacing-xl);
     }
 
-    .reviews-subtitle {
-      font-size: 0.8rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #94A3B8;
-      font-weight: 700;
-      margin-bottom: 15px;
-      display: block;
+    .hero-slogan {
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 800;
     }
 
-    .reviews-action-bar {
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      max-width: 650px;
+      margin: 0 auto 40px auto;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
       display: flex;
       justify-content: center;
-      margin-bottom: var(--spacing-lg);
+      gap: 60px;
+      margin-top: 60px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 40px;
     }
 
-    .btn-review-trigger {
-      background-color: transparent;
-      color: #ffffff;
-      border: 1px solid var(--color-review-star);
-      padding: 14px 32px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: all var(--transition-fast);
-      border-radius: 4px;
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+      color: var(--accent);
     }
 
-    .btn-review-trigger:hover {
-      background-color: var(--color-review-star);
-      color: #000000;
-      box-shadow: 0 0 20px rgba(0, 163, 255, 0.4);
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
     }
 
-    /* Vertical Feed Grid */
+    /* ==========================================================================
+       07. BRAND PILLARS
+       ========================================================================== */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 40px 30px;
+      border-radius: 12px;
+      transition: border-color 0.3s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--accent);
+    }
+
+    .pillar-icon {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .pillar-title {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .pillar-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       08. FEATURED CAPSULES & TECH SPECS
+       ========================================================================== */
+    .capsules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .capsule-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 400px;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .spec-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .spec-label {
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       09. REVIEWS SECTION
+       ========================================================================== */
     .reviews-feed {
       display: flex;
       flex-direction: column;
@@ -646,753 +416,438 @@
       margin: 0 auto;
     }
 
-    .review-card-item {
-      background-color: var(--color-review-card-bg);
-      border: 1px solid var(--color-review-border);
-      border-radius: 16px;
-      padding: 32px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      transition: transform var(--transition-normal), border-color var(--transition-fast);
-    }
-
-    .review-card-item:hover {
-      border-color: rgba(0, 163, 255, 0.4);
-      transform: translateY(-2px);
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
     }
 
     .review-stars {
-      color: var(--color-review-star);
-      font-size: 1.1rem;
-      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
-    .review-quote-text {
-      font-size: 1.1rem;
-      font-style: italic;
-      color: #E2E8F0;
-      line-height: 1.6;
-      font-weight: 300;
-      margin: 0;
-    }
-
-    .review-author-tag {
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #FFFFFF;
-      margin-top: 8px;
-    }
-
-    /* Modal Form Styles */
-    .review-modal-overlay {
+    /* ==========================================================================
+       10. MODALS (THEME & AUTH)
+       ========================================================================== */
+    .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
+      background: var(--bg-overlay);
+      backdrop-filter: blur(10px);
       z-index: 2000;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity var(--transition-normal);
+      transition: opacity 0.3s ease;
     }
 
-    .review-modal-overlay.active {
+    .modal-overlay.active {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .review-modal {
-      background-color: var(--color-review-card-bg);
-      border: 1px solid var(--color-review-border);
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       width: 90%;
-      max-width: 520px;
+      max-width: 480px;
       padding: 40px;
       position: relative;
-      color: #ffffff;
     }
 
-    .modal-close-btn {
+    .modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
-      color: #94A3B8;
+      color: var(--text-muted);
       font-size: 1.5rem;
       cursor: pointer;
-      line-height: 1;
     }
 
-    .modal-close-btn:hover {
-      color: #ffffff;
+    .theme-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .modal-title {
-      font-size: 1.5rem;
-      color: #ffffff;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+    .theme-btn {
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      text-align: center;
+      color: var(--text-main);
+      font-weight: 800;
+      cursor: pointer;
     }
 
-    .modal-subtitle {
-      font-size: 0.85rem;
-      color: #94A3B8;
-      margin-bottom: 24px;
+    .theme-btn:hover {
+      border-color: var(--accent);
     }
 
     .form-group {
       margin-bottom: 20px;
     }
 
-    .form-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #94A3B8;
-      margin-bottom: 8px;
-    }
-
-    .form-input, .form-textarea, .form-select {
+    .form-input {
       width: 100%;
-      background: #070B14;
-      border: 1px solid var(--color-review-border);
-      border-radius: 8px;
       padding: 14px;
-      color: #ffffff;
-      font-family: inherit;
-      font-size: 0.9rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-main);
       outline: none;
+      margin-top: 8px;
     }
 
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      border-color: var(--color-review-star);
-    }
-
-    .star-rating-picker {
-      display: flex;
-      gap: 10px;
-      font-size: 1.5rem;
-      color: #334155;
-      cursor: pointer;
-    }
-
-    .star-rating-picker .star-icon.selected,
-    .star-rating-picker .star-icon:hover,
-    .star-rating-picker .star-icon:hover ~ .star-icon {
-      color: var(--color-review-star);
-    }
-
-    .form-notice {
-      font-size: 0.75rem;
-      color: #64748B;
-      margin-top: 12px;
-      line-height: 1.4;
-    }
-
-    .btn-submit-review {
-      width: 100%;
-      background-color: var(--color-review-star);
-      color: #000000;
-      font-weight: 800;
-      padding: 16px;
-      border-radius: 8px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: 10px;
-      transition: opacity var(--transition-fast);
-    }
-
-    .btn-submit-review:hover {
-      opacity: 0.9;
-    }
-
-    /* ==========================================================================
-       11. SECTION 7 — INTERACTIVE SIZING MATRIX
-       ========================================================================== */
-    .size-matrix-box {
-      background-color: var(--color-bg-secondary);
-      border: 1px solid var(--color-border-medium);
-      padding: var(--spacing-xl);
-    }
-
-    .size-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-
-    .size-table th, .size-table td {
-      padding: 16px var(--spacing-sm);
-      border-bottom: 1px solid var(--color-border-medium);
-    }
-
-    .size-table th {
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background-color: var(--color-bg-tertiary);
-    }
-
-    /* ==========================================================================
-       12. SECTION 8 — FAQ ACCORDION
-       ========================================================================== */
-    .faq-container {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--color-border-medium);
-    }
-
-    .faq-trigger {
-      width: 100%;
-      text-align: left;
-      padding: 24px 0;
-      font-size: 1.15rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height var(--transition-normal);
-    }
-
-    .faq-content p {
-      padding-bottom: 24px;
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-    }
-
-    /* ==========================================================================
-       13. SECTION 9 — PRIVATE ACCESS NEWSLETTER
-       ========================================================================== */
-    .newsletter-box {
-      background-color: var(--color-bg-secondary);
-      border: 1px solid var(--color-border-dark);
-      padding: var(--spacing-xxl) var(--spacing-md);
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .newsletter-form {
-      display: flex;
-      justify-content: center;
-      max-width: 550px;
-      margin: var(--spacing-md) auto 0 auto;
-    }
-
-    .newsletter-input {
-      width: 70%;
-      padding: 18px 24px;
-      border: 1px solid var(--color-text-primary);
-      border-right: none;
-      font-size: 0.85rem;
-      outline: none;
-      background: var(--color-bg-primary);
-    }
-
-    .newsletter-submit {
-      width: 30%;
-      background-color: var(--color-text-primary);
-      color: var(--color-bg-primary);
-      border: 1px solid var(--color-text-primary);
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* ==========================================================================
-       14. FOOTER
-       ========================================================================== */
-    footer {
-      background-color: var(--color-bg-alt);
-      color: var(--color-text-light);
-      padding-top: var(--spacing-xxl);
-      padding-bottom: var(--spacing-lg);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: var(--spacing-xl);
-      margin-bottom: var(--spacing-xl);
-    }
-
-    .footer-brand h2 {
-      color: var(--color-text-light);
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      margin-bottom: var(--spacing-xs);
-    }
-
-    .footer-brand p {
-      color: #888888;
-      font-size: 0.9rem;
-      max-width: 320px;
-    }
-
-    .footer-col h4 {
-      color: var(--color-text-light);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .footer-col ul li {
-      margin-bottom: 12px;
-    }
-
-    .footer-col a {
-      color: #888888;
-      font-size: 0.85rem;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #222222;
-      padding-top: var(--spacing-md);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: #666666;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+    .form-input:focus {
+      border-color: var(--accent);
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .categories-grid, .editorial-grid, .lookbook-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
-      .mobile-toggle {
-        display: flex;
-      }
+      .pillars-grid, .capsules-grid { grid-template-columns: 1fr; }
+      .nav-menu { display: none; }
+      .hero-stats { flex-direction: column; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
-  <div class="announcement-bar">
-    PRIVATE ARCHIVE DROPS — COMPLIMENTARY SHIPPING ACROSS EGYPT ON ALL CAPSULE ORDERS
+  <!-- AMBIENT ANIMATED BLOBS -->
+  <div class="ambient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
   </div>
 
-  <!-- NAVIGATION BAR -->
-  <nav class="navbar">
-    <div class="container nav-wrapper">
-      <a href="#" class="brand-logo">THE EGYPTIAN KING</a>
-      <div class="nav-links">
-        <a href="#capsules" class="nav-link">Capsules</a>
-        <a href="#manifesto" class="nav-link">Manifesto</a>
-        <a href="#craftsmanship" class="nav-link">Craftsmanship</a>
-        <a href="#lookbook" class="nav-link">Lookbook</a>
-        <a href="#reviews" class="nav-link">Reviews</a>
-        <a href="#sizing" class="nav-link">Sizing</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-      </div>
-      <div class="mobile-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </nav>
+  <!-- FLOATING THEME TOGGLE BUTTON -->
+  <button class="theme-switch-floating" onclick="openModal('themeModal')">🎨</button>
 
-  <!-- HERO SECTION -->
-  <header class="hero">
-    <div class="hero-content">
-      <span class="hero-subtitle">THE EGYPTIAN KING ARCHIVE</span>
-      <h1 class="hero-title">ARCHIVAL STREETWEAR ARCHITECTURE</h1>
-      <p class="hero-description">Ancient hieroglyphic motifs engineered into heavyweight, minimal silhouette frameworks. Designed in Cairo.</p>
-      <div class="hero-cta-group">
-        <a href="#capsules" class="btn btn-dark">EXPLORE CAPSULES</a>
-        <a href="#manifesto" class="btn btn-outline">OUR MANIFESTO</a>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-wrapper">
+      <a href="#" class="brand-logo">THE EGYPTIAN KING</a>
+      <ul class="nav-menu">
+        <li><a href="#capsules" class="nav-link">CAPSULES</a></li>
+        <li><a href="#pillars" class="nav-link">PILLARS</a></li>
+        <li><a href="#specs" class="nav-link">SPECS</a></li>
+        <li><a href="#reviews" class="nav-link">REVIEWS</a></li>
+      </ul>
+      <div class="header-actions">
+        <button class="btn btn-outline" style="padding: 10px 20px;" id="authTriggerBtn" onclick="openModal('authModal')">ACCOUNT</button>
+        <a href="#" class="cart-badge-btn">CART <span class="cart-count" id="cartCount">0</span></a>
       </div>
     </div>
   </header>
 
-  <!-- CAPSULES SECTION -->
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-slogan">ARCHIVAL APPAREL ARCHITECTURE</span>
+      <h1 class="hero-title">HEAVYWEIGHT CUTS.<br>ANCIENT MOTIFS.</h1>
+      <p class="hero-subtitle">Bespoke streetwear engineered with 500 GSM double fleece, custom garment washes, and high-density pharaonic iconography. Designed in Cairo.</p>
+      <div style="display: flex; gap: 16px; justify-content: center;">
+        <a href="#capsules" class="btn btn-primary">EXPLORE DROPS</a>
+        <button class="btn btn-outline" onclick="openModal('themeModal')">SELECT THEME</button>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="stat-number">500 GSM</div>
+          <div class="stat-label">DOUBLE FLEECE WEIGHT</div>
+        </div>
+        <div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">COMBED EGYPTIAN COTTON</div>
+        </div>
+        <div>
+          <div class="stat-number">LIMITED</div>
+          <div class="stat-label">BATCH PRODUCTION</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND PILLARS -->
+  <section id="pillars" class="section-padding">
+    <div class="container">
+      <span class="section-tag">01 / FOUNDATIONS</span>
+      <h2 class="section-title">BRAND PILLARS</h2>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🏛️</div>
+          <h3 class="pillar-title">ARCHIVAL CUTS</h3>
+          <p class="pillar-desc">Custom-patterned oversized silhouettes engineered to maintain drape and form over standard off-the-shelf blanks.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">𓋹</div>
+          <h3 class="pillar-title">SYMBOL CRAFT</h3>
+          <p class="pillar-desc">Puff prints, heavy-density embroidery, and screen-printed iconography rooted in ancient Egyptian heritage.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">⚡</div>
+          <h3 class="pillar-title">LIMITED DROPS</h3>
+          <p class="pillar-desc">Strict batch limits on every drop to ensure exclusivity and uncompromising quality control.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED CAPSULES -->
   <section id="capsules" class="section-padding">
     <div class="container">
-      <span class="section-tag">01 / CATEGORIES</span>
-      <h2 class="section-heading">CURRENT LINEUP</h2>
-      <div class="categories-grid">
-        <div class="category-card">
+      <span class="section-tag">02 / CATALOG</span>
+      <h2 class="section-title">FEATURED CAPSULES</h2>
+      <div class="capsules-grid">
+        <div class="capsule-card">
           <div>
-            <div class="card-head">
-              <span class="card-number">CAPSULE // 01</span>
-              <span class="badge">500 GSM</span>
-            </div>
-            <h3 class="card-title">HEAVY FLEECE</h3>
-            <p class="card-desc">Custom double-fleece zip-ups, heavy hoodies, and oversized crewnecks engineered with reinforced ribbed cuffs.</p>
+            <span class="section-tag">CAPSULE 01</span>
+            <h3>500 GSM HOODIE</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">Double fleece, reinforced ribs, custom pharaonic back print.</p>
           </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">EXPLORE FLEECE LINEUP</a>
-          </div>
+          <button class="btn btn-outline" style="margin-top: 20px;" onclick="addToCart()">ADD TO CART</button>
         </div>
-        <div class="category-card">
+        <div class="capsule-card">
           <div>
-            <div class="card-head">
-              <span class="card-number">CAPSULE // 02</span>
-              <span class="badge">280 GSM</span>
-            </div>
-            <h3 class="card-title">GRAPHIC TEES</h3>
-            <p class="card-desc">Heavyweight combed cotton featuring puff-printed pharaonic iconography, dropped shoulders, and vintage washes.</p>
+            <span class="section-tag">CAPSULE 02</span>
+            <h3>280 GSM GRAPHIC TEE</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">Combed cotton, dropped shoulders, vintage acid wash.</p>
           </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">EXPLORE TEE LINEUP</a>
-          </div>
+          <button class="btn btn-outline" style="margin-top: 20px;" onclick="addToCart()">ADD TO CART</button>
         </div>
-        <div class="category-card">
+        <div class="capsule-card">
           <div>
-            <div class="card-head">
-              <span class="card-number">CAPSULE // 03</span>
-              <span class="badge">LIMITED</span>
-            </div>
-            <h3 class="card-title">VAULT CARGOS</h3>
-            <p class="card-desc">Utility cargo pants and accessories crafted with custom embroidery detailing and high-density hardware.</p>
+            <span class="section-tag">CAPSULE 03</span>
+            <h3>VAULT CARGO PANTS</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">Heavy utility canvas with custom hardware and embroidery.</p>
           </div>
-          <div class="card-footer">
-            <a href="#" class="card-link">EXPLORE VAULT LINEUP</a>
-          </div>
+          <button class="btn btn-outline" style="margin-top: 20px;" onclick="addToCart()">ADD TO CART</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MANIFESTO SECTION -->
-  <section id="manifesto" class="section-padding" style="background-color: var(--color-bg-secondary);">
-    <div class="container manifesto-wrapper">
-      <span class="section-tag">02 / MANIFESTO</span>
-      <p class="manifesto-quote">"WE BRIDGED ANCIENT EGYPTIAN ICONOGRAPHY WITH MODERN STREETWEAR ARCHITECTURE."</p>
-      <div class="manifesto-columns">
-        <div class="manifesto-col">
-          <p>THE EGYPTIAN KING was established to redefine local apparel production. Rather than following fast-fashion cycles, every drop is treated as an architectural study in fabric weight, silhouette, and symbol craftsmanship.</p>
-        </div>
-        <div class="manifesto-col">
-          <p>Our pieces feature clean lines, custom garment washes, and high-density cotton. Every release is produced in limited batches to guarantee meticulous attention to detail from the first stitch to the final garment bag.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CRAFTSMANSHIP SECTION -->
-  <section id="craftsmanship" class="section-padding">
+  <!-- GARMENT ARCHITECTURE / TECH SPECS -->
+  <section id="specs" class="section-padding">
     <div class="container">
-      <div class="editorial-grid">
-        <div class="editorial-visual">
-          <div class="editorial-visual-inner">
-            <span class="visual-label">[ HIGH-DENSITY FABRIC FOCUS ]</span>
-            <p style="margin-top: 15px; font-size: 0.8rem; color: #888;">500 GSM Double Fleece Texture Detail</p>
-          </div>
-        </div>
-        <div class="editorial-content">
-          <span class="section-tag">03 / CRAFTSMANSHIP</span>
-          <h3>CUSTOM GSM & HEAVYWEIGHT CUTS</h3>
-          <p>We custom knit our cotton blends to hit exact weight thresholds. The result is structural drape that maintains its shape through wear while delivering unmatched warmth and comfort.</p>
-          <div class="spec-list">
-            <div class="spec-item">
-              <span class="spec-name">Hoodie Weight</span>
-              <span class="spec-val">500 GSM Double Fleece</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-name">T-Shirt Weight</span>
-              <span class="spec-val">280 GSM Combed Cotton</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <span class="section-tag">03 / SPECIFICATIONS</span>
+      <h2 class="section-title">GARMENT ARCHITECTURE</h2>
+      <table class="spec-table">
+        <tr>
+          <td class="spec-label">FABRIC COMPOSITION</td>
+          <td>100% Combed Egyptian Cotton Fleece</td>
+        </tr>
+        <tr>
+          <td class="spec-label">HOODIE WEIGHT</td>
+          <td>500 GSM Double Fleece</td>
+        </tr>
+        <tr>
+          <td class="spec-label">TEE WEIGHT</td>
+          <td>280 GSM Heavy Jersey</td>
+        </tr>
+        <tr>
+          <td class="spec-label">DYEING & WASHING</td>
+          <td>Garment Pigment Wash / Vintage Enzyme Finish</td>
+        </tr>
+      </table>
     </div>
   </section>
 
-  <!-- LOOKBOOK SECTION -->
-  <section id="lookbook" class="section-padding" style="background-color: var(--color-bg-secondary);">
+  <!-- COMMUNITY REVIEWS -->
+  <section id="reviews" class="section-padding">
     <div class="container">
-      <div class="lookbook-header">
-        <div>
-          <span class="section-tag">04 / VISUAL ARCHIVE</span>
-          <h2 class="section-heading" style="margin-bottom: 0;">SPRING / SUMMER LOOKBOOK</h2>
+      <span class="section-tag">04 / COMMUNITY FEEDBACK</span>
+      <h2 class="section-title">CLIENT VERIFICATIONS</h2>
+      <div class="reviews-feed">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"The 500 GSM weight is unreal. Hood holds its shape perfectly and the fit is genuinely boxy."</p>
+          <p style="margin-top: 12px; font-weight: 800; font-size: 0.8rem; color: var(--accent);">YOUSSEF A. — CAIRO</p>
         </div>
-      </div>
-      <div class="lookbook-grid">
-        <div class="lookbook-card">
-          <span class="lookbook-tag">FRAME // 01</span>
-          <div class="lookbook-title">OVERSIZED FLEECE CUT</div>
-        </div>
-        <div class="lookbook-card">
-          <span class="lookbook-tag">FRAME // 02</span>
-          <div class="lookbook-title">HIEROGLYPH EMBROIDERY</div>
-        </div>
-        <div class="lookbook-card">
-          <span class="lookbook-tag">FRAME // 03</span>
-          <div class="lookbook-title">VINTAGE WASH TEES</div>
-        </div>
-        <div class="lookbook-card">
-          <span class="lookbook-tag">FRAME // 04</span>
-          <div class="lookbook-title">CARGO STRUCTURE</div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Puff print quality and stitching are unmatched. Worth every pound."</p>
+          <p style="margin-top: 12px; font-weight: 800; font-size: 0.8rem; color: var(--accent);">KARIM M. — ALEXANDRIA</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 06. COMMUNITY REVIEWS SECTION -->
-  <section id="reviews" class="reviews-section">
+  <!-- DROP ALARM / NEWSLETTER -->
+  <section class="section-padding" style="text-align: center;">
     <div class="container">
-      <div class="reviews-header-block">
-        <span class="reviews-subtitle">DIRECTLY FROM OUR GLOBAL COMMUNITY</span>
-        <h2 style="color: #ffffff; text-transform: uppercase; font-size: 2.2rem; font-weight: 900;">CLIENT VERIFICATIONS</h2>
-      </div>
-
-      <div class="reviews-action-bar">
-        <button class="btn-review-trigger" onclick="openReviewModal()">+ SUBMIT ARCHIVE REVIEW</button>
-      </div>
-
-      <!-- Vertical Review Feed -->
-      <div class="reviews-feed" id="reviewsFeed">
-        <!-- Initial 5-Star Reviews -->
-        <div class="review-card-item" data-rating="5">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-quote-text">"The 500 GSM weight is unreal. Easily one of the most solid hoodies in my closet. Hood holds its shape perfectly."</p>
-          <div class="review-author-tag">YOUSSEF A. — CAIRO</div>
-        </div>
-
-        <div class="review-card-item" data-rating="5">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-quote-text">"The embroidery detail and puff printing on the back were way beyond expectations. Rapid delivery as well."</p>
-          <div class="review-author-tag">KARIM M. — ALEXANDRIA</div>
-        </div>
-
-        <div class="review-card-item" data-rating="5">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-quote-text">"Fits boxy exactly how I wanted. You can tell they put real thought into fabric selection instead of off-the-shelf blanks."</p>
-          <div class="review-author-tag">OMAR H. — DUBAI</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEW SUBMISSION MODAL -->
-  <div class="review-modal-overlay" id="reviewModal">
-    <div class="review-modal">
-      <span class="modal-close-btn" onclick="closeReviewModal()">&times;</span>
-      <h3 class="modal-title">SUBMIT VERIFICATION</h3>
-      <p class="modal-subtitle">Share your experience with the archive pieces.</p>
-
-      <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
-        <div class="form-group">
-          <label class="form-label">FULL NAME / LOCATION</label>
-          <input type="text" id="reviewerName" class="form-input" placeholder="e.g. ZIAD K. — CAIRO" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">RATING (1-5 STARS)</label>
-          <select id="reviewerRating" class="form-select" required>
-            <option value="5">★★★★★ (5 Stars - Highest)</option>
-            <option value="4">★★★★☆ (4 Stars - Recommended)</option>
-            <option value="3">★★★☆☆ (3 Stars)</option>
-            <option value="2">★★☆☆☆ (2 Stars)</option>
-            <option value="1">★☆☆☆☆ (1 Star - Lowest)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">YOUR REVIEW</label>
-          <textarea id="reviewerText" class="form-textarea" rows="4" placeholder="Detail the fit, fabric quality, weight, or stitching..." required></textarea>
-        </div>
-
-        <p class="form-notice">* High-rated reviews (4+ Stars) are published instantly to the live community feed, ordered from highest rating down.</p>
-
-        <button type="submit" class="btn-submit-review">POST REVIEW LIVE</button>
+      <span class="section-tag">EARLY ACCESS</span>
+      <h2>JOIN THE DROP ALARM</h2>
+      <p style="color: var(--text-muted); margin: 12px 0 30px 0;">Get notified 15 minutes before public drop launches.</p>
+      <form onsubmit="event.preventDefault(); alert('Subscribed to Drop Alarm.');" style="max-width: 450px; margin: 0 auto; display: flex; gap: 10px;">
+        <input type="email" class="form-input" placeholder="ENTER YOUR EMAIL..." required style="margin-top:0;">
+        <button type="submit" class="btn btn-primary">SUBSCRIBE</button>
       </form>
-    </div>
-  </div>
-
-  <!-- SIZING SECTION -->
-  <section id="sizing" class="section-padding">
-    <div class="container">
-      <span class="section-tag">05 / FIT GUIDE</span>
-      <h2 class="section-heading">SIZING MATRIX</h2>
-      <div class="size-matrix-box">
-        <table class="size-table">
-          <thead>
-            <tr>
-              <th>SIZE</th>
-              <th>CHEST (INCHES)</th>
-              <th>LENGTH (INCHES)</th>
-              <th>SHOULDER (INCHES)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>MEDIUM</td>
-              <td>24.0"</td>
-              <td>28.5"</td>
-              <td>22.0"</td>
-            </tr>
-            <tr>
-              <td>LARGE</td>
-              <td>25.5"</td>
-              <td>29.5"</td>
-              <td>23.0"</td>
-            </tr>
-            <tr>
-              <td>X-LARGE</td>
-              <td>27.0"</td>
-              <td>30.5"</td>
-              <td>24.0"</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ SECTION -->
-  <section id="faq" class="section-padding">
-    <div class="container">
-      <span class="section-tag">06 / INFORMATION</span>
-      <h2 class="section-heading">FREQUENTLY ASKED</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-trigger">HOW LONG DOES SHIPPING TAKE?</div>
-          <div class="faq-content">
-            <p>Orders within Egypt arrive in 2-4 business days. Regional GCC orders deliver in 4-7 business days via DHL Express.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWSLETTER SECTION -->
-  <section class="section-padding">
-    <div class="container">
-      <div class="newsletter-box">
-        <span class="section-tag">PRIVATE ACCESS</span>
-        <h2>JOIN THE CAIRO ARCHIVE LIST</h2>
-        <p style="margin-top: 10px;">Receive priority password access for limited drops before public launch.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault();">
-          <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
-          <button type="submit" class="newsletter-submit">ACCESS</button>
-        </form>
-      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer style="padding: 60px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.8rem;">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <h2>THE EGYPTIAN KING</h2>
-          <p>Archival Streetwear Architecture & Heavyweight Apparel drops engineered in Cairo.</p>
-        </div>
-        <div class="footer-col">
-          <h4>EXPLORE</h4>
-          <ul>
-            <li><a href="#capsules">Capsules</a></li>
-            <li><a href="#lookbook">Lookbook</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>CLIENT SERVICE</h4>
-          <ul>
-            <li><a href="#sizing">Sizing Matrix</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 THE EGYPTIAN KING. ALL RIGHTS RESERVED.</div>
-      </div>
+      <p style="margin-bottom: 12px;">&copy; 2026 THE EGYPTIAN KING. ALL RIGHTS RESERVED.</p>
+      <p>ARCHIVAL STREETWEAR ARCHITECTURE — CAIRO, EGYPT</p>
     </div>
   </footer>
 
-  <!-- SCRIPT FOR REVIEWS AND INTERACTIVITY -->
-  <script>
-    function openReviewModal() {
-      document.getElementById('reviewModal').classList.add('active');
-    }
+  <!-- MODAL 1: THEME SELECTION -->
+  <div class="modal-overlay" id="themeModal">
+    <div class="modal-box">
+      <span class="modal-close" onclick="closeModal('themeModal')">&times;</span>
+      <h3>SELECT SITE THEME</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Choose your visual interface identity.</p>
+      <div class="theme-options">
+        <div class="theme-btn" onclick="setTheme('default')">DEFAULT DARK</div>
+        <div class="theme-btn" onclick="setTheme('neon')">NEON MONO</div>
+        <div class="theme-btn" onclick="setTheme('ai')">CYBER AI</div>
+        <div class="theme-btn" onclick="setTheme('royalty')">ROYAL GOLD</div>
+      </div>
+    </div>
+  </div>
 
-    function closeReviewModal() {
-      document.getElementById('reviewModal').classList.remove('active');
-    }
+  <!-- MODAL 2: AUTHENTICATION -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <span class="modal-close" onclick="closeModal('authModal')">&times;</span>
+      <h3 id="authTitle">CLIENT ACCESS</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Sign in to view your archive orders.</p>
+      <form id="authForm" onsubmit="handleEmailAuth(event)" style="margin-top: 20px;">
+        <div class="form-group">
+          <label style="font-size: 0.75rem; font-weight: 800;">EMAIL ADDRESS</label>
+          <input type="email" id="authEmail" class="form-input" placeholder="name@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label style="font-size: 0.75rem; font-weight: 800;">PASSWORD</label>
+          <input type="password" id="authPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">SIGN IN / REGISTER</button>
+      </form>
+      <div style="margin-top: 16px; text-align: center;">
+        <button class="btn btn-outline" style="width: 100%; justify-content: center;" onclick="handleGoogleAuth()">CONTINUE WITH GOOGLE</button>
+      </div>
+    </div>
+  </div>
 
-    function handleReviewSubmit(e) {
-      e.preventDefault();
+  <!-- ==========================================================================
+     11. JAVASCRIPT & FIREBASE INTEGRATION LOGIC
+     ========================================================================== -->
+  <script type="module">
+    // Firebase SDK Imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-      const name = document.getElementById('reviewerName').value.trim();
-      const rating = parseInt(document.getElementById('reviewerRating').value, 10);
-      const text = document.getElementById('reviewerText').value.trim();
+    // Firebase Config Template (Replace with your actual Firebase Credentials)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
 
-      // Only publish live if 4 stars or higher
-      if (rating >= 4) {
-        const feed = document.getElementById('reviewsFeed');
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
 
-        // Build Star String
-        let starStr = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-
-        // Create Card Element
-        const card = document.createElement('div');
-        card.className = 'review-card-item';
-        card.setAttribute('data-rating', rating);
-
-        card.innerHTML = `
-          <div class="review-stars">${starStr}</div>
-          <p class="review-quote-text">"${text}"</p>
-          <div class="review-author-tag">${name.toUpperCase()}</div>
-        `;
-
-        // Prepend to top of feed
-        feed.prepend(card);
-
-        // Re-sort feed elements so 5-stars stay on top, then 4-stars, etc.
-        sortReviews();
+    // Listen to Auth State Changes
+    onAuthStateChanged(auth, (user) => {
+      const authBtn = document.getElementById('authTriggerBtn');
+      if (user) {
+        authBtn.textContent = user.displayName ? user.displayName.split(' ')[0].toUpperCase() : 'ACCOUNT';
+        authBtn.onclick = () => {
+          if (confirm("Sign out of your account?")) {
+            signOut(auth).then(() => alert("Signed out successfully."));
+          }
+        };
+      } else {
+        authBtn.textContent = 'ACCOUNT';
+        authBtn.onclick = () => openModal('authModal');
       }
+    });
 
-      // Reset form and close modal
-      document.getElementById('reviewForm').reset();
-      closeReviewModal();
+    // Email/Password Authentication Handler
+    window.handleEmailAuth = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('authEmail').value;
+      const password = document.getElementById('authPassword').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Logged in successfully!");
+        closeModal('authModal');
+      } catch (error) {
+        // If user doesn't exist, automatically attempt registration
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+          try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            alert("Account created successfully!");
+            closeModal('authModal');
+          } catch (createErr) {
+            alert("Auth Error: " + createErr.message);
+          }
+        } else {
+          alert("Auth Error: " + error.message);
+        }
+      }
+    };
+
+    // Google Authentication Handler
+    window.handleGoogleAuth = async function() {
+      try {
+        await signInWithPopup(auth, googleProvider);
+        alert("Google Authentication Successful!");
+        closeModal('authModal');
+      } catch (error) {
+        alert("Google Auth Error: " + error.message);
+      }
+    };
+  </script>
+
+  <script>
+    /* UI MODAL CONTROLS */
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
     }
 
-    function sortReviews() {
-      const feed = document.getElementById('reviewsFeed');
-      const items = Array.from(feed.getElementsByClassName('review-card-item'));
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
 
-      items.sort((a, b) => {
-        const ratingA = parseInt(a.getAttribute('data-rating'), 10);
-        const ratingB = parseInt(b.getAttribute('data-rating'), 10);
-        return ratingB - ratingA; // Descending order (5 down to 1)
-      });
+    /* THEME ENGINE LOGIC */
+    function setTheme(themeName) {
+      document.body.setAttribute('data-theme', themeName);
+      localStorage.setItem('tek_theme', themeName);
+      closeModal('themeModal');
+    }
 
-      // Re-append sorted elements
-      items.forEach(item => feed.appendChild(item));
+    // Initialize Theme On Load
+    (function initTheme() {
+      const savedTheme = localStorage.getItem('tek_theme') || 'neon';
+      document.body.setAttribute('data-theme', savedTheme);
+    })();
+
+    /* SHOPPING CART LOGIC */
+    let cartCount = parseInt(localStorage.getItem('tek_cart_count') || '0', 10);
+    document.getElementById('cartCount').textContent = cartCount;
+
+    function addToCart() {
+      cartCount++;
+      localStorage.setItem('tek_cart_count', cartCount);
+      document.getElementById('cartCount').textContent = cartCount;
     }
   </script>
 </body>
