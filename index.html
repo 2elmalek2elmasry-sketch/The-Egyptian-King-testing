@@ -105,7 +105,7 @@
             100% { transform: translate(-40px, 40px) scale(0.95); }
         }
 
-        /* MODAL STYLING (THEMES & AUTH) */
+        /* MODAL STYLING */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -596,43 +596,6 @@
             color: #fff;
         }
 
-        /* REVIEWS & REPUTATION */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .review-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 18px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .review-stars {
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .review-quote {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .review-author {
-            font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
         /* DROP ALARM / NEWSLETTER */
         .drop-alarm {
             text-align: center;
@@ -737,7 +700,7 @@
             max-width: 1200px;
             margin: 0 auto 4rem;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 3rem;
             text-align: left;
         }
@@ -776,7 +739,29 @@
             color: var(--accent-primary);
         }
 
-        .copyright { color: #555; font-size: 0.8rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; }
+        .copyright { 
+            color: #777; 
+            font-size: 0.8rem; 
+            margin-top: 2rem; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            padding-top: 2rem; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .copyright a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .copyright a:hover {
+            color: #fff;
+        }
 
         @media (max-width: 900px) {
             .tech-banner { grid-template-columns: 1fr; }
@@ -864,12 +849,11 @@
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="shop.html">Shop Collection</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="terms.html">Terms & Policies</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
             </ul>
         </nav>
         <div class="nav-actions">
-            <a href="#reviews" class="btn-bag">REVIEWS ★</a>
+            <a href="reviews.html" class="btn-bag">REVIEWS ★</a>
             <a href="cart.html" class="btn-bag">BAG (<span id="nav-cart-count">0</span>)</a>
             <button class="btn-bag" id="authNavBtn" onclick="openAuthModal()">SIGN IN</button>
             <a href="shop.html" class="btn-glow">Enter Shop</a>
@@ -999,30 +983,6 @@
         </div>
     </section>
 
-    <!-- REVIEWS & REPUTATION -->
-    <section id="reviews" class="section-padding" style="padding-top: 0;">
-        <h2 class="section-title">Community Voice</h2>
-        <p class="section-sub">Feedback from the royal collective</p>
-
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-stars">★★★★★</div>
-                <p class="review-quote">"The weight of the 500 GSM hoodie is unmatched. Fits perfectly boxy without feeling overly baggy. Worth every pound."</p>
-                <div class="review-author">— Youssef K.</div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">★★★★★</div>
-                <p class="review-quote">"Puff print quality on the Anubis tee is insane. Washed it multiple times and it still looks brand new."</p>
-                <div class="review-author">— Omar M.</div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">★★★★★</div>
-                <p class="review-quote">"Fast shipping and elite packaging. The brand vision and presentation are top tier."</p>
-                <div class="review-author">— Sarah T.</div>
-            </div>
-        </div>
-    </section>
-
     <!-- DROP ALARM / NEWSLETTER -->
     <section class="section-padding" style="padding-top: 0;">
         <div class="drop-alarm">
@@ -1054,16 +1014,8 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="shop.html">Shop Collection</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
                     <li><a href="cart.html">View Bag</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h5>POLICIES</h5>
-                <ul>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="terms.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Shipping & Returns</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1076,7 +1028,9 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2026 THE EGYPTIAN KING. All rights reserved. Built with precision.
+            <span>&copy; 2026 THE EGYPTIAN KING. All rights reserved.</span>
+            <span>•</span>
+            <a href="terms.html">Terms & Policies</a>
         </div>
     </footer>
 
@@ -1094,7 +1048,6 @@
             onAuthStateChanged 
         } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAOtDF71w3oXICE04c9CGtz_prRHBnMq6c",
             authDomain: "the-egyptian-king-68e45.firebaseapp.com",
@@ -1105,7 +1058,6 @@
             measurementId: "G-ZR0FBN0PRV"
         };
 
-        // Initialize Firebase & Auth
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
@@ -1113,7 +1065,6 @@
 
         let isSignUpMode = false;
 
-        // UI Auth Controls
         const authNavBtn = document.getElementById('authNavBtn');
         const authToggleText = document.getElementById('authToggleText');
         const authTitle = document.getElementById('authTitle');
@@ -1121,7 +1072,6 @@
         const authSubmitBtn = document.getElementById('authSubmitBtn');
         const authError = document.getElementById('authError');
 
-        // Toggle Sign In / Sign Up Mode
         authToggleText.addEventListener('click', () => {
             isSignUpMode = !isSignUpMode;
             if (isSignUpMode) {
@@ -1137,7 +1087,6 @@
             }
         });
 
-        // Email & Password Auth Handler
         window.handleEmailAuth = async function(e) {
             e.preventDefault();
             authError.style.display = 'none';
@@ -1157,7 +1106,6 @@
             }
         };
 
-        // Google Sign In
         document.getElementById('googleBtn').addEventListener('click', async () => {
             try {
                 await signInWithPopup(auth, googleProvider);
@@ -1168,7 +1116,6 @@
             }
         });
 
-        // Global Auth Action (Sign In Trigger or Sign Out Execution)
         window.openAuthModal = function() {
             if (auth.currentUser) {
                 signOut(auth);
@@ -1177,7 +1124,6 @@
             }
         };
 
-        // Auth Observer
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 authNavBtn.innerText = "LOGOUT";
@@ -1187,7 +1133,7 @@
         });
     </script>
 
-    <!-- GENERAL APP LOGIC & THEME SWITCHER -->
+    <!-- GENERAL APP LOGIC -->
     <script>
         function updateCartBadge() {
             const cart = JSON.parse(localStorage.getItem('kingCart')) || [];
