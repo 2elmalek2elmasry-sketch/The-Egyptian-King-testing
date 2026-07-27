@@ -3,63 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE EGYPTIAN KING — Community Reviews</title>
+    <title>Reviews — THE EGYPTIAN KING</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg: #050508;
-            --card-bg: rgba(18, 18, 24, 0.75);
-            --border-glow: rgba(255, 255, 255, 0.15);
-            --text-main: #ffffff;
+            --card-bg: rgba(18, 18, 24, 0.85);
+            --border: rgba(255, 255, 255, 0.15);
+            --accent: #ffffff;
             --text-muted: #a0a0b0;
-            --accent-primary: #ffffff;
-            --accent-glow: rgba(255, 255, 255, 0.4);
         }
 
-        body[data-theme="neon"] {
-            --bg: #090014;
-            --card-bg: rgba(24, 9, 43, 0.8);
-            --border-glow: rgba(236, 72, 153, 0.4);
-            --accent-primary: #ec4899;
-            --accent-glow: rgba(236, 72, 153, 0.6);
-        }
-
-        body[data-theme="ai"] {
-            --bg: #030712;
-            --card-bg: rgba(15, 23, 42, 0.8);
-            --border-glow: rgba(56, 189, 248, 0.35);
-            --accent-primary: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.5);
-        }
-
-        body[data-theme="royalty"] {
-            --bg: #0a0802;
-            --card-bg: rgba(28, 23, 13, 0.85);
-            --border-glow: rgba(234, 179, 8, 0.35);
-            --accent-primary: #eab308;
-            --accent-glow: rgba(234, 179, 8, 0.5);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: background-color 0.4s ease, border-color 0.4s ease;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            min-height: 100vh;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: #fff; min-height: 100vh; }
 
         header {
-            background: rgba(5, 5, 8, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glow);
-            padding: 1.25rem 4rem;
+            background: rgba(5, 5, 8, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -68,369 +30,164 @@
             align-items: center;
         }
 
-        .brand-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
+        .logo { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 900; letter-spacing: 2px; color: #fff; text-decoration: none; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+        nav a.active { color: #fff; }
 
-        nav ul { display: flex; list-style: none; gap: 2.5rem; }
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-        }
-        nav a:hover, nav a.active { color: #fff; }
-
-        .btn-bag {
-            background: transparent;
-            border: 1px solid var(--border-glow);
-            color: #fff;
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            cursor: pointer;
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-glow {
-            background: var(--accent-primary);
-            color: #000;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px var(--accent-glow);
-            border: none;
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .page-header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .reviews-grid {
+        .layout-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+        }
+
+        .form-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            height: fit-content;
+        }
+
+        .form-box h2 { font-family: 'Cinzel', serif; margin-bottom: 1.5rem; font-size: 1.5rem; }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 30px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .reviews-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
         }
 
         .review-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 18px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .review-stars {
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-
-        .review-quote {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .review-author {
-            font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(16px);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 1.5rem;
-            opacity: 1;
-            visibility: visible;
-            transition: all 0.4s ease;
         }
 
-        .modal-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .reviewer-name { font-weight: 700; font-size: 1rem; }
+        .review-stars { color: #eab308; }
+        .review-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        /* DEVICE SPECIFIC STYLES */
+
+        /* 📱 PHONE (Stacked Single Column) */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 1rem; }
+            .layout-container { grid-template-columns: 1fr; }
         }
 
-        .modal-card {
-            background: rgba(18, 18, 24, 0.95);
-            border: 1px solid var(--border-glow);
-            border-radius: 24px;
-            padding: 3rem 2.5rem;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .form-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glow);
-            padding: 0.85rem;
-            border-radius: 12px;
-            color: #fff;
-            outline: none;
-        }
-
-        select.form-input option {
-            background: #121218;
-            color: #fff;
-        }
-
-        footer {
-            background: rgba(5, 5, 8, 0.95);
-            border-top: 1px solid var(--border-glow);
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 6rem;
-        }
-
-        .copyright { 
-            color: #777; 
-            font-size: 0.8rem; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .copyright a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 700;
+        /* 💻 DESKTOP & TABLET (Side-by-Side Split View) */
+        @media (min-width: 769px) {
+            .layout-container { grid-template-columns: 1fr 2fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="brand-logo">The Egyptian King</a>
+        <a href="index.html" class="logo">The Egyptian King</a>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop Collection</a></li>
+                <li><a href="shop.html">Shop</a></li>
                 <li><a href="reviews.html" class="active">Reviews</a></li>
             </ul>
         </nav>
-        <div class="nav-actions">
-            <a href="cart.html" class="btn-bag">BAG (<span id="nav-cart-count">0</span>)</a>
-            <a href="shop.html" class="btn-glow">Enter Shop</a>
-        </div>
     </header>
 
-    <div class="container">
-        <div class="page-header">
-            <h1>COMMUNITY REVIEWS</h1>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Real feedback from verified collectors around the globe.</p>
-            <button class="btn-glow" onclick="openReviewModal()">+ ADD REVIEW</button>
-        </div>
-
-        <div class="reviews-grid" id="reviewsContainer">
-            <p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">Loading reviews live from database...</p>
-        </div>
-    </div>
-
-    <div class="modal-overlay hidden" id="reviewModal">
-        <div class="modal-card">
-            <button class="modal-close" style="position: absolute; top: 1rem; right: 1.5rem; background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;" onclick="closeReviewModal()">✕</button>
-            <h2 style="font-family: 'Cinzel', serif; letter-spacing: 2px; margin-bottom: 1.5rem;">WRITE A REVIEW</h2>
-            
+    <div class="layout-container">
+        <!-- FORM COLUMN -->
+        <div class="form-box">
+            <h2>LEAVE A REVIEW</h2>
             <form id="reviewForm">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="authorName" class="form-input" placeholder="e.g. Youssef K." required>
-                </div>
-
-                <div class="form-group">
-                    <label>Rating</label>
-                    <select id="starRating" class="form-input" required>
-                        <option value="5">★★★★★ (5/5 Excellent)</option>
-                        <option value="4">★★★★☆ (4/5 Great)</option>
-                        <option value="3">★★★☆☆ (3/5 Average)</option>
-                        <option value="2">★★☆☆☆ (2/5 Poor)</option>
-                        <option value="1">★☆☆☆☆ (1/5 Terrible)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Your Review</label>
-                    <textarea id="reviewComment" class="form-input" rows="4" placeholder="Share details about fit, quality, and style..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn-glow" id="submitReviewBtn" style="width: 100%; margin-top: 1rem;">Publish Review</button>
+                <input type="text" id="author" class="input-field" placeholder="Your Name" required>
+                <select id="rating" class="input-field" required>
+                    <option value="5">★★★★★ (5/5)</option>
+                    <option value="4">★★★★☆ (4/5)</option>
+                    <option value="3">★★★☆☆ (3/5)</option>
+                </select>
+                <textarea id="comment" class="input-field" rows="4" placeholder="Share your experience with quality & fit..." required></textarea>
+                <button type="submit" class="btn-submit">Submit Review</button>
             </form>
         </div>
+
+        <!-- REVIEWS FEED COLUMN -->
+        <div class="reviews-feed">
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">Omar K.</span>
+                    <span class="review-stars">★★★★★</span>
+                </div>
+                <p class="review-text">The 500 GSM weight on the Pharaoh zip-up is insane. Best quality hoodie made in Egypt right now.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">Youssef M.</span>
+                    <span class="review-stars">★★★★★</span>
+                </div>
+                <p class="review-text">Oversized fit is spot on. Delivered fast and packaging was premium.</p>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <div class="copyright">
-            <span>&copy; 2026 THE EGYPTIAN KING. All rights reserved.</span>
-            <span>•</span>
-            <a href="terms.html">Terms & Policies</a>
-        </div>
-    </footer>
-
+    <!-- Firebase App & Firestore Modular SDK -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-        import { 
-            getFirestore, 
-            collection, 
-            addDoc, 
-            query, 
-            where, 
-            orderBy, 
-            onSnapshot, 
-            serverTimestamp 
-        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyDc9kcqdWxZ7nwdoFpCMdM_48mTdoHvYg8",
-            authDomain: "the-egyptian-king-2.firebaseapp.com",
-            projectId: "the-egyptian-king-2",
-            storageBucket: "the-egyptian-king-2.firebasestorage.app",
-            messagingSenderId: "173856439118",
-            appId: "1:173856439118:web:981d1daaf0a135c2f0fc1f",
-            measurementId: "G-15LPR401B6"
+            projectId: "the-egyptian-king-2"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const reviewsRef = collection(db, "reviews");
-        const publicQuery = query(reviewsRef, where("stars", ">=", 4), orderBy("stars", "desc"));
-
-        onSnapshot(publicQuery, (snapshot) => {
-            const container = document.getElementById('reviewsContainer');
-            container.innerHTML = '';
-
-            if (snapshot.empty) {
-                container.innerHTML = `<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">No reviews published yet. Be the first!</p>`;
-                return;
-            }
-
-            snapshot.forEach((doc) => {
-                const item = doc.data();
-                const starStr = '★'.repeat(item.stars) + '☆'.repeat(5 - item.stars);
-                const card = document.createElement('div');
-                card.className = 'review-card';
-                card.innerHTML = `
-                    <div class="review-stars">${starStr}</div>
-                    <p class="review-quote">"${item.text}"</p>
-                    <div class="review-author">— ${item.name}</div>
-                `;
-                container.appendChild(card);
-            });
-        }, (error) => {
-            console.error("Firestore Error:", error);
-            document.getElementById('reviewsContainer').innerHTML = `<p style="color: #ef4444; text-align: center; grid-column: 1/-1;">Error loading live database reviews.</p>`;
-        });
-
-        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+        const form = document.getElementById('reviewForm');
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const submitBtn = document.getElementById('submitReviewBtn');
-            submitBtn.innerText = "Saving...";
-            submitBtn.disabled = true;
-
-            const name = document.getElementById('authorName').value.trim();
-            const stars = parseInt(document.getElementById('starRating').value);
-            const text = document.getElementById('reviewComment').value.trim();
+            const name = document.getElementById('author').value;
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value;
 
             try {
-                await addDoc(reviewsRef, {
+                await addDoc(collection(db, "reviews"), {
                     name: name,
-                    stars: stars,
-                    text: text,
-                    createdAt: serverTimestamp()
+                    rating: rating,
+                    comment: comment,
+                    timestamp: new Date()
                 });
-
-                if (stars >= 4) {
-                    alert('Thank you! Your review is permanently published worldwide.');
-                } else {
-                    alert('Thank you! Your feedback was received and sent directly to management.');
-                }
-
-                closeReviewModal();
-                e.target.reset();
+                alert("Review submitted successfully!");
+                form.reset();
             } catch (err) {
-                alert('Error submitting review: ' + err.message);
-            } finally {
-                submitBtn.innerText = "Publish Review";
-                submitBtn.disabled = false;
-            }
-        });
-    </script>
-
-    <script>
-        function openReviewModal() {
-            document.getElementById('reviewModal').classList.remove('hidden');
-        }
-
-        function closeReviewModal() {
-            document.getElementById('reviewModal').classList.add('hidden');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('selectedTheme');
-            if (savedTheme && savedTheme !== 'basic') {
-                document.body.setAttribute('data-theme', savedTheme);
+                console.error("Error adding review: ", err);
             }
         });
     </script>
