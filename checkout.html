@@ -2,108 +2,265 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Checkout — THE EGYPTIAN KING</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-  :root {
-    --bg: #08080c;
-    --sidebar-bg: #0f0f17;
-    --card-bg: rgba(22, 22, 32, 0.8);
-    --border-glow: rgba(255, 255, 255, 0.12);
-    --text-main: #ffffff;
-    --text-muted: #8e8e9e;
-    --accent-primary: #38bdf8;
-    --input-bg: rgba(255, 255, 255, 0.04);
-  }
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
 
-  body[data-theme="neon"] {
-    --bg: #090014;
-    --sidebar-bg: #0e021e;
-    --card-bg: rgba(24, 9, 43, 0.85);
-    --border-glow: rgba(236, 72, 153, 0.3);
-    --accent-primary: #ec4899;
-  }
+      const firebaseConfig = {
+        apiKey: "AIzaSyAOtDF71w3oXICE04c9CGtz_prRHBnMq6c",
+        authDomain: "the-egyptian-king-68e45.firebaseapp.com",
+        projectId: "the-egyptian-king-68e45",
+        storageBucket: "the-egyptian-king-68e45.firebasestorage.app",
+        messagingSenderId: "94881816710",
+        appId: "1:94881816710:web:10fca569f1b43c583ab107",
+        measurementId: "G-ZR0FBN0PRV"
+      };
 
-  body[data-theme="royalty"] {
-    --bg: #0a0802;
-    --sidebar-bg: #120e04;
-    --card-bg: rgba(28, 23, 13, 0.85);
-    --border-glow: rgba(234, 179, 8, 0.3);
-    --accent-primary: #eab308;
-  }
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
-  body {
-    background-color: var(--bg);
-    color: var(--text-main);
-    min-height: 100vh;
-  }
+    <style>
+        :root {
+            --bg: #08080c;
+            --sidebar-bg: #0f0f17;
+            --card-bg: rgba(22, 22, 32, 0.8);
+            --border-glow: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff;
+            --text-muted: #8e8e9e;
+            --accent-primary: #38bdf8;
+            --input-bg: rgba(255, 255, 255, 0.04);
+        }
 
-  .checkout-layout {
-    display: grid;
-    grid-template-columns: 1fr 450px;
-    min-height: 100vh;
-  }
+        body[data-theme="neon"] {
+            --bg: #090014;
+            --sidebar-bg: #0e021e;
+            --card-bg: rgba(24, 9, 43, 0.85);
+            --border-glow: rgba(236, 72, 153, 0.3);
+            --accent-primary: #ec4899;
+        }
 
-  /* LEFT FORM COLUMN */
-  .main-content {
-    padding: 3rem 5rem;
-    max-width: 750px;
-    margin-left: auto;
-    width: 100%;
-  }
+        body[data-theme="royalty"] {
+            --bg: #0a0802;
+            --sidebar-bg: #120e04;
+            --card-bg: rgba(28, 23, 13, 0.85);
+            --border-glow: rgba(234, 179, 8, 0.3);
+            --accent-primary: #eab308;
+        }
 
-  /* ... (rest of your styles remain the same) ... */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; overflow-x: hidden; width: 100%; }
 
-  /* Add responsive styles */
-  @media (max-width: 768px) {
-    body {
-      overflow-x: hidden;
-    }
-    .checkout-layout {
-      grid-template-columns: 1fr;
-    }
-    .main-content {
-      padding: 2rem 1.5rem;
-    }
-    .sidebar {
-      padding: 2rem 1.5rem;
-      order: -1;
-    }
-  }
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 450px;
+            min-height: 100vh;
+        }
 
-  @media (max-width: 1024px) {
-    .main-content {
-      max-width: 95%;
-    }
-  }
+        .main-content {
+            padding: 3rem clamp(1rem, 5vw, 5rem);
+            max-width: 750px;
+            margin-left: auto;
+            width: 100%;
+        }
 
-  @media (min-width: 1600px) {
-    .main-content {
-      max-width: 1400px;
-    }
-  }
-</style>
+        .brand-header {
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-box { margin-bottom: 2.2rem; }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .sign-in-link { font-size: 0.8rem; color: var(--accent-primary); text-decoration: none; font-weight: 600; }
+
+        .form-group { margin-bottom: 0.9rem; position: relative; }
+
+        .input-field, .select-field {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus, .select-field:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.9rem; }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+            cursor: pointer;
+        }
+
+        .notice-box {
+            background: var(--input-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .payment-option-box {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-complete {
+            width: 100%;
+            background: var(--accent-primary);
+            color: #000;
+            border: none;
+            padding: 1.1rem;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-complete:hover { transform: translateY(-2px); }
+
+        .checkout-footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-glow);
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .checkout-footer a { color: var(--text-muted); text-decoration: none; }
+
+        .sidebar {
+            background: var(--sidebar-bg);
+            border-left: 1px solid var(--border-glow);
+            padding: 3rem clamp(1rem, 4vw, 3rem) 3rem clamp(1rem, 4vw, 2.5rem);
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-item-left { display: flex; align-items: center; gap: 1rem; position: relative; min-width: 0; }
+
+        .item-img-wrapper {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            background: #1a1a24;
+            border-radius: 8px;
+            border: 1px solid var(--border-glow);
+            flex-shrink: 0;
+        }
+
+        .item-img-wrapper img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+
+        .item-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--text-muted);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 900;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-details { min-width: 0; }
+        .item-details h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; word-wrap: break-word; }
+        .item-details p { font-size: 0.75rem; color: var(--text-muted); }
+
+        .item-price { font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
+
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 0.8rem;
+            gap: 1rem;
+        }
+
+        .cost-row.total {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-top: 1px solid var(--border-glow);
+            padding-top: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-layout { grid-template-columns: 1fr; }
+            .main-content { padding: 2rem 1.5rem; }
+            .sidebar { padding: 2rem 1.5rem; order: -1; border-left: none; border-bottom: 1px solid var(--border-glow); }
+            .form-row, .form-row-3 { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
     <div class="checkout-layout">
         
-        <!-- LEFT FORM SECTION -->
         <main class="main-content">
             <div class="brand-header">
                 <div class="brand-title">THE EGYPTIAN KING</div>
             </div>
 
-            <!-- CONTACT -->
             <div class="section-box">
                 <div class="section-title">
                     Contact
@@ -117,7 +274,6 @@
                 </label>
             </div>
 
-            <!-- DELIVERY -->
             <div class="section-box">
                 <div class="section-title">Delivery</div>
                 
@@ -159,7 +315,6 @@
                 </label>
             </div>
 
-            <!-- SHIPPING METHOD -->
             <div class="section-box">
                 <div class="section-title">Shipping method</div>
                 <div class="notice-box">
@@ -167,7 +322,6 @@
                 </div>
             </div>
 
-            <!-- PAYMENT -->
             <div class="section-box">
                 <div class="section-title">Payment</div>
                 <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.8rem;">All transactions are secure and encrypted.</p>
@@ -177,7 +331,6 @@
                 </div>
             </div>
 
-            <!-- BILLING ADDRESS -->
             <div class="section-box">
                 <div class="section-title">Billing address</div>
                 <div class="payment-option-box" style="margin-bottom: 0.6rem;">
@@ -197,7 +350,6 @@
             </div>
         </main>
 
-        <!-- RIGHT SIDEBAR ORDER SUMMARY -->
         <aside class="sidebar">
             <div id="checkout-items-list">
                 <!-- LOADED DYNAMICALLY -->
