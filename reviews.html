@@ -5,108 +5,303 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews — THE EGYPTIAN KING</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #050508;
-            --card-bg: rgba(18, 18, 24, 0.85);
-            --border: rgba(255, 255, 255, 0.15);
-            --accent: #ffffff;
-            --text-muted: #a0a0b0;
-        }
+   <style>
+  :root {
+    --bg: #050508;
+    --card-bg: rgba(18, 18, 24, 0.75);
+    --border-glow: rgba(255, 255, 255, 0.15);
+    --text-main: #ffffff;
+    --text-muted: #a0a0b0;
+    --accent-primary: #ffffff;
+    --accent-glow: rgba(255, 255, 255, 0.4);
+  }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); color: #fff; min-height: 100vh; }
+  body[data-theme="neon"] {
+    --bg: #090014;
+    --card-bg: rgba(24, 9, 43, 0.8);
+    --border-glow: rgba(236, 72, 153, 0.4);
+    --accent-primary: #ec4899;
+    --accent-glow: rgba(236, 72, 153, 0.6);
+  }
 
-        header {
-            background: rgba(5, 5, 8, 0.9);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.2rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  body[data-theme="ai"] {
+    --bg: #030712;
+    --card-bg: rgba(15, 23, 42, 0.8);
+    --border-glow: rgba(56, 189, 248, 0.35);
+    --accent-primary: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.5);
+  }
 
-        .logo { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 900; letter-spacing: 2px; color: #fff; text-decoration: none; }
-        nav ul { display: flex; list-style: none; gap: 2rem; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
-        nav a.active { color: #fff; }
+  body[data-theme="royalty"] {
+    --bg: #0a0802;
+    --card-bg: rgba(28, 23, 13, 0.85);
+    --border-glow: rgba(234, 179, 8, 0.35);
+    --accent-primary: #eab308;
+    --accent-glow: rgba(234, 179, 8, 0.5);
+  }
 
-        .layout-container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            gap: 2.5rem;
-        }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+  }
 
-        .form-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            height: fit-content;
-        }
+  body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    min-height: 100vh;
+  }
 
-        .form-box h2 { font-family: 'Cinzel', serif; margin-bottom: 1.5rem; font-size: 1.5rem; }
+  header {
+    background: rgba(5, 5, 8, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glow);
+    padding: 1.25rem 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-        .input-field {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.85rem 1rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            outline: none;
-        }
+  .brand-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
 
-        .btn-submit {
-            width: 100%;
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 0.9rem;
-            border-radius: 30px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+  }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  nav a:hover, nav a.active {
+    color: #fff;
+  }
 
-        .reviews-feed {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
+  .btn-bag {
+    background: transparent;
+    border: 1px solid var(--border-glow);
+    color: #fff;
+    padding: 0.6rem 1.4rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
 
-        .review-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-        }
+  .btn-glow {
+    background: var(--accent-primary);
+    color: #000;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px var(--accent-glow);
+    border: none;
+    cursor: pointer;
+  }
 
-        .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-        .reviewer-name { font-weight: 700; font-size: 1rem; }
-        .review-stars { color: #eab308; }
-        .review-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+  .container {
+    max-width: 1100px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+  }
 
-        /* DEVICE SPECIFIC STYLES */
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-        /* 📱 PHONE (Stacked Single Column) */
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; }
-            .layout-container { grid-template-columns: 1fr; }
-        }
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+  }
 
-        /* 💻 DESKTOP & TABLET (Side-by-Side Split View) */
-        @media (min-width: 769px) {
-            .layout-container { grid-template-columns: 1fr 2fr; }
-        }
-    </style>
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .review-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    border-radius: 18px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .review-stars {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  .review-quote {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-author {
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(16px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s ease;
+  }
+
+  .modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .modal-card {
+    background: rgba(18, 18, 24, 0.95);
+    border: 1px solid var(--border-glow);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glow);
+    padding: 0.85rem;
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+  }
+
+  select.form-input option {
+    background: #121218;
+    color: #fff;
+  }
+
+  footer {
+    background: rgba(5, 5, 8, 0.95);
+    border-top: 1px solid var(--border-glow);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 6rem;
+  }
+
+  .copyright {
+    color: #777;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .copyright a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    body {
+      overflow-x: hidden;
+    }
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+    nav ul {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+    .review-card {
+      padding: 1rem;
+    }
+    #reviewsContainer {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    /* optional, slight adjustments for tablets */
+    .container {
+      max-width: 95%;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    /* for very large screens like fridges or car screens */
+    .container {
+      max-width: 1400px;
+    }
+  }
+</style>
 </head>
 <body>
 
