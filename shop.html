@@ -6,6 +6,12 @@
     <title>Shop All — THE EGYPTIAN KING</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- ===== FIREBASE SDK (Moved to top so it loads before the page) ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="auth.js"></script>
+
     <!-- ===== GOOGLE ANALYTICS 4 (GA4) ===== -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZR0FBN0PRV"></script>
     <script>
@@ -33,7 +39,7 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <!-- Live PayPal SDK Integration (Fixed: Added card-fields component) -->
+    <!-- Live PayPal SDK Integration -->
     <script src="https://www.paypal.com/sdk/js?client-id=BAAgKA8H86lAKZg1vOkx1EnhPnRcbelVZKjmQnxn3GpjUAJJDR07dJWGbfeCIvIpwMkgukTtRZqIxkIocw&currency=USD&components=buttons,card-fields"></script>
 
     <style>
@@ -886,7 +892,10 @@
 
         // ===== Membership Plan Logic =====
         function checkUserPlan() {
-            if (typeof firebase === 'undefined' || !firebase.auth) return;
+            if (typeof firebase === 'undefined' || !firebase.auth) {
+                updatePlanUI('Basic');
+                return;
+            }
 
             firebase.auth().onAuthStateChanged(user => {
                 if (user) {
@@ -930,28 +939,33 @@
         function upgradePlan(planName) {
             if (planName === 'Basic') return; // Can't "upgrade" to basic
 
-            if (typeof firebase === 'undefined' || !firebase.auth) {
-                showToast("Please login to upgrade your plan!");
-                setTimeout(() => window.location.href = 'login.html', 1500);
-                return;
-            }
-
-            const user = firebase.auth().currentUser;
-            if (!user) {
-                showToast("Please login first.");
-                setTimeout(() => window.location.href = 'login.html', 1500);
-                return;
-            }
-
             selectedUpgradePlan = planName;
             let egpPrice = planName === 'Standard' ? 150 : 300;
             let usdPrice = (egpPrice / 50).toFixed(2); // Convert EGP to USD for PayPal
 
+            // Update modal text
             document.getElementById('upgrade-plan-name').innerText = planName;
             document.getElementById('upgrade-plan-price').innerText = `${egpPrice} EGP / month (~$${usdPrice})`;
             
+            // Open the popup instantly
             document.getElementById('upgrade-overlay').classList.add('active');
-            renderUpgradePayPal(usdPrice);
+            
+            const user = typeof firebase !== 'undefined' && firebase.auth ? firebase.auth().currentUser : null;
+            const container = document.getElementById('upgrade-paypal-btn');
+            container.innerHTML = ''; // Clear old buttons
+
+            if (!user) {
+                // If not logged in, show login prompt inside the popup
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem 0;">
+                        <p style="color: #0a0a0a; font-weight: 700; margin-bottom: 1.5rem; font-size: 0.9rem;">Please login to your Egyptian King account to activate your membership.</p>
+                        <button onclick="window.location.href='login.html'" style="width: 100%; padding: 1rem; background: #0a0a0a; color: #fff; border: none; border-radius: 2px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">Login / Sign Up</button>
+                    </div>
+                `;
+            } else {
+                // If logged in, render PayPal buttons
+                renderUpgradePayPal(usdPrice);
+            }
         }
 
         function closeUpgradeModal() {
@@ -1048,11 +1062,5 @@
             checkUserPlan();
         });
     </script>
-    
-    <!-- Firebase Auth Script -->
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
-    <script src="auth.js"></script>
 </body>
 </html>
